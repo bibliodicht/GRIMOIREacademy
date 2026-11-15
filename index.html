@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRIMOIRE｜グリモアール</title>
+<style>
+:root{
+  --navy:#0d1526;--navy2:#142038;--navy3:#1b2a47;--brown:#2a1d14;--brown2:#3a281b;
+  --gold:#b8964e;--gold2:#d6b97a;--ivory:#e9e0c9;--ivory2:#c9bfa6;--green:#2c3e2f;--green2:#4b6b50;
+  --danger:#a8553f;--ok:#6f9a6a;
+  --serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP","Times New Roman",serif;
+  --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#16233f 0%,var(--navy) 55%,#080d18 100%) fixed;color:var(--ivory);font-family:var(--serif);font-size:16px;line-height:1.8;padding-bottom:84px}
+a{color:var(--gold2);text-decoration:none;border-bottom:1px dotted rgba(214,185,122,.5)}
+a:hover{color:#f0dba0}
+header.top{position:sticky;top:0;z-index:20;background:linear-gradient(var(--brown),#1d140e);border-bottom:1px solid var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.5)}
+.top-in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-family:var(--serif);letter-spacing:.28em;font-size:22px;color:var(--gold2);border:none;white-space:nowrap}
+.logo small{display:block;letter-spacing:.1em;font-size:10px;color:var(--ivory2)}
+nav{display:flex;gap:2px;overflow-x:auto;flex:1;-webkit-overflow-scrolling:touch}
+nav a{border:none;padding:8px 12px;color:var(--ivory2);font-family:var(--sans);font-size:14px;white-space:nowrap;border-bottom:2px solid transparent}
+nav a.on{color:var(--gold2);border-bottom-color:var(--gold)}
+main{max-width:1080px;margin:0 auto;padding:20px 14px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--gold2);line-height:1.4}
+h1{font-size:28px;margin:.2em 0 .6em;letter-spacing:.06em}
+h2{font-size:21px;margin:1.6em 0 .6em;padding-bottom:.25em;border-bottom:1px solid rgba(184,150,78,.4)}
+h3{font-size:17px;margin:1.2em 0 .4em}
+.card{background:linear-gradient(160deg,rgba(42,29,20,.85),rgba(20,32,56,.85));border:1px solid rgba(184,150,78,.45);border-radius:6px;padding:16px 18px;margin:12px 0;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.stat b{display:block;font-size:26px;color:var(--gold2);font-family:var(--serif)}
+.stat span{font-family:var(--sans);font-size:12px;color:var(--ivory2)}
+.muted{color:var(--ivory2);font-size:14px}
+.sans{font-family:var(--sans)}
+.bar{height:8px;background:#0a1020;border:1px solid rgba(184,150,78,.4);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green2),var(--gold))}
+.btn,button{font-family:var(--sans);font-size:14px;color:var(--ivory);background:var(--brown2);border:1px solid var(--gold);border-radius:4px;padding:8px 14px;cursor:pointer;min-height:38px}
+.btn:hover,button:hover{background:#4d3623}
+button.pri{background:var(--green);border-color:var(--gold2)}
+button.pri:hover{background:var(--green2)}
+button.danger{border-color:var(--danger);color:#e8b7a8}
+button:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tag{display:inline-block;font-family:var(--sans);font-size:11px;padding:1px 8px;border:1px solid rgba(184,150,78,.6);border-radius:10px;color:var(--gold2);margin-right:4px}
+.tag.ok{border-color:var(--ok);color:var(--ok)}
+.tag.warn{border-color:var(--danger);color:#e8b7a8}
+.tag.plan{border-color:#6c7a93;color:#9aa8c2}
+input,select,textarea{font-family:var(--sans);font-size:15px;background:#0a1222;color:var(--ivory);border:1px solid rgba(184,150,78,.5);border-radius:4px;padding:8px 10px;width:100%}
+textarea{min-height:90px;resize:vertical;line-height:1.6}
+label{display:block;font-family:var(--sans);font-size:13px;color:var(--ivory2);margin:10px 0 3px}
+.form2{display:grid;gap:0 14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.lec{background:rgba(233,224,201,.05);border-left:3px solid var(--gold);padding:6px 18px;font-size:17px;line-height:2}
+.lec p{margin:.9em 0}
+.box{border:1px solid rgba(184,150,78,.4);background:rgba(0,0,0,.2);padding:10px 16px;border-radius:4px;margin:12px 0}
+.box.warn{border-color:var(--danger)}
+ul.clean{padding-left:1.3em;margin:.4em 0}
+ul.clean li{margin:.25em 0}
+.crumb{font-family:var(--sans);font-size:13px;color:var(--ivory2)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px}
+th,td{border:1px solid rgba(184,150,78,.35);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:rgba(184,150,78,.15);color:var(--gold2)}
+.tl{border-left:2px solid var(--gold);margin:10px 0 10px 8px;padding-left:16px}
+.tl div{margin:.7em 0;position:relative}
+.tl div:before{content:"";position:absolute;left:-23px;top:.6em;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.tl b{color:var(--gold2);font-family:var(--sans);font-size:13px;display:block}
+svg.dia{width:100%;height:auto;max-width:720px;display:block;margin:10px auto}
+.sv-box{fill:#1b2a47;stroke:#b8964e;stroke-width:1.4}
+.sv-t{fill:#e9e0c9;font-size:14px;text-anchor:middle;font-family:var(--sans)}
+.sv-s{fill:#c9bfa6;font-size:11px;text-anchor:middle;font-family:var(--sans)}
+.sv-l{stroke:#b8964e;fill:none;stroke-width:1.5}
+.opt{display:block;padding:7px 10px;border:1px solid rgba(184,150,78,.3);border-radius:4px;margin:5px 0;cursor:pointer;font-family:var(--sans);font-size:15px;color:var(--ivory)}
+.opt input{width:auto;margin-right:8px}
+.opt.right{border-color:var(--ok);background:rgba(111,154,106,.15)}
+.opt.wrong{border-color:var(--danger);background:rgba(168,85,63,.15)}
+.glyph{font-size:34px;color:var(--gold);line-height:1}
+#timerbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:linear-gradient(#1d140e,var(--brown));border-top:1px solid var(--gold);box-shadow:0 -2px 12px rgba(0,0,0,.6)}
+.tb-in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--sans);font-size:14px}
+.tb-time{font-size:22px;color:var(--gold2);font-variant-numeric:tabular-nums;font-family:var(--serif)}
+.tb-in select{width:auto;max-width:220px;padding:6px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:40;background:#0a1222;border:1px solid var(--gold);padding:10px 18px;border-radius:6px;font-family:var(--sans);font-size:14px;max-width:92vw;display:none;box-shadow:0 4px 18px rgba(0,0,0,.6)}
+.hide{display:none}
+@media (max-width:600px){h1{font-size:23px}.lec{font-size:16px;padding:4px 12px}.logo{font-size:18px}}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}.card:hover{border-color:var(--gold)}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="logo" href="#/home">GRIMOIRE<small>グリモアール</small></a>
+  <nav id="nav"></nav>
+</div></header>
+<main id="app"><p class="muted">読み込み中…（JavaScriptが無効の場合、このサイトは動作しません）</p></main>
+<div id="timerbar"></div>
+<div id="toast" role="status"></div>
+
+<script>
+'use strict';
+/* =====================================================================
+   GRIMOIRE  ―  基盤 v0.1.0
+   構造:  [1] カリキュラムデータ(DOMAINS / LECTURES / TASKS / REFS)
+          [2] 状態管理・保存・JSON入出力
+          [3] 学習時間計測
+          [4] 画面描画(ルーター)
+   新しい授業は LECTURES、領域は DOMAINS、課題は TASKS、文献は REFS に
+   データを追加するだけで表示・進捗管理の対象になる。
+   ===================================================================== */
+var APP_VERSION='0.1.0', SCHEMA=1, LS_KEY='grimoire.state.v1';
+
+/* ---------- [1-a] 研究領域 ---------- */
+var DOMAINS=[
+{id:'chaos',name:'カオスマジック',en:'CHAOS MAGIC',glyph:'✺',
+ overview:'20世紀後半のイギリスで形を取った、方法と信念を「道具」として扱う魔術の潮流。信念・象徴・意図・儀式が人間の認知や行動に与える影響を、仮説と検証の姿勢で研究する。',
+ purpose:'信念、象徴、意図、儀式などを研究し、それらが人間の認知や行動に及ぼす影響を理解する。',
+ chapters:[
+ {n:1,title:'カオスマジックとは何か',lectures:[['chaos-1-1','カオスマジックとは何か（成立史と基本思想）'],['chaos-1-2','オースティン・オスマン・スペアとシジルの原型'],['chaos-1-3','ピーター・J・キャロルと「信念」という道具']]},
+ {n:2,title:'信念と意識',lectures:[['chaos-2-1','信念の形成と思い込み'],['chaos-2-2','注意・期待・暗示'],['chaos-2-3','自己認識']]},
+ {n:3,title:'シジル魔術',lectures:[['chaos-3-1','シジルの歴史と構造'],['chaos-3-2','象徴化と意図の設定'],['chaos-3-3','心理的な作用の検証']]},
+ {n:4,title:'儀式の構造',lectures:[['chaos-4-1','儀式の歴史と構成要素'],['chaos-4-2','象徴・動作・集中と注意'],['chaos-4-3','自分だけの儀式の設計']]},
+ {n:5,title:'実践と検証',lectures:[['chaos-5-1','行動目標の設定とシジルを使った行動実験'],['chaos-5-2','比較実験の設計'],['chaos-5-3','結果の記録と独自の研究']]}]},
+{id:'kabbalah',name:'カバラ',en:'KABBALAH',glyph:'ק',
+ overview:'ユダヤ教の神秘思想としてのカバラと、近代西洋オカルティズムが再構成したヘルメティック・カバラ。両者を区別しながら、生命の樹とセフィロトの象徴体系を学ぶ。',
+ purpose:'生命の樹、セフィロト、象徴、数秘、宇宙観などを理解し、象徴体系を使って思考を整理する能力を養う。',
+ chapters:[
+ {n:1,title:'カバラとは何か',lectures:[['kabbalah-1-1','カバラとは何か（成立史と二つの系譜）'],['kabbalah-1-2','ユダヤ教における位置づけ'],['kabbalah-1-3','ヘルメティック・カバラとの違い']]},
+ {n:2,title:'生命の樹',lectures:[['kabbalah-2-1','生命の樹とは何か'],['kabbalah-2-2','10のセフィロトと22のパス'],['kabbalah-2-3','象徴的な対応関係と全体構造']]},
+ {n:3,title:'セフィロトの理解',lectures:[['kabbalah-3-1','ケテル・コクマー・ビナー'],['kabbalah-3-2','ケセド・ゲブラー・ティファレト'],['kabbalah-3-3','ネツァク・ホド・イェソド・マルクト']]},
+ {n:4,title:'象徴体系',lectures:[['kabbalah-4-1','ヘブライ文字'],['kabbalah-4-2','数字と象徴・対応関係'],['kabbalah-4-3','タロットとの関連・惑星との対応']]},
+ {n:5,title:'実践研究',lectures:[['kabbalah-5-1','生命の樹の作図'],['kabbalah-5-2','象徴体系の分析と概念の分類'],['kabbalah-5-3','独自の象徴体系の構築']]}]},
+{id:'memory',name:'記憶術',en:'MEMORY ARTS',glyph:'⌂',
+ overview:'古典的な記憶術（場所法・記憶の宮殿）と現代の認知科学（想起練習・分散学習）を組み合わせ、記憶の仕組みを理解して実際の記憶能力を高める。',
+ purpose:'記憶の仕組みを理解し、古典的な記憶術と現代の認知科学を組み合わせ、実際に記憶能力を高める。',
+ chapters:[
+ {n:1,title:'記憶の仕組み',lectures:[['memory-1-1','記憶の仕組み（三つの段階と容量の制約）'],['memory-1-2','忘却の仕組み']]},
+ {n:2,title:'古典記憶術',lectures:[['memory-2-1','記憶術の歴史'],['memory-2-2','場所法と記憶の宮殿'],['memory-2-3','連想法とイメージ法']]},
+ {n:3,title:'数字と情報の記憶',lectures:[['memory-3-1','数字変換法'],['memory-3-2','グループ化・連想・大量の情報']]},
+ {n:4,title:'現代の記憶科学',lectures:[['memory-4-1','想起練習と分散学習'],['memory-4-2','精緻化と睡眠'],['memory-4-3','忘却曲線とその限界']]},
+ {n:5,title:'実践トレーニング',lectures:[['memory-5-1','単語・数字・順序の記憶'],['memory-5-2','文章記憶と記憶の宮殿の構築'],['memory-5-3','長期的な維持と再現率の測定']]}]},
+{id:'mental',name:'精神制御・意識調整',en:'MENTAL MASTERY',glyph:'☾',
+ overview:'「精神制御」を、他人を支配する技術ではなく、自分自身の思考・注意・感情・意識状態を理解し調整する知識と技術として扱う。歴史的主張と現代心理学の知見を区別して学ぶ。',
+ purpose:'自分自身の思考、注意、集中、感情、意識状態を理解し、必要に応じて意図的に調整する能力を身につける。',
+ chapters:[
+ {n:1,title:'精神と意識の仕組み',lectures:[['mental-1-1','意識・注意・メタ認知の基礎'],['mental-1-2','自分の精神状態を観察する']]},
+ {n:2,title:'思考の制御・雑念への対処',lectures:[['mental-2-1','思考抑制と「反動」の研究'],['mental-2-2','反芻思考と注意の切り替え'],['mental-2-3','認知的脱フュージョンとマインドフルネス']]},
+ {n:3,title:'集中力・注意力の向上',lectures:[['mental-3-1','集中力とは何か'],['mental-3-2','集中を妨げる要因と環境設計'],['mental-3-3','集中の測定とトレーニング']]},
+ {n:4,title:'感情・精神状態の調整',lectures:[['mental-4-1','感情の仕組みと身体反応'],['mental-4-2','呼吸法とリラクゼーション'],['mental-4-3','認知的再評価と感情との距離']]},
+ {n:5,title:'瞑想・自己暗示・催眠',lectures:[['mental-5-1','瞑想の歴史と技法'],['mental-5-2','自己暗示・催眠の心理学'],['mental-5-3','プラセボ効果とノセボ効果']]},
+ {n:6,title:'精神状態の切り替えと実践',lectures:[['mental-6-1','学習・作業モードへの切り替え'],['mental-6-2','儀式と心理的な準備'],['mental-6-3','自分に適した手順の設計']]},
+ {n:7,title:'応用研究',lectures:[['mental-7-1','長期実験の設計'],['mental-7-2','自己暗示・瞑想の効果検証'],['mental-7-3','独自の精神調整プログラムの構築']]}]}
+];
+var FUTURE_DOMAINS=['錬金術','古典儀式魔術','精神魔術・心理学','言語魔術・説得術','天体魔術・占星術','催眠・暗示','夢魔術・意識研究','自然魔術・植物学','認識魔術・論理学'];
+
+/* ---------- [1-b] 文献（REFS） ----------
+   ※ 書誌情報は作成時点の知識に基づく暫定情報。ISBN・参照版・ページ数は未確認として空欄。
+   空欄の項目は画面上「未確認」と表示される。 */
+var CATS={primary:'一次資料・原典',classic:'古典文献',history:'歴史研究書',academic:'現代の学術研究',guide:'現代の解説書',practice:'実践書',intro:'入門書',other:'その他'};
+var CAT_NOTE={primary:'歴史的・思想的な主張を含む原典です。書かれている主張は「研究対象」であり、事実の裏付けとは区別して読みます。',classic:'古典として読み継がれてきた文献です。成立当時の知識水準を前提に読みます。',history:'歴史的経緯を研究した文献です。一次資料と対照しながら読みます。',academic:'学術的な研究・論文です。条件や再現性、後続研究も合わせて確認します。',guide:'現代の解説書です。原典や研究との区別に注意して読みます。',practice:'実践のための書籍です。効果の主張は個別に検証が必要です。',intro:'入門書です。',other:''};
+var REFS=[
+{id:'spare1913',title:'The Book of Pleasure (Self-Love): The Psychology of Ecstasy',original:'The Book of Pleasure (Self-Love): The Psychology of Ecstasy',authors:'Austin Osman Spare',year:'1913',place:'London',cat:'primary',lang:'英語',jaTrans:'',subject:'シジル、欲望、信念の扱い',background:'カオスマジックの先駆とされる画家・著述家スペアの代表的著作。スペア自身は生前、広い読者を得なかったとされ、後に再評価された。',points:['欲求を文として書き、図形（シジル）に変換し、意識から手放す方法','信念を扱う手法としての側面']},
+{id:'carroll1987',title:'Liber Null & Psychonaut',original:'Liber Null & Psychonaut',authors:'Peter J. Carroll',year:'1978（Liber Null）',editionYear:'1987（合本）',publisher:'Weiser',cat:'primary',lang:'英語',jaTrans:'',subject:'カオスマジックの基礎的な方法論',background:'カオスマジックを体系的に提示した初期の主要文献の一つ。',points:['信念を道具として切り替える考え方','方法論としての魔術']},
+{id:'hine1995',title:'Condensed Chaos',original:'Condensed Chaos: An Introduction to Chaos Magic',authors:'Phil Hine',year:'1995',publisher:'New Falcon Publications',cat:'practice',lang:'英語',jaTrans:'',subject:'カオスマジックの実践入門',background:'カオスマジックの技法を実践者向けに整理した書籍。',points:[]},
+{id:'gollwitzer1999',title:'Implementation intentions: Strong effects of simple plans',original:'Implementation intentions: Strong effects of simple plans',authors:'Peter M. Gollwitzer',year:'1999',journal:'American Psychologist 54(7), 493–503',cat:'academic',lang:'英語',jaTrans:'',subject:'「もしXならYする」形式の行動計画の効果',background:'実行意図（if-then 計画）が目標達成を助けることを示した研究の総説。シジルの心理的作用を考える際の比較対象として参照する。',points:['if-then計画と目標達成','効果には条件がある']},
+{id:'scholem1941',title:'Major Trends in Jewish Mysticism',original:'Major Trends in Jewish Mysticism',authors:'Gershom Scholem',authorsOrig:'גרשם שלום',year:'1941',cat:'history',lang:'英語',jaTrans:'あり（書名・訳者は未確認）',subject:'ユダヤ神秘思想（カバラ）の歴史',background:'カバラ研究の古典的な歴史研究書。『ゾーハル』の成立についての学術的見解でも参照される。',points:['カバラの歴史的展開','『ゾーハル』の成立論']},
+{id:'seferyetzirah',title:'セーフェル・イェツィラー（形成の書）',original:'ספר יצירה / Sefer Yetzirah',authors:'著者不詳（伝承あり）',authorsOrig:'',year:'成立年代は未確定（学説により異なる）',cat:'primary',lang:'ヘブライ語',jaTrans:'',subject:'10のセフィロトと22のヘブライ文字による創造の記述',background:'カバラの重要な古典。参照する版・翻訳は学習者が選んで記録する。',points:['セフィロトと文字による世界の記述']},
+{id:'zohar',title:'ゾーハル（光輝の書）',original:'זהר / Zohar',authors:'伝統的にはシモン・バル・ヨハイに帰される。学術的には13世紀後半のスペインで成立したとする見方が有力',authorsOrig:'',year:'13世紀後半とされる（学説による）',cat:'primary',lang:'アラム語・ヘブライ語',jaTrans:'',subject:'聖書注解の形をとるカバラの中心的文献',background:'カバラの中心的文献。成立についての伝統的説明と学術的見解を区別する。',points:['成立についての伝統と学説']},
+{id:'fortune1935',title:'The Mystical Qabalah',original:'The Mystical Qabalah',authors:'Dion Fortune',year:'1935',place:'London',publisher:'Williams & Norgate',cat:'primary',lang:'英語',jaTrans:'',subject:'近代西洋のヘルメティック・カバラ',background:'近代西洋オカルティズムの立場からカバラを解説した代表的な書籍。ユダヤ教の伝統的カバラとは区別して読む。',points:['生命の樹の近代西洋的解釈']},
+{id:'yates1966',title:'記憶術',original:'The Art of Memory',authors:'Frances A. Yates',year:'1966',place:'London',publisher:'Routledge & Kegan Paul',cat:'history',lang:'英語',jaTrans:'あり（訳者・出版社は未確認）',subject:'古代から近世の記憶術の歴史',background:'記憶術の歴史研究の代表的文献。',points:['場所法の歴史','古典修辞学と記憶術']},
+{id:'adherennium',title:'ヘレンニウスへ（修辞学）',original:'Rhetorica ad Herennium',authors:'著者不詳（かつてキケロに帰された）',year:'紀元前1世紀前半とされる',cat:'primary',lang:'ラテン語',jaTrans:'',subject:'修辞学書。記憶術（場所法）に関する現存する体系的記述の一つを含む',background:'参照する校訂・翻訳版は学習者が記録する。',points:['場所（loci）とイメージ（imagines）による記憶']},
+{id:'foer2011',title:'Moonwalking with Einstein',original:'Moonwalking with Einstein: The Art and Science of Remembering Everything',authors:'Joshua Foer',year:'2011',publisher:'Penguin Press',cat:'guide',lang:'英語',jaTrans:'あり（書名・訳者は未確認）',subject:'記憶競技と記憶術の体験的ルポ',background:'一般向けの読み物。学術研究ではない。',points:[]},
+{id:'atkinson1968',title:'Human memory: A proposed system and its control processes',original:'Human memory: A proposed system and its control processes',authors:'Richard C. Atkinson, Richard M. Shiffrin',year:'1968',journal:'The Psychology of Learning and Motivation, Vol. 2, 89–195',publisher:'Academic Press',cat:'academic',lang:'英語',jaTrans:'',subject:'多重貯蔵モデル',background:'記憶を感覚記憶・短期記憶・長期記憶として捉えるモデルの提示。',points:[]},
+{id:'baddeley1974',title:'Working memory',original:'Working memory',authors:'Alan D. Baddeley, Graham Hitch',year:'1974',journal:'The Psychology of Learning and Motivation, Vol. 8, 47–89',publisher:'Academic Press',cat:'academic',lang:'英語',jaTrans:'',subject:'作業記憶モデル',background:'短期記憶を能動的な作業記憶として捉え直したモデル。',points:[]},
+{id:'miller1956',title:'The magical number seven, plus or minus two',original:'The magical number seven, plus or minus two: Some limits on our capacity for processing information',authors:'George A. Miller',year:'1956',journal:'Psychological Review 63(2), 81–97',cat:'academic',lang:'英語',jaTrans:'',subject:'短期記憶容量とチャンク',background:'容量の限界とチャンク化の概念を広めた論文。',points:[]},
+{id:'cowan2001',title:'The magical number 4 in short-term memory',original:'The magical number 4 in short-term memory: A reconsideration of mental storage capacity',authors:'Nelson Cowan',year:'2001',journal:'Behavioral and Brain Sciences 24(1), 87–114',cat:'academic',lang:'英語',jaTrans:'',subject:'作業記憶容量の再検討（約4チャンク）',background:'ミラーの「7±2」を再検討し、約4チャンクの容量を主張した論文。',points:[]},
+{id:'roediger2006',title:'Test-enhanced learning: Taking memory tests improves long-term retention',original:'Test-enhanced learning: Taking memory tests improves long-term retention',authors:'Henry L. Roediger III, Jeffrey D. Karpicke',year:'2006',journal:'Psychological Science 17(3), 249–255',cat:'academic',lang:'英語',jaTrans:'',subject:'想起練習（テスト効果）',background:'再読よりテストの方が、遅延後の保持に有利となる条件を示した実験研究。',points:[]},
+{id:'ebbinghaus1885',title:'記憶について',original:'Über das Gedächtnis',authors:'Hermann Ebbinghaus',year:'1885',cat:'classic',lang:'ドイツ語',jaTrans:'あり（詳細は未確認）',subject:'忘却曲線の実験的研究',background:'記憶の実験的研究の古典。',points:[]},
+{id:'james1890',title:'The Principles of Psychology',original:'The Principles of Psychology',authors:'William James',year:'1890',publisher:'Henry Holt',cat:'classic',lang:'英語',jaTrans:'あり（詳細は未確認）',subject:'意識の流れ、注意',background:'心理学の古典。注意や意識についての記述で知られる。',points:[]},
+{id:'killingsworth2010',title:'A wandering mind is an unhappy mind',original:'A wandering mind is an unhappy mind',authors:'Matthew A. Killingsworth, Daniel T. Gilbert',year:'2010',journal:'Science 330(6006), 932',cat:'academic',lang:'英語',jaTrans:'',subject:'マインドワンダリング（心のさまよい）の頻度と幸福感',background:'スマートフォンによる経験サンプリング法で、活動中に心がさまよう頻度を報告した研究。',points:[]},
+{id:'flavell1979',title:'Metacognition and cognitive monitoring: A new area of cognitive–developmental inquiry',original:'Metacognition and cognitive monitoring: A new area of cognitive–developmental inquiry',authors:'John H. Flavell',year:'1979',journal:'American Psychologist 34(10), 906–911',cat:'academic',lang:'英語',jaTrans:'',subject:'メタ認知',background:'メタ認知の概念を整理した論文。',points:[]},
+{id:'hayes1999',title:'Acceptance and Commitment Therapy: An Experiential Approach to Behavior Change',original:'Acceptance and Commitment Therapy: An Experiential Approach to Behavior Change',authors:'Steven C. Hayes, Kirk D. Strosahl, Kelly G. Wilson',year:'1999',publisher:'Guilford Press',cat:'practice',lang:'英語',jaTrans:'あり（詳細は未確認）',subject:'ACT、認知的脱フュージョン',background:'臨床心理学の実践書。本教材では自己理解の考え方として参照し、治療の代わりとはしない。',points:[]},
+{id:'kabatzinn1990',title:'Full Catastrophe Living',original:'Full Catastrophe Living',authors:'Jon Kabat-Zinn',year:'1990',publisher:'Delacorte',cat:'practice',lang:'英語',jaTrans:'あり（詳細は未確認）',subject:'マインドフルネスストレス低減法',background:'マインドフルネスの実践書。参照する章は学習者が記録する。',points:[]},
+{id:'kahneman1973',title:'Attention and Effort',original:'Attention and Effort',authors:'Daniel Kahneman',year:'1973',publisher:'Prentice-Hall',cat:'academic',lang:'英語',jaTrans:'',subject:'注意と認知的努力',background:'注意を限られた資源として捉えた研究書。',points:[]},
+{id:'wegner1987',title:'Paradoxical effects of thought suppression',original:'Paradoxical effects of thought suppression',authors:'Daniel M. Wegner, David J. Schneider, Samuel R. Carter III, Teri L. White',year:'1987',journal:'Journal of Personality and Social Psychology 53(1), 5–13',doi:'10.1037/0022-3514.53.1.5',cat:'academic',lang:'英語',jaTrans:'',subject:'思考抑制（いわゆる「白クマ実験」）',background:'特定の思考を抑える指示を受けた後に、その思考が増える傾向を報告した実験研究。',points:['抑制後の思考の増加（リバウンド）の報告']},
+{id:'wegner1994',title:'Ironic processes of mental control',original:'Ironic processes of mental control',authors:'Daniel M. Wegner',year:'1994',journal:'Psychological Review 101(1), 34–52',doi:'10.1037/0033-295X.101.1.34',cat:'academic',lang:'英語',jaTrans:'',subject:'皮肉過程理論',background:'思考抑制で逆効果が起こりうる仕組みを、操作過程と監視過程で説明した理論論文。',points:[]},
+{id:'wenzlaff2000',title:'Thought suppression',original:'Thought suppression',authors:'Richard M. Wenzlaff, Daniel M. Wegner',year:'2000',journal:'Annual Review of Psychology 51, 59–91',cat:'academic',lang:'英語',jaTrans:'',subject:'思考抑制研究の総説',background:'思考抑制研究を概観した総説論文。',points:[]},
+{id:'abramowitz2001',title:'Paradoxical effects of thought suppression: A meta-analysis of controlled studies',original:'Paradoxical effects of thought suppression: A meta-analysis of controlled studies',authors:'Jonathan S. Abramowitz, David F. Tolin, Gregory P. Street',year:'2001',journal:'Clinical Psychology Review 21(5), 683–703',cat:'academic',lang:'英語',jaTrans:'',subject:'思考抑制研究のメタ分析',background:'統制された研究を統合し、思考抑制の効果を検討したメタ分析。具体的な結果の数値は原典で確認すること。',points:[]}
+];
+
+/* ---------- [1-c] 講義（LECTURES） ---------- */
+var LECTURES={};
+LECTURES['chaos-1-1']={
+goals:['カオスマジックが成立した経緯と主要人物を説明できる','従来の西洋儀式魔術との方法論の違いを説明できる','「信念を道具として扱う」という考え方と、その検証上の注意点を説明できる'],
+intro:'魔術と聞けば、多くの人は古代から受け継がれた秘伝の体系を思い浮かべるでしょう。ところが20世紀後半のイギリスに現れたカオスマジックは、まるで逆の方向を向いていました。体系の権威に従うのではなく、「それは実際に自分に何をもたらすのか」を試して確かめる。魔術を、信念と象徴を扱う実験的な技術として捉え直したのです。この講義では、その成立の道筋と考え方を、批判的な目で見ていきます。',
+sections:[
+{h:'系譜：スペアから1970年代のイギリスへ',p:['出発点としてよく挙げられるのが、画家・著述家のオースティン・オスマン・スペア（Austin Osman Spare, 1886–1956）です。1913年の『The Book of Pleasure』などで、自らの欲求を短い文にし、文字を整理して一つの図形（シジル）に変え、意識的な思考から手放すという方法を提示しました。{r:spare1913} スペア自身は生前、広い読者を得なかったとされ、後の世代による再評価を経て影響が広がりました。','1970年代後半、ピーター・J・キャロル（Peter J. Carroll, 1953–）らが、こうした流れを方法論として整理します。1978年に『Liber Null』が刊行され、同じ頃に魔術結社 Illuminates of Thanateros（IOT）が結成されました。後に『Liber Null & Psychonaut』の合本としても流通しています。{r:carroll1987} 実践の手引きとしては、フィル・ハイン（Phil Hine）の『Condensed Chaos』なども広く読まれました。{r:hine1995}']},
+{h:'従来の西洋魔術との違い',p:['ゴールデン・ドーン（黄金の夜明け団）に連なる儀式魔術では、象徴の対応関係や位階、手順がかなり厳密に体系化されています。これに対してカオスマジックは、**特定の象徴体系そのものより、どう使うかという方法**を重視します。ある時は一つの世界観（パラダイム）を採用し、別の時には別のものに切り替える。この「パラダイムの切り替え」が、カオスマジックの特徴的な発想です。','もっとも、実際の実践者は従来の象徴体系も借用しますし、「何でもあり」を意味するわけではありません。「違い」は程度の問題であり、対立として単純化しないことが大切です。']},
+{h:'信念は道具になるのか',p:['カオスマジックの中心にある主張は、信念は固定した真理ではなく、状態を変えるための道具として扱いうる、というものです。しかし、ここに本教材が最も慎重になる点があります。「信念を自由に切り替えられるのか」「それが行動や感情を実際に変えるのか」は、**経験的に検証すべき問い**であって、前提にしてよいことではありません。','心理学には、手がかりになりそうな知見があります。たとえば「もしXならYする」と具体的に決めておく実行意図（if-then 計画）は、目標の達成を助けることが報告されています。{r:gollwitzer1999} シジルなどの技法に何らかの効果があるとすれば、まずはこうした心理的な経路（注意の向け方、意図の明確化、行動の引き金）を通じて起こる可能性を検討するのが、本教材の立場です。超常的な作用が検証されているわけではありません。']},
+{h:'この教材での扱い方',p:['本教材では、カオスマジックに関わる主張を次の三つに分けて扱います。①歴史的・思想的な主張（誰が何を述べたか）、②現代の心理学で説明・検証できる主張、③未検証の主張。③を「事実」として扱うことはしません。そのうえで、自分で仮説を立て、記録し、比較する。それがこの領域の学び方です。']}],
+diagram:{type:'flow',items:[['信念','考え方・解釈'],['期待','予測する'],['注意','何に目が向くか'],['行動','実際の動き'],['結果','出来事']],loop:'結果の受け取り方が信念を強化する（確証バイアスが入り込みやすい箇所）',cap:'図1：信念から行動へのフィードバック・ループ（単純化したモデル）'},
+examples:['仮説の例：「机の上を整えて深呼吸してから始めると、最初の10分の集中度が高い」。これを信じ込むのではなく、実施した日としなかった日を記録して比較する。','悪い例：「儀式をした日に良いことが起きた」とだけ記録し、起きなかった日を数えない。これでは確証バイアスで「効いた」ように見える。'],
+life:['習慣づくり：行動の「きっかけ」を事前に決めておくと始めやすくなる、という考え方につながる。','期待が体験に与える影響（プラセボ効果など）を、自分の学習や仕事で意識できるようになる。','「信じるかどうか」ではなく「どう測るか」で物事を考える習慣がつく。'],
+summary:['カオスマジックはスペアの系譜を受けて、1970年代後半に整理された、方法と信念を道具として扱う潮流。','従来の儀式魔術より、体系への忠実さより方法の実験性を重視する。','「信念を道具にできるか」は検証すべき問いであり、前提ではない。','本教材は、歴史的主張・心理学で説明できる主張・未検証の主張を区別する。'],
+quiz:[
+{q:'スペアが『The Book of Pleasure』を刊行した年として、本講義で示されたのはどれか。',o:['1913年','1978年','1888年','1966年'],a:0,e:'スペアの『The Book of Pleasure』は1913年の刊行です。1978年はキャロルの『Liber Null』と IOT の時期です。'},
+{q:'カオスマジックの特徴として最も適切なものはどれか。',o:['固定された象徴体系と位階への忠実さを最も重んじる','方法や信念を道具として扱い、効果を試して確かめる姿勢を重んじる','超自然的な効果が科学的に証明された技術体系である','ユダヤ教の神秘思想の正統な継承である'],a:1,e:'体系への忠実さより、方法の実験性やパラダイムの切り替えが特徴です。超自然的効果は検証されていません。'},
+{q:'本教材でシジルなどの効果を検討するときの基本的な立場はどれか。',o:['超常的な効果が起きると前提にする','行動や心理の変化として測定できる仮説を立て、記録して比較する','うまくいった例だけを記録する','信念は検証できないので検討しない'],a:1,e:'測定可能な仮説にして、記録・比較することが基本です。'},
+{q:'実験の記録で、特に注意すべき認知バイアスはどれか。',o:['確証バイアス（当たった例だけを覚え、外れを軽視する）','後知恵バイアスは存在しない','記録は主観的であるほど正確になる','バイアスは訓練しても関係ない'],a:0,e:'外れた日も数えること、事前に仮説と指標を決めておくことが対策になります。'}],
+refs:['spare1913','carroll1987','hine1995','gollwitzer1999']};
+
+LECTURES['kabbalah-1-1']={
+goals:['カバラの語義と、主要な文献・時代の流れを説明できる','ユダヤ教の伝統的カバラと、ヘルメティック・カバラの違いを説明できる','宗教的伝統への敬意を保った学び方を理解する'],
+intro:'「カバラ」は、日本語の本や映画でもよく目にする言葉です。しかし、その中身は、ユダヤ教の長い神秘思想の伝統から、19世紀以降の西洋のオカルティズム、さらには現代の自己啓発的な用法まで、かなり幅があります。この講義では、まず混同されやすい二つの流れを分けて、地図を作ります。',
+sections:[
+{h:'「カバラ」とは何か',p:['カバラ（קַבָּלָה, Kabbalah）は、ヘブライ語で「受け取ること」「受け継がれたもの」を意味する語に由来し、ユダヤ教の神秘思想・伝統を指します。神がどのように世界を創り、人間はそれとどう関わるのかという問いを、聖書の解釈や象徴を通して探究する営みです。','代表的な古典として、10のセフィロト（ספירות, Sefirot）と22のヘブライ文字による創造を語る『セーフェル・イェツィラー』（成立年代は学説により異なる）{r:seferyetzirah}、13世紀後半に現れた『ゾーハル』{r:zohar} があります。『ゾーハル』は伝統的にはシモン・バル・ヨハイに帰されますが、学術的には13世紀後半のスペインで成立したとする見方が有力です。{r:scholem1941}']},
+{h:'歴史の流れ',p:['12〜13世紀の南フランスやスペインで、カバラは文献として姿を現し、16世紀にはツファット（サフェド）でイサク・ルリアらが新しい展開を見せます。一方、15世紀末にはピコ・デッラ・ミランドラらのようなキリスト教徒の知識人もカバラに関心を寄せ、これは「キリスト教カバラ」と呼ばれます。','年代や学説については、研究者によって見解が分かれる点があります。ここでは大まかな流れを把握し、詳細は文献で確認してください。']},
+{h:'二つの系譜：ユダヤ教のカバラとヘルメティック・カバラ',p:['19世紀以降、西洋のオカルティズムの中で、カバラの用語や「生命の樹」が再構成されました。これはしばしば**ヘルメティック・カバラ**（Hermetic Qabalah）と呼ばれ、綴りを Qabalah として区別されることもあります。タロットの22枚の大アルカナとヘブライ文字22字を対応させる発想は、この流れの中で発展しました。','ディオン・フォーチュン（Dion Fortune）の『The Mystical Qabalah』（1935）は、この西洋的な解釈の代表的な書籍です。{r:fortune1935} 重要なのは、これは**ユダヤ教の伝統的なカバラそのものではない**という点です。両者は歴史的背景も目的も異なります。']},
+{h:'敬意をもって学ぶために',p:['ユダヤ教のカバラは、本来、聖書やタルムードの学び、宗教的実践と結びついた伝統です。本教材はこれを、単なる魔術の道具や象徴の「素材」として扱いません。生命の樹などの象徴は、この教材では「思考を整理するための象徴体系」として学びますが、その由来が宗教的伝統にあることを常に明記します。','また、現代の商業的な「カバラ」の用法や、効果についての主張は、歴史研究の成果とは別物です。出典を確かめる習慣を持ちましょう。']}],
+diagram:{type:'timeline',items:[['古代末期〜中世初期（年代は学説による）','『セーフェル・イェツィラー』'],['12〜13世紀','文献の成立と展開（『バヒル』、『ゾーハル』など）'],['16世紀','ツファットでのルリア派の展開'],['15世紀末〜','キリスト教徒によるカバラへの関心（キリスト教カバラ）'],['19世紀','西洋オカルティズムによる再構成（ヘルメティック・カバラ）'],['1935年','ディオン・フォーチュン『The Mystical Qabalah』']],cap:'図1：カバラの流れの概観（年代は概数。学説により異なる）'},
+examples:['同じ「生命の樹」でも、ユダヤ教の文献の中での位置づけと、近代西洋オカルティズムの図式化とは別物。','「タロットとヘブライ文字の対応」は、ユダヤ教の伝統にあるものではなく、近代西洋の発展として扱う。'],
+life:['宗教や思想を学ぶときに、「伝統」と「後世の再解釈」を分ける習慣がつく。','象徴体系を、概念の整理や分類に使う発想（第5章で実践）の土台になる。','出典の成立時期や由来を確認する、文献批判の姿勢が身につく。'],
+summary:['カバラ（קַבָּלָה）は「受け継がれたもの」を意味するユダヤ教の神秘思想の伝統。','『セーフェル・イェツィラー』『ゾーハル』などが重要な古典。成立年代には学説がある。','ヘルメティック・カバラは、近代西洋オカルティズムによる再構成であり、伝統的カバラとは別の系譜。','宗教的伝統への敬意を保ち、単なる魔術の道具として扱わない。'],
+quiz:[
+{q:'「カバラ」の語義に最も近いものはどれか。',o:['受け継がれたもの（伝承）','生命の樹','神殿','数の神秘'],a:0,e:'ヘブライ語の「受け取る」に由来し、「受け継がれたもの」を意味します。'},
+{q:'『ゾーハル』の成立について、本講義の説明として適切なものはどれか。',o:['伝統的にはシモン・バル・ヨハイに帰されるが、学術的には13世紀後半のスペインで成立したとする見方が有力','紀元前に成立したことが確定している','19世紀の西洋で作られた','成立についての議論は存在しない'],a:0,e:'伝統的な帰属と学術的見解が異なる点が重要です。'},
+{q:'ヘルメティック・カバラの説明として適切なものはどれか。',o:['ユダヤ教の伝統的カバラそのもの','19世紀以降の西洋オカルティズムが、カバラの用語や生命の樹を取り入れて再構成したもの','現代の心理学の理論','中世のキリスト教会の公式教義'],a:1,e:'両者は歴史的背景も目的も異なるため、混同しないことが大切です。'},
+{q:'本教材のカバラの扱い方として適切なものはどれか。',o:['ユダヤ教の伝統を無視して、象徴だけを自由に使う','宗教的伝統への敬意を保ち、単なる魔術の道具として扱わない','伝統と近代の再解釈を区別せずに混ぜる','出典を確認せずに断定的に説明する'],a:1,e:'由来を明記し、伝統と再解釈を区別します。'}],
+refs:['seferyetzirah','zohar','scholem1941','fortune1935']};
+
+LECTURES['memory-1-1']={
+goals:['記憶の三つの段階（記銘・保持・想起）を説明できる','感覚記憶・作業記憶・長期記憶の違いと、容量の制約を説明できる','古典記憶術と現代の記憶科学をつなぐ視点を持つ'],
+intro:'「覚えたはずなのに、思い出せない」。この経験は誰にでもあります。記憶術を学ぶ前に、まず記憶がどのように働き、どこでつまずくのかを知っておくと、技法の「効く理由」と「効かない場面」が見えてきます。この講義は、その地図を描く入門です。',
+sections:[
+{h:'記憶の三つの段階',p:['記憶は、情報を取り入れて符号化する**記銘（符号化）**、それを蓄えておく**保持**、必要なときに取り出す**想起（検索）**の三つの段階で考えられます。「忘れた」といっても、どの段階での失敗かによって、有効な対策は変わります。そもそも注意が向いていなければ記銘できませんし、うまく符号化できていても、手がかりがなければ想起できないことがあります。']},
+{h:'三つの記憶と容量の制約',p:['古典的なモデルでは、記憶を感覚記憶・短期記憶・長期記憶に分けて捉えます。{r:atkinson1968} その後、短期記憶は、情報を保ちながら操作する**作業記憶**（ワーキングメモリ）として捉え直されました。{r:baddeley1974}','作業記憶の容量は限られています。ミラーの論文で広まった「7±2」{r:miller1956} に対し、後にコーワンは、チャンク（意味のまとまり）として約4個程度という見方を提案しました。{r:cowan2001} 数字の違いはあっても、「一度に扱える量には限りがあり、まとまり（チャンク）にすることで実質的に増やせる」という点は共通しています。記憶術の多くは、この制約への工夫として理解できます。']},
+{h:'忘却はどう起こるか',p:['19世紀のエビングハウスは、無意味な音節を覚えて、時間とともに保持量がどう減るかを調べました。{r:ebbinghaus1885} 忘却の説明には、時間による減衰だけでなく、他の記憶との干渉や、手がかりの不足による想起失敗なども挙げられます。「忘却曲線」の形は、材料や条件によって変わるため、単純な一本の曲線で万能に説明できるわけではありません（第4章で扱います）。']},
+{h:'古典記憶術への入口',p:['古代ギリシア・ローマの弁論家たちは、長い演説を暗記するために、見慣れた場所に覚えたい内容のイメージを配置する**場所法**を用いたとされます。現存する体系的な記述の一つが『ヘレンニウスへ』に含まれ、{r:adherennium} 記憶術の歴史は、フランシス・イェイツの『記憶術』で詳しく論じられています。{r:yates1966} なお、詩人シモニデスにまつわる起源の逸話は伝承であり、史実として確認されているわけではありません。','現代の研究では、思い出す練習（想起練習）が、単に読み返すより長期の保持に有利になる場合があることが示されています。{r:roediger2006} 古典記憶術と現代の記憶科学は、「符号化を工夫する」「想起を練習する」という点でつながります。']}],
+diagram:{type:'flow',items:[['感覚入力','見る・聞く'],['注意','選択'],['作業記憶','保持・操作'],['符号化','記銘'],['長期記憶','保持']],loop:'想起（検索）：手がかりによって長期記憶から取り出す',cap:'図1：記憶の流れ（単純化したモデル）'},
+examples:['電話番号を「090-1234-5678」のように区切って覚えるのは、チャンク化の例。','買い物リストを、家の中の場所に結びつけたイメージで覚えるのは、場所法の簡易版。'],
+life:['「覚えられない」を、記銘・保持・想起のどの段階の問題かに分けて考えられる。','学習は、「読み返す」だけでなく「思い出す」練習を入れると効果的な場合がある。','容量の制約を知ると、情報の整理や提示の仕方を工夫できる。'],
+summary:['記憶は、記銘（符号化）・保持・想起の三段階で考える。','作業記憶の容量は限られ、チャンク化で実質的に扱える量を増やせる。','忘却は、減衰・干渉・手がかり不足など複数の要因で説明される。','場所法は古代から使われた技法で、現代の記憶科学とも接点がある。'],
+quiz:[
+{q:'記憶の三つの段階として適切なものはどれか。',o:['記銘（符号化）・保持・想起','感覚・感情・意志','暗記・理解・応用','短期・中期・長期'],a:0,e:'記銘（符号化）・保持・想起の三段階です。'},
+{q:'コーワン（2001）が主張した、作業記憶の容量はどのくらいか。',o:['約4チャンク','約7チャンクで確定','約20チャンク','容量に限界はない'],a:0,e:'ミラーの「7±2」を再検討し、約4チャンクとする見方を提案しました。'},
+{q:'場所法の説明として適切なものはどれか。',o:['見慣れた場所に沿って、覚えたい内容のイメージを配置する方法','同じ文を何十回も書き写す方法','睡眠中に音声を流す方法','数字を足し算で覚える方法'],a:0,e:'場所（loci）とイメージを使う古典的な記憶術です。'},
+{q:'Roediger と Karpicke（2006）に基づく本講義の説明として適切なものはどれか。',o:['想起練習（テスト）は、条件によっては再読より長期の保持に有利','テストは常に再読より劣る','睡眠は記憶に無関係','忘却曲線は完全に正確'],a:0,e:'条件によって効果が異なる点に注意が必要です。'}],
+refs:['atkinson1968','baddeley1974','miller1956','cowan2001','ebbinghaus1885','adherennium','yates1966','roediger2006']};
+
+LECTURES['mental-1-1']={
+goals:['意識・注意・メタ認知の基本的な概念を説明できる','心が「さまよう」ことが日常的に起こると理解する','思考と自分を同一視しない考え方の意味を説明できる','精神的な実践を安全に行う心構えを持つ'],
+intro:'この領域でいう「精神制御」は、他人の心を操る技術ではありません。自分の注意・思考・感情・意識の状態を理解し、必要に応じて調整する力を指します。そのためにはまず、「今、自分の心で何が起きているか」を観察する力が要ります。この講義では、そのための基礎概念を整理します。',
+sections:[
+{h:'意識と注意',p:['心理学者ウィリアム・ジェームズは、『心理学原理』（1890）で、意識を途切れなく流れる「流れ」として描き、何に注意を向けるかが私たちの経験を形づくると論じました。{r:james1890} 注意とは、膨大な情報の中から何かを選んで、そこに処理資源を向ける働きです。カーネマンは、注意を限りある「努力」の資源として捉えました。{r:kahneman1973}','「意識」と「無意識」は、日常語では便利ですが、学術的には多様な意味で使われます。この教材では、「気づいている部分」と「気づいていない処理」があるという程度の素朴な区別から始め、断定的な理論には踏み込みません。']},
+{h:'心はさまよう',p:['注意は、思ったほど安定しません。キリングスワースとギルバートは、スマートフォンで日常の活動中に「今何を考えているか」を尋ねる調査を行い、人は目の前の活動以外のことを考えている時間がかなり長い（報告では約47％）ことを示しました。{r:killingsworth2010} つまり、**注意が逸れること自体は、失敗ではなく、ごく普通の現象**です。大切なのは、逸れたことにいつ気づき、どう戻すかです。']},
+{h:'メタ認知：自分の認知を観察する',p:['メタ認知とは、自分の認知（思考・記憶・理解の状態）を、一段高い視点から観察・評価・調整する働きです。{r:flavell1979} 「今、集中が切れているな」「この説明は理解できていないな」と気づけること自体が、調整の第一歩になります。','本教材の実践課題では、この観察を、回数・時間・主観的な評価として**記録する**ことを重視します。']},
+{h:'思考と自分を同一視しない',p:['「自分はダメだ」という考えが浮かぶことと、「自分はダメな人間である」という事実とは別です。思考を、頭の中に浮かんだ出来事として眺める見方は、臨床心理学の ACT（アクセプタンス＆コミットメント・セラピー）などで、認知的脱フュージョンと呼ばれています。{r:hayes1999} ただし、これは思考を無視したり否定したりすることではありません。また、効果は目的や個人によって異なり、万能の方法ではありません。']},
+{h:'安全に実践するために',p:['この領域の実践は、あくまで自己理解と自己調整のためのものであり、診断や治療の代わりにはなりません。強い不快感、不安、めまい、体調不良などが生じたら、ただちに中止してください。つらさが続く場合は、医療機関や専門家に相談してください。']}],
+diagram:{type:'flow',items:[['集中','対象に注意'],['逸脱','雑念・さまよい'],['気づき','メタ認知'],['戻す','注意を再び対象へ']],loop:'このサイクルの繰り返しが、注意の訓練になる（雑念が起きること自体は失敗ではない）',cap:'図1：注意のサイクル'},
+examples:['5分間、呼吸に注意を向ける。雑念に気づくたびに回数を記録し、そっと呼吸に戻る。','「また集中できなかった」ではなく、「4回気づいて戻せた」と記録する。'],
+life:['勉強や仕事中に、注意が逸れたことに早く気づけるようになる。','ネガティブな考えが浮かんだとき、事実と思考を区別するきっかけになる。','「集中できない自分」を責める代わりに、観察して調整する姿勢が身につく。'],
+summary:['注意は限りある資源で、何に向けるかが体験を形づくる。','心がさまようことは日常的に起こる（報告では約47％）。','メタ認知は、自分の認知状態を観察・評価・調整する働き。','思考を出来事として眺める見方があるが、万能ではなく、診断・治療の代わりでもない。'],
+quiz:[
+{q:'Killingsworth と Gilbert（2010）の調査で報告された、活動中に心がさまよっていた割合に最も近いものはどれか。',o:['約47％','約5％','約99％','ほぼ0％'],a:0,e:'本講義では約47％と紹介しました。数値の詳細は原典で確認してください。'},
+{q:'メタ認知の説明として適切なものはどれか。',o:['自分の認知・思考の状態を観察・評価・調整する働き','超能力の一種','思考を完全に停止させる技術','他人の考えを読み取る能力'],a:0,e:'メタ認知は、自分の認知を一段高い視点から扱う働きです。'},
+{q:'「思考と自分を同一視しない」という考え方の説明として適切なものはどれか。',o:['思考を、頭に浮かんだ出来事として観察する。無視や否定をすることではない','嫌な思考を完全に消す','すべての思考を事実として受け入れる','感情を持たないようにする'],a:0,e:'無視や抑え込みではなく、距離をとって眺める見方です。'},
+{q:'実践中に強い不快感や体調不良が出た場合の対応として適切なものはどれか。',o:['我慢して続ける','ただちに中止し、続く場合は専門家に相談する','もっと強度を上げる','記録をやめて忘れる'],a:1,e:'実践は安全が最優先です。診断・治療の代わりにはなりません。'}],
+refs:['james1890','kahneman1973','killingsworth2010','flavell1979','hayes1999']};
+
+LECTURES['mental-2-1']={
+goals:['思考抑制の代表的な研究（白クマ実験）を説明できる','皮肉過程理論の骨子を説明できる','研究結果が一貫しないことを理解し、断定を避けられる','「抑え込む」方法と「気づいて戻す」方法を比較する視点を持つ'],
+intro:'「嫌な考えを頭から追い出したい」。誰もが一度は思うことでしょう。では、考えを「止める」ことは可能なのでしょうか。心理学者ダニエル・ウェグナーの有名な実験は、むしろ逆の効果が起こりうることを示しました。しかし話はそれほど単純ではありません。この講義では、研究の成果と限界の両方を見ていきます。',
+sections:[
+{h:'白クマ実験',p:['ウェグナーらの1987年の研究では、参加者に「白クマのことを考えないように」と指示して思ったことを声に出してもらい、その後に今度は白クマのことを考えてもよいと伝えました。先に抑制を求められた参加者は、その後、白クマについての思考が多くなる傾向を示した、と報告されています。{r:wegner1987} これは「思考抑制のリバウンド」として広く知られるようになりました。']},
+{h:'皮肉過程理論',p:['ウェグナーは1994年に、この現象を説明する**皮肉過程理論**を提案しました。{r:wegner1994} 骨子は、思考を抑えるときに、二つの過程が働くというものです。一つは、目標とは別のことを考えようとする**操作過程**。もう一つは、抑えたい思考が出てきていないかをチェックする**監視過程**です。監視過程は、抑えたい対象を探すために、その思考を一時的に活性化させる面があります。疲れていたり、他のことで頭がいっぱいだったり（認知的負荷が高いとき）には、操作過程が弱まり、監視過程が相対的に優位になって、かえって対象が浮かびやすくなる、と説明されます。']},
+{h:'結果は一貫しない',p:['ここで大切なのは、「思考抑制は必ず逆効果」とは言えない点です。その後の研究は多数あり、総説でも整理されています。{r:wenzlaff2000} 統制された研究を統合したメタ分析でも、効果は研究や条件によって異なることが検討されています。{r:abramowitz2001} 反動が確認される条件もあれば、確認されない条件もあります。思考の内容、抑える期間、測定の方法、個人の特性などが関わると考えられています。具体的な結果は原典で確認してください。','したがって本教材は、「思考は止められない」とも「抑制は必ず逆効果」とも断定しません。そして、**思考を完全に停止できる、という根拠のない主張もしません。**']},
+{h:'もう一つの選択肢：気づいて戻す',p:['抑え込む代わりに、思考が浮かんでもそれに反応しすぎず、気づいたら注意を対象（呼吸など）に戻すという方法があります。これはマインドフルネスの実践や、ACT の認知的脱フュージョンなどで使われる考え方です。{r:hayes1999} ただし、これも万能ではなく、効果は目的や人によって異なります。','どちらが自分に合うかは、観察してみないと分かりません。実験室の課題「抑える方法と気づいて戻す方法の比較」で、回数・主観的疲労を記録して比べてみましょう。']}],
+diagram:{type:'table',head:['','抑え込む方法','気づいて戻す方法'],rows:[['やること','特定の思考を考えないようにする','思考が浮かんだら気づき、注意を対象に戻す'],['研究上の位置づけ','反動の報告がある一方、結果は条件により一貫しない','マインドフルネス・ACTなどで用いられる考え方'],['注意点','負荷が高いときに逆効果の可能性が議論されている','万能ではなく、効果は目的・個人で異なる'],['本教材での扱い','自分で比較して観察する','自分で比較して観察する']],cap:'図1：二つの対処方法の整理（結論を断定せず、比較の観点を示す）'},
+examples:['課題：5分間、「ある特定の考え」が浮かぶたびに回数を記録する。方法Aは抑え込む、方法Bは気づいて戻す。順番は日を変えて入れ替える。','寝る前の考えごとを抑え込もうとして、かえって目が冴えた経験を、観察記録にしてみる（無理に再現する必要はない）。'],
+life:['「考えないようにする」ことに疲れたときの、別の選択肢を知ることができる。','研究結果が一貫しない場合でも、自分で記録して確かめる方法が分かる。','ネットや書籍の断定的な主張（「思考は完全に止められる」など）に注意できる。'],
+summary:['白クマ実験などで、抑制後の思考の増加（リバウンド）が報告されている。','皮肉過程理論は、操作過程と監視過程で逆効果を説明する。','後続研究の結果は一貫せず、「必ず逆効果」とも「問題ない」とも断定できない。','「気づいて戻す」方法もあるが、万能ではない。自分で記録して比較する。'],
+quiz:[
+{q:'Wegner らの1987年の研究で報告された内容として、本講義で説明されたものはどれか。',o:['抑制を求められた後に、その思考が増える傾向（リバウンド）が報告された','抑制すれば思考は完全に消えることが示された','思考抑制には全く効果がないと証明された','睡眠の効果が示された'],a:0,e:'抑制後に対象の思考が増える傾向が報告されました。'},
+{q:'後続研究の結果についての説明として適切なものはどれか。',o:['効果は一貫せず、条件によって反動が出たり出なかったりする','反動は常に起こる','反動は一度も確認されていない','研究は一つしかない'],a:0,e:'本教材は、「必ず逆効果」とも断定しません。'},
+{q:'皮肉過程理論の説明として適切なものはどれか。',o:['抑制を担う操作過程と、失敗を検出する監視過程があり、負荷が高いと逆効果が起こりうる','思考は超自然的な力で制御される','感情は存在しない','記憶は睡眠中のみ作られる'],a:0,e:'操作過程と監視過程の二つで説明されます。'},
+{q:'「気づいて戻す」方法の位置づけとして適切なものはどれか。',o:['思考の完全停止を目的とせず、マインドフルネスや ACT などで用いられる考え方','必ず全員に効果がある万能の方法','思考を消すための唯一の方法','科学とは無関係'],a:0,e:'目的は完全停止ではなく、注意の扱い方の調整です。'}],
+refs:['wegner1987','wegner1994','wenzlaff2000','abramowitz2001','hayes1999']};
+
+/* ---------- [1-d] 実践課題（TASKS） ---------- */
+var SAFETY='強い不快感・不安・めまい・体調不良が生じたら、ただちに中止してください。この課題は診断や治療の代わりではありません。つらさが続く場合は、医療機関や専門家に相談してください。';
+var TASKS=[
+{id:'chaos-t1',domain:'chaos',title:'予測と結果の記録（確証バイアスの観察）',purpose:'自分の予測と実際の結果を記録し、当たった例だけを覚えていないかを確認する。',knowledge:['chaos-1-1'],steps:['毎日、その日に起きそうな小さな出来事を3つ予測して書く（例：昼食の店が混んでいる）。','夜に、実際の結果を記録する（当たり・外れ）。','1週間後に集計し、「外れ」を軽く扱っていなかったか振り返る。'],metrics:[{k:'preds',label:'予測の総数',type:'number'},{k:'hits',label:'当たりの数',type:'number'}],refs:['gollwitzer1999']},
+{id:'chaos-t2',domain:'chaos',title:'if-then 計画の比較実験',purpose:'「もしXならYする」と決めた日と、決めなかった日で、行動の実行率を比較する。',knowledge:['chaos-1-1'],steps:['小さな行動目標を一つ決める（例：10分の学習）。','日を交互にして、A：何も決めない日、B：「もし○○したら△△する」と書いて決めた日を設ける。','各7日以上、実行できたかを記録して比較する。'],metrics:[{k:'aDays',label:'A（決めない）日の実行日数',type:'number'},{k:'bDays',label:'B（if-then）日の実行日数',type:'number'},{k:'total',label:'各条件の実施日数',type:'number'}],refs:['gollwitzer1999']},
+{id:'kabbalah-t1',domain:'kabbalah',title:'生命の樹の作図と出典の記録',purpose:'10のセフィロトの配置を、資料を見ずに描き、後で資料と照合する。',knowledge:['kabbalah-1-1'],steps:['参照する資料（書名・版・ページ）を先に記録する。','資料を見ずに、10のセフィラの位置を紙に描く。','資料と照合し、正しく配置できた数を記録する。','間違えた箇所の理由を考察する。'],metrics:[{k:'correct',label:'正しく配置できた数（0〜10）',type:'number'},{k:'source',label:'参照した資料（書名・版・ページ）',type:'text'}],refs:['fortune1935','seferyetzirah']},
+{id:'memory-t1',domain:'memory',title:'単語記憶と遅延再現率',purpose:'直後の再現率と、時間を空けた後の再現率の両方を測る。',knowledge:['memory-1-1'],steps:['20個の単語リストを用意し、5分で覚える（方法を記録する）。','直後に、思い出せるだけ書き出す。','24時間後に、もう一度、資料を見ずに書き出す。','それぞれの再現数を記録する。'],metrics:[{k:'immediate',label:'直後の再現数（/20）',type:'number'},{k:'delayed',label:'24時間後の再現数（/20）',type:'number'},{k:'method',label:'使った覚え方',type:'text'}],refs:['roediger2006','ebbinghaus1885']},
+{id:'memory-t2',domain:'memory',title:'場所法（10か所）と丸暗記の比較',purpose:'場所法で覚えた場合と、丸暗記の場合とで、遅延後の再現率を比較する。',knowledge:['memory-1-1'],steps:['自分がよく知っている場所に、10か所の経路を決める。','リストAは場所法、リストB（同程度の難易度）は丸暗記で覚える。','直後と24時間後（可能なら3日後）に、順番通りに再現する。','結果を比較する。'],metrics:[{k:'lociImm',label:'場所法：直後の再現数（/10）',type:'number'},{k:'lociDel',label:'場所法：遅延後の再現数（/10）',type:'number'},{k:'rotImm',label:'丸暗記：直後の再現数（/10）',type:'number'},{k:'rotDel',label:'丸暗記：遅延後の再現数（/10）',type:'number'}],refs:['adherennium','yates1966']},
+{id:'mental-t1',domain:'mental',title:'5分間の呼吸観察',purpose:'雑念に気づいた回数を記録し、気づいて戻す練習をする。',knowledge:['mental-1-1'],steps:['静かな場所で楽な姿勢をとる。','5分間のタイマーを設定し、呼吸の感覚に注意を向ける。','雑念に気づいたら、回数を数えて、呼吸に戻る。','終了後、前後の緊張度（0〜10）と回数を記録する。'],metrics:[{k:'noticed',label:'雑念に気づいた回数',type:'number'},{k:'before',label:'開始前の緊張度（0〜10）',type:'number'},{k:'after',label:'終了後の緊張度（0〜10）',type:'number'}],safety:true,refs:['kabatzinn1990']},
+{id:'mental-t2',domain:'mental',title:'10分間の一点集中',purpose:'集中が途切れた回数と主観的な集中度を記録する。',knowledge:['mental-1-1'],steps:['対象を一つ決める（呼吸・炎・文字など）。','10分間、対象に注意を向ける。','途切れたと気づいた回数を数える。','終了後、集中度（0〜10）を記録する。'],metrics:[{k:'breaks',label:'集中が途切れた回数',type:'number'},{k:'focus',label:'集中度（0〜10）',type:'number'}],safety:true,refs:['kahneman1973']},
+{id:'mental-t3',domain:'mental',title:'抑え込む方法と、気づいて戻す方法の比較',purpose:'二つの対処方法で、思考の浮かぶ回数と疲労感を比較する。',knowledge:['mental-2-1'],steps:['気になる軽い考えごとを一つ決める（強い苦痛を伴うものは避ける）。','日を変えて、A：5分間その考えを抑えようとする、B：5分間、浮かんだら気づいて呼吸に戻す、を行う。順番は日によって入れ替える。','それぞれ、考えが浮かんだ回数と、主観的な疲労（0〜10）を記録する。'],metrics:[{k:'aCount',label:'A（抑える）：浮かんだ回数',type:'number'},{k:'bCount',label:'B（気づいて戻す）：浮かんだ回数',type:'number'},{k:'aTired',label:'A：疲労感（0〜10）',type:'number'},{k:'bTired',label:'B：疲労感（0〜10）',type:'number'}],safety:true,refs:['wegner1987','wenzlaff2000','abramowitz2001']},
+{id:'mental-t4',domain:'mental',title:'作業開始前ルーティンの記録',purpose:'ルーティンがある日とない日で、作業への入りやすさを比較する。',knowledge:['mental-1-1'],steps:['短い開始ルーティンを決める（例：机を片づける、深呼吸3回、今日の最初の作業を声に出す）。','5日間ルーティンあり、5日間なしで、作業への入りやすさ（0〜10）を記録する。'],metrics:[{k:'withR',label:'ルーティンあり：平均の入りやすさ',type:'number'},{k:'withoutR',label:'ルーティンなし：平均の入りやすさ',type:'number'}],refs:[]},
+{id:'mental-t5',domain:'mental',title:'呼吸法の前後の緊張度の比較',purpose:'呼吸法を行う前後で、主観的な緊張度を比較する。',knowledge:['mental-1-1'],steps:['緊張を感じたとき、ゆっくりとした呼吸を数分間行う。','前後の緊張度（0〜10）と、実施時間を記録する。'],metrics:[{k:'before',label:'実施前の緊張度（0〜10）',type:'number'},{k:'after',label:'実施後の緊張度（0〜10）',type:'number'},{k:'minutes',label:'実施時間（分）',type:'number'}],safety:true,refs:[]},
+{id:'mental-t6',domain:'mental',title:'瞑想の継続記録',purpose:'一定期間の継続による、集中時間や自己評価の変化を記録する。',knowledge:['mental-1-1'],steps:['期間（例：2週間）と1日の時間を決める。','毎日、実施時間と主観的な状態を記録する。','期間の最初と最後で比較する。'],metrics:[{k:'days',label:'実施した日数',type:'number'},{k:'minutes',label:'合計の実施時間（分）',type:'number'},{k:'changeNote',label:'前後の変化（自己評価）',type:'text'}],safety:true,refs:['kabatzinn1990']},
+{id:'mental-t7',domain:'mental',title:'自分に合った集中・リラックス手順の設計',purpose:'これまでの記録をもとに、自分用の手順を文章にまとめる。',knowledge:['mental-1-1'],steps:['これまでの課題の記録を見直す。','効果があった（と感じた）要素を選び、手順を書く。','1週間試して、見直す。'],metrics:[{k:'procedure',label:'設計した手順',type:'text'}],safety:true,refs:[]}
+];
+
+/* ---------- 索引の構築 ---------- */
+var IDX={}, ORDER=[];   // IDX[lectureId] = {domain,chapter,title,written}
+DOMAINS.forEach(function(d){d.chapters.forEach(function(c){c.lectures.forEach(function(l){
+  IDX[l[0]]={id:l[0],domain:d.id,chapter:c.n,chTitle:c.title,title:l[1],written:!!LECTURES[l[0]]};ORDER.push(l[0]);});});});
+var REFIDX={};REFS.forEach(function(r){REFIDX[r.id]=r;});
+function domById(id){return DOMAINS.filter(function(d){return d.id===id})[0]||null}
+function citedBy(refId){var out=[];Object.keys(LECTURES).forEach(function(id){var L=LECTURES[id];var hay=JSON.stringify([L.sections,L.refs||[]]);if(hay.indexOf('{r:'+refId+'}')>=0||(L.refs||[]).indexOf(refId)>=0)out.push(id);});TASKS.forEach(function(t){if((t.refs||[]).indexOf(refId)>=0)out.push(t.id);});return out}
+
+/* =====================================================================
+   [2] 状態管理
+   ===================================================================== */
+var $=function(s,r){return (r||document).querySelector(s)};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function pad(n){return String(n).padStart(2,'0')}
+function dkey(t){var d=new Date(t);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function fmtDur(sec){sec=Math.max(0,Math.round(sec));var h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return pad(h)+':'+pad(m)+':'+pad(s)}
+function fmtHM(sec){sec=Math.max(0,Math.round(sec));var h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);return h>0?h+'時間'+m+'分':m+'分'+(sec%60)+'秒'}
+function fmtDT(t){var d=new Date(t);return d.getFullYear()+'/'+pad(d.getMonth()+1)+'/'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes())}
+
+function defaultState(){return {schemaVersion:SCHEMA,createdAt:Date.now(),awards:{},completed:{},quiz:{},tasks:{},notes:[],timeLog:[],timer:null,readings:{},activity:[],settings:{idleMinutes:5,autoPauseHidden:true,lastExport:0},lastLecture:null}}
+
+function num(v,d,min,max){v=Number(v);if(!isFinite(v))return d;if(min!=null&&v<min)return min;if(max!=null&&v>max)return max;return v}
+function str(v,max){return typeof v==='string'?v.slice(0,max||20000):''}
+function isObj(o){return o&&typeof o==='object'&&!Array.isArray(o)}
+
+/* 検証・正規化（localStorage読込とインポートで共用）。warnings を返す */
+function sanitizeState(raw,warnings){
+  var s=defaultState(),w=warnings||[];
+  if(!isObj(raw))return s;
+  s.createdAt=num(raw.createdAt,Date.now(),0);
+  if(isObj(raw.awards))Object.keys(raw.awards).slice(0,5000).forEach(function(k){var a=raw.awards[k];if(isObj(a)&&isFinite(Number(a.xp)))s.awards[str(k,120)]={xp:num(a.xp,0,0,10000),domain:str(a.domain,40),ts:num(a.ts,0,0)}});
+  if(isObj(raw.completed))Object.keys(raw.completed).forEach(function(k){s.completed[str(k,80)]=num(raw.completed[k],0,0)});
+  if(isObj(raw.quiz))Object.keys(raw.quiz).forEach(function(k){var q=raw.quiz[k];if(isObj(q)){var tot=num(q.total,0,0,1000);s.quiz[str(k,80)]={best:num(q.best,0,0,tot),total:tot,last:num(q.last,0,0,tot),ts:num(q.ts,0,0),attempts:num(q.attempts,1,0,100000)}}});
+  if(isObj(raw.tasks))Object.keys(raw.tasks).forEach(function(k){var t=raw.tasks[k];if(!isObj(t))return;var m={};if(isObj(t.metrics))Object.keys(t.metrics).forEach(function(mk){m[str(mk,40)]=str(String(t.metrics[mk]),2000)});s.tasks[str(k,80)]={status:['todo','doing','done'].indexOf(t.status)>=0?t.status:'todo',metrics:m,result:str(t.result),reflection:str(t.reflection),date:str(t.date,20),ts:num(t.ts,0,0)}});
+  if(Array.isArray(raw.notes))raw.notes.slice(0,5000).forEach(function(n){if(isObj(n)&&n.id)s.notes.push({id:str(n.id,60),date:str(n.date,20),domain:str(n.domain,40),title:str(n.title,200),hypothesis:str(n.hypothesis),done:str(n.done),result:str(n.result),consider:str(n.consider),refs:str(n.refs,2000),updated:num(n.updated,0,0)})});
+  if(Array.isArray(raw.timeLog))raw.timeLog.slice(0,20000).forEach(function(l){if(!isObj(l)||!l.id)return;var bd={},tot=0;if(isObj(l.byDate))Object.keys(l.byDate).forEach(function(k){if(/^\d{4}-\d{2}-\d{2}$/.test(k)){var v=Math.round(num(l.byDate[k],0,0,86400));bd[k]=v;tot+=v}});
+    var sec=Math.round(num(l.sec,tot,0,10000000));if(sec!==tot){w.push('学習履歴 '+str(l.id,20)+' の合計秒数が日別内訳と一致しなかったため、内訳の合計に補正しました。');sec=tot}
+    s.timeLog.push({id:str(l.id,60),start:num(l.start,0,0),end:num(l.end,0,0),sec:sec,domainId:str(l.domainId,40),lectureId:str(l.lectureId,80),byDate:bd})});
+  if(isObj(raw.readings))Object.keys(raw.readings).forEach(function(k){var r=raw.readings[k];if(isObj(r))s.readings[str(k,80)]={status:['none','reading','finished'].indexOf(r.status)>=0?r.status:'none',memo:str(r.memo),updated:num(r.updated,0,0)}});
+  if(Array.isArray(raw.activity))raw.activity.slice(-300).forEach(function(a){if(isObj(a))s.activity.push({ts:num(a.ts,0,0),type:str(a.type,30),text:str(a.text,300)})});
+  if(isObj(raw.settings)){s.settings.idleMinutes=num(raw.settings.idleMinutes,5,1,120);s.settings.autoPauseHidden=raw.settings.autoPauseHidden!==false;s.settings.lastExport=num(raw.settings.lastExport,0,0)}
+  s.lastLecture=raw.lastLecture?str(raw.lastLecture,80):null;
+  /* 未知のID（現カリキュラムにない）の警告 */
+  Object.keys(s.completed).forEach(function(k){if(!IDX[k])w.push('完了済み講義 "'+k+'" は現在のカリキュラムにありません（データは保持されます）。')});
+  Object.keys(s.tasks).forEach(function(k){if(!TASKS.some(function(t){return t.id===k}))w.push('課題 "'+k+'" は現在のカリキュラムにありません（データは保持されます）。')});
+  /* 進行中タイマー（読込時のみ） */
+  if(raw.timer&&isObj(raw.timer)&&Array.isArray(raw.timer.segments)&&warnings===undefined){
+    var t=raw.timer,segs=[];t.segments.forEach(function(g){if(isObj(g)&&isFinite(g.s)&&isFinite(g.e)&&g.e>=g.s)segs.push({s:+g.s,e:+g.e})});
+    if(t.runningSince&&isFinite(t.runningSince)){var e=Math.max(+t.runningSince,num(t.lastBeat,+t.runningSince));segs.push({s:+t.runningSince,e:e});s._recovered=true}
+    s.timer={id:str(t.id,60)||uid(),domainId:str(t.domainId,40),lectureId:str(t.lectureId,80),startedAt:num(t.startedAt,Date.now(),0),segments:segs,runningSince:null,lastBeat:Date.now()};
+  }
+  return s;
+}
+
+var state;
+function loadState(){try{var raw=localStorage.getItem(LS_KEY);if(!raw)return defaultState();return sanitizeState(JSON.parse(raw))}catch(e){return defaultState()}}
+var saveFailed=false;
+function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(state));saveFailed=false}catch(e){if(!saveFailed){toast('ブラウザへの自動保存に失敗しました。「データ」画面からJSONバックアップを書き出してください。');}saveFailed=true}}
+
+/* ---------- 経験値・レベル・称号 ---------- */
+function xpTotal(s){s=s||state;var t=0;Object.keys(s.awards).forEach(function(k){t+=s.awards[k].xp});return t}
+function domainXp(did,s){s=s||state;var t=0;Object.keys(s.awards).forEach(function(k){if(s.awards[k].domain===did)t+=s.awards[k].xp});return t}
+function levelOf(xp){return Math.floor(Math.sqrt(xp/60))+1}
+function levelFloor(l){return 60*(l-1)*(l-1)}
+function award(key,xp,domain,text){if(state.awards[key]&&state.awards[key].xp>=xp)return 0;var prev=state.awards[key]?state.awards[key].xp:0;state.awards[key]={xp:xp,domain:domain||'',ts:Date.now()};if(text)logAct('xp',text+'（+'+(xp-prev)+' XP）');return xp-prev}
+function logAct(type,text){state.activity.push({ts:Date.now(),type:type,text:text});if(state.activity.length>300)state.activity=state.activity.slice(-300)}
+function tasksDone(did){return TASKS.filter(function(t){return(!did||t.domain===did)&&state.tasks[t.id]&&state.tasks[t.id].status==='done'}).length}
+function readingsFinished(){return Object.keys(state.readings).filter(function(k){return state.readings[k].status==='finished'}).length}
+function titleOf(s){
+  s=s||state;var xp=xpTotal(s),lv=levelOf(xp),t=[['見習い研究者',true]];
+  t.push(['象徴の探究者',domainXp('chaos',s)+domainXp('kabbalah',s)>=100]);
+  t.push(['記憶の修練者',domainXp('memory',s)>=100]);
+  t.push(['精神統御の探究者',domainXp('mental',s)>=100]);
+  t.push(['集中の修練者',TASKS.filter(function(k){return k.domain==='mental'&&s.tasks[k.id]&&s.tasks[k.id].status==='done'}).length>=3]);
+  t.push(['古文書研究者',Object.keys(s.readings).filter(function(k){return s.readings[k].status==='finished'}).length>=3]);
+  t.push(['魔術研究者',lv>=5]);t.push(['上級研究者',lv>=8]);
+  var earned=t.filter(function(x){return x[1]}).map(function(x){return x[0]});
+  return {current:earned[earned.length-1],earned:earned,all:t.map(function(x){return x[0]})};
+}
+
+/* =====================================================================
+   [3] 学習時間計測
+   ===================================================================== */
+var lastActivity=Date.now();
+function splitByDay(segs,openStart,now){
+  var all=segs.slice();if(openStart)all.push({s:openStart,e:now});
+  var by={};all.forEach(function(g){var c=g.s;while(c<g.e){var m=new Date(c);m.setHours(24,0,0,0);var end=Math.min(g.e,m.getTime());var k=dkey(c);by[k]=(by[k]||0)+(end-c)/1000;c=end}});
+  return by;
+}
+function timerMs(t,now){t=t||state.timer;if(!t)return 0;now=now||Date.now();var ms=0;t.segments.forEach(function(g){ms+=g.e-g.s});if(t.runningSince)ms+=now-t.runningSince;return ms}
+function activeByDate(){return state.timer?splitByDay(state.timer.segments,state.timer.runningSince,Date.now()):{}}
+function totalSec(filter){var t=0;state.timeLog.forEach(function(l){if(!filter||filter(l))t+=l.sec});if(state.timer&&(!filter||filter({domainId:state.timer.domainId,lectureId:state.timer.lectureId}))){Object.keys(activeByDate()).forEach(function(k){t+=activeByDate()[k]})}return t}
+function todaySec(){var k=dkey(Date.now()),t=0;state.timeLog.forEach(function(l){t+=l.byDate[k]||0});t+=activeByDate()[k]||0;return t}
+function studyDays(){var s={};state.timeLog.forEach(function(l){Object.keys(l.byDate).forEach(function(k){if(l.byDate[k]>0)s[k]=1})});Object.keys(activeByDate()).forEach(function(k){s[k]=1});Object.keys(state.completed).forEach(function(k){s[dkey(state.completed[k])]=1});return Object.keys(s).length}
+
+function startTimer(domainId,lectureId){
+  if(state.timer){toast('すでに学習時間を計測中です。');return}
+  var n=Date.now();state.timer={id:uid(),domainId:domainId||'',lectureId:lectureId||'',startedAt:n,segments:[],runningSince:n,lastBeat:n};lastActivity=n;save();renderBar();toast('学習を開始しました。');
+}
+function pauseTimer(at,msg){var t=state.timer;if(!t||!t.runningSince)return;var e=Math.max(t.runningSince,at||Date.now());t.segments.push({s:t.runningSince,e:e});t.runningSince=null;save();renderBar();if(msg)toast(msg)}
+function resumeTimer(){var t=state.timer;if(!t||t.runningSince)return;t.runningSince=Date.now();t.lastBeat=t.runningSince;lastActivity=t.runningSince;save();renderBar()}
+function endTimer(){
+  var t=state.timer;if(!t)return;pauseTimer(Date.now());
+  var by=splitByDay(t.segments),sec=0,rounded={};Object.keys(by).forEach(function(k){var v=Math.round(by[k]);if(v>0){rounded[k]=v;sec+=v}});
+  var start=t.segments.length?t.segments[0].s:t.startedAt,end=t.segments.length?t.segments[t.segments.length-1].e:t.startedAt;
+  if(sec>=1){state.timeLog.push({id:t.id,start:start,end:end,sec:sec,domainId:t.domainId,lectureId:t.lectureId,byDate:rounded});var d=domById(t.domainId);logAct('time','学習 '+fmtHM(sec)+'（'+(IDX[t.lectureId]?IDX[t.lectureId].title:d?d.name:'自由研究')+'）')}
+  state.timer=null;save();renderBar();render();toast(sec>=1?'学習を終了しました（'+fmtHM(sec)+'）。':'1秒未満のため記録しませんでした。');
+}
+function tick(){
+  var t=state.timer;
+  if(t&&t.runningSince){
+    var now=Date.now(),idle=state.settings.idleMinutes*60000;
+    if(now-lastActivity>idle){pauseTimer(lastActivity,'無操作が続いたため、計測を一時停止しました（操作のなかった時間は加算されません）。');}
+    else{t.lastBeat=now;if(Math.floor(now/1000)%5===0)save()}
+  }
+  var el=$('#tbTime');if(el&&state.timer)el.textContent=fmtDur(timerMs()/1000);
+  var ht=$('#liveToday');if(ht)ht.textContent=fmtHM(todaySec());
+}
+function markActive(){lastActivity=Date.now()}
+
+/* =====================================================================
+   [4] 画面
+   ===================================================================== */
+var toastT=null;
+function toast(msg){var el=$('#toast');if(!el)return;el.textContent=msg;el.style.display='block';clearTimeout(toastT);toastT=setTimeout(function(){el.style.display='none'},4200)}
+var NAV=[['home','書斎'],['domains','研究領域'],['lab','実験室'],['library','古文書庫'],['notes','研究ノート'],['history','学習履歴'],['data','データ']];
+function route(){var h=(location.hash||'#/home').replace(/^#\/?/,'');var p=h.split('/');return {page:p[0]||'home',a:decodeURIComponent(p[1]||''),b:decodeURIComponent(p[2]||'')}}
+function renderNav(){var r=route(),map={domain:'domains',lecture:'domains'};var cur=map[r.page]||r.page;$('#nav').innerHTML=NAV.map(function(n){return '<a href="#/'+n[0]+'" class="'+(cur===n[0]?'on':'')+'">'+n[1]+'</a>'}).join('')}
+
+function barCtx(){var r=route();if(r.page==='lecture'&&IDX[r.a])return {d:IDX[r.a].domain,l:r.a};if(r.page==='domain'&&domById(r.a))return {d:r.a,l:''};return {d:'',l:''}}
+function renderBar(){
+  var el=$('#timerbar'),t=state.timer,h;
+  if(!t){var c=barCtx();h='<div class="tb-in"><span class="muted">学習時間の計測：停止中</span><select id="tbDom" aria-label="研究領域">'+'<option value="">自由研究（領域なし）</option>'+DOMAINS.map(function(d){return '<option value="'+d.id+'"'+(c.d===d.id?' selected':'')+'>'+esc(d.name)+'</option>'}).join('')+'</select>'+(c.l?'<span class="muted">講義：'+esc(IDX[c.l].title)+'</span>':'')+'<button class="pri" data-act="tstart" data-l="'+esc(c.l)+'">▶ 学習開始</button><span class="muted">今日：<span id="liveToday">'+fmtHM(todaySec())+'</span></span></div>';}
+  else{var d=domById(t.domainId),running=!!t.runningSince;h='<div class="tb-in"><span class="tb-time" id="tbTime">'+fmtDur(timerMs()/1000)+'</span><span>'+(running?'学習中':'一時停止中')+' ― '+esc(IDX[t.lectureId]?IDX[t.lectureId].title:d?d.name:'自由研究')+'</span>'+(running?'<button data-act="tpause">⏸ 一時停止</button>':'<button class="pri" data-act="tresume">▶ 再開</button>')+'<button class="danger" data-act="tend">■ 学習終了</button></div>'}
+  el.innerHTML=h;
+}
+
+function pctBar(p){return '<div class="bar"><i style="width:'+Math.max(0,Math.min(100,p))+'%"></i></div>'}
+function domProgress(d){var ls=[];d.chapters.forEach(function(c){c.lectures.forEach(function(l){ls.push(l[0])})});var cl=ls.filter(function(i){return state.completed[i]}).length;var ts=TASKS.filter(function(t){return t.domain===d.id});var td=ts.filter(function(t){return state.tasks[t.id]&&state.tasks[t.id].status==='done'}).length;var tot=ls.length+ts.length;return {lec:ls.length,lecDone:cl,written:ls.filter(function(i){return LECTURES[i]}).length,tasks:ts.length,tasksDone:td,pct:tot?Math.round(100*(cl+td)/tot):0}}
+function overallProgress(){var a=0,b=0;DOMAINS.forEach(function(d){var p=domProgress(d);a+=p.lecDone+p.tasksDone;b+=p.lec+p.tasks});return b?Math.round(100*a/b):0}
+
+/* ---- ホーム ---- */
+function pageHome(){
+  var xp=xpTotal(),lv=levelOf(xp),next=levelFloor(lv+1),cur=levelFloor(lv),tt=titleOf();
+  var lectDone=Object.keys(state.completed).filter(function(k){return IDX[k]}).length;
+  var h='<h1>書斎</h1><div class="card"><div class="row" style="justify-content:space-between"><div><div class="muted">称号</div><div style="font-size:24px;color:var(--gold2)">'+esc(tt.current)+'</div></div><div style="text-align:right"><div class="muted">レベル</div><div style="font-size:30px;color:var(--gold2)">Lv.'+lv+'</div></div></div><div style="margin-top:8px">'+pctBar(100*(xp-cur)/(next-cur))+'<div class="muted">経験値 '+xp+' XP ／ 次のレベルまで '+(next-xp)+' XP</div></div></div>';
+  h+='<div class="grid">'+[['総学習時間','<span>'+fmtHM(totalSec())+'</span>'],['今日の学習時間','<span id="liveToday">'+fmtHM(todaySec())+'</span>'],['累計学習日数',studyDays()+' 日'],['学習した講義数',lectDone+' / '+ORDER.length],['完了した実践課題数',tasksDone()+' / '+TASKS.length],['全体の進捗率',overallProgress()+'%']].map(function(x){return '<div class="card stat"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join('')+'</div>';
+  function tasksDone(){return TASKS.filter(function(t){return state.tasks[t.id]&&state.tasks[t.id].status==='done'}).length}
+  h+='<h2>研究領域別の進捗</h2><div class="grid">'+DOMAINS.map(function(d){var p=domProgress(d);return '<a href="#/domain/'+d.id+'" style="border:none"><div class="card"><div class="row"><span class="glyph">'+d.glyph+'</span><div><b>'+esc(d.name)+'</b><div class="muted">'+d.en+'</div></div></div>'+pctBar(p.pct)+'<div class="muted">進捗 '+p.pct+'% ／ 講義 '+p.lecDone+'/'+p.lec+'（執筆済 '+p.written+'）／ 課題 '+p.tasksDone+'/'+p.tasks+'<br>学習時間 '+fmtHM(totalSec(function(l){return l.domainId===d.id}))+'</div></div></a>'}).join('')+'</div>';
+  var last=state.lastLecture&&IDX[state.lastLecture]?state.lastLecture:null;
+  var nextId=recommendNext();
+  h+='<h2>続きを学ぶ</h2><div class="grid"><div class="card"><div class="muted">最後に学習した講義</div>'+(last?'<a href="#/lecture/'+last+'">'+esc(IDX[last].title)+'</a>':'<span class="muted">まだありません</span>')+'</div><div class="card"><div class="muted">次のおすすめ講義</div>'+(nextId?'<a href="#/lecture/'+nextId+'">'+esc(IDX[nextId].title)+'</a>':'<span class="muted">執筆済みの講義はすべて完了しました</span>')+'</div></div>';
+  h+='<h2>最近の活動</h2><div class="card">'+(state.activity.length?'<ul class="clean sans">'+state.activity.slice(-8).reverse().map(function(a){return '<li>'+fmtDT(a.ts)+'　'+esc(a.text)+'</li>'}).join('')+'</ul>':'<span class="muted">まだ活動はありません。講義を開いて、学習を始めましょう。</span>')+'</div>';
+  h+='<h2>称号</h2><div class="card">'+tt.all.map(function(n){return '<span class="tag '+(tt.earned.indexOf(n)>=0?'ok':'plan')+'">'+esc(n)+'</span>'}).join('')+'<p class="muted">経験値は、講義の完了・理解度確認・実践課題・読書記録・研究ノート・復習といった学習活動に対して付与されます。超常的な体験の自己申告には付与されません。</p></div>';
+  return h;
+}
+function recommendNext(){var start=0;if(state.lastLecture&&IDX[state.lastLecture])start=ORDER.indexOf(state.lastLecture)+1;for(var i=0;i<ORDER.length;i++){var id=ORDER[(start+i)%ORDER.length];if(LECTURES[id]&&!state.completed[id])return id}return null}
+
+/* ---- 研究領域 ---- */
+function pageDomains(){
+  var h='<h1>研究領域</h1><p class="muted">各領域は独立した研究室です。入室して、概要・カリキュラム・進捗を確認できます。</p><div class="grid">'+DOMAINS.map(function(d){var p=domProgress(d);return '<a href="#/domain/'+d.id+'" style="border:none"><div class="card"><div class="row"><span class="glyph">'+d.glyph+'</span><div><b style="font-size:18px">'+esc(d.name)+'</b><div class="muted">'+d.en+'</div></div></div><p class="muted">'+esc(d.overview)+'</p>'+pctBar(p.pct)+'<div class="muted">進捗 '+p.pct+'%</div></div></a>'}).join('')+'</div>';
+  h+='<h2>将来追加予定の研究領域（未実装）</h2><div class="card">'+FUTURE_DOMAINS.map(function(n){return '<span class="tag plan">'+esc(n)+'</span>'}).join('')+'<p class="muted">DOMAINS 配列に領域データを追加すると、この画面に表示されます。</p></div>';
+  return h;
+}
+function pageDomain(id){
+  var d=domById(id);if(!d)return notFound();var p=domProgress(d);
+  var h='<div class="crumb"><a href="#/domains">研究領域</a> › '+esc(d.name)+'</div><h1><span class="glyph">'+d.glyph+'</span> '+esc(d.name)+' <small class="muted">'+d.en+'</small></h1>';
+  h+='<div class="card"><p>'+esc(d.overview)+'</p><h3>学習目的</h3><p>'+esc(d.purpose)+'</p>'+pctBar(p.pct)+'<div class="muted">進捗 '+p.pct+'% ／ 講義 '+p.lecDone+'/'+p.lec+'（執筆済 '+p.written+'）／ 課題 '+p.tasksDone+'/'+p.tasks+' ／ 学習時間 '+fmtHM(totalSec(function(l){return l.domainId===d.id}))+'</div><div class="row" style="margin-top:8px"><button class="pri" data-act="tstart" data-d="'+d.id+'" data-l="">この領域で学習を開始</button></div></div>';
+  h+='<h2>カリキュラム</h2>';
+  d.chapters.forEach(function(c){h+='<div class="card"><h3 style="margin-top:0">第'+c.n+'章　'+esc(c.title)+'</h3><ul class="clean sans" style="list-style:none;padding:0">'+c.lectures.map(function(l){var w=!!LECTURES[l[0]],done=!!state.completed[l[0]];return '<li style="padding:5px 0;border-bottom:1px dotted rgba(184,150,78,.25)">'+(w?'<a href="#/lecture/'+l[0]+'">'+esc(l[1])+'</a>':'<span class="muted">'+esc(l[1])+'</span>')+' '+(done?'<span class="tag ok">完了</span>':w?'<span class="tag">未完了</span>':'<span class="tag plan">準備中（未執筆）</span>')+'</li>'}).join('')+'</ul></div>'});
+  var ts=TASKS.filter(function(t){return t.domain===d.id});
+  h+='<h2>この領域の実践課題</h2><div class="card"><ul class="clean sans">'+ts.map(function(t){var s=state.tasks[t.id];return '<li><a href="#/lab/'+t.id+'">'+esc(t.title)+'</a> <span class="tag '+(s&&s.status==='done'?'ok':'')+'">'+statusJa(s?s.status:'todo')+'</span></li>'}).join('')+'</ul></div>';
+  var rs=REFS.filter(function(r){return citedBy(r.id).some(function(x){return (IDX[x]&&IDX[x].domain===d.id)||(TASKS.filter(function(t){return t.id===x&&t.domain===d.id}).length)})});
+  h+='<h2>関連する文献</h2><div class="card"><ul class="clean sans">'+rs.map(function(r){return '<li><a href="#/library/'+r.id+'">'+esc(r.title)+'</a> <span class="tag">'+CATS[r.cat]+'</span></li>'}).join('')+'</ul></div>';
+  return h;
+}
+function statusJa(s){return {todo:'未着手',doing:'実施中',done:'完了'}[s]||s}
+function notFound(){return '<h1>見つかりません</h1><p><a href="#/home">書斎へ戻る</a></p>'}
+
+/* ---- 講義 ---- */
+function makeCiter(){var order=[];return {fmt:function(s){var t=esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');return t.replace(/\{r:([a-z0-9_]+)\}/g,function(m,id){if(!REFIDX[id])return '';var i=order.indexOf(id);if(i<0){order.push(id);i=order.length-1}return '<sup><a href="#/library/'+id+'">['+(i+1)+']</a></sup>'})},order:order}}
+function renderDiagram(g){
+  if(!g)return '<p class="muted">図解なし</p>';
+  var h='';
+  if(g.type==='flow'){
+    var n=g.items.length,w=118,gap=26,W=20+n*w+(n-1)*gap+20,H=g.loop?190:110,s='<svg class="dia" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(g.cap||'図解')+'"><defs><marker id="ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#b8964e"/></marker></defs>';
+    g.items.forEach(function(it,i){var x=20+i*(w+gap);s+='<rect class="sv-box" x="'+x+'" y="30" width="'+w+'" height="52" rx="6"/><text class="sv-t" x="'+(x+w/2)+'" y="53">'+esc(it[0])+'</text><text class="sv-s" x="'+(x+w/2)+'" y="70">'+esc(it[1])+'</text>';if(i<n-1)s+='<line class="sv-l" x1="'+(x+w+2)+'" y1="56" x2="'+(x+w+gap-2)+'" y2="56" marker-end="url(#ar)"/>'});
+    if(g.loop){var x1=20+w/2,x2=20+(n-1)*(w+gap)+w/2;s+='<path class="sv-l" d="M'+x2+' 84 V130 H'+x1+' V86" marker-end="url(#ar)"/><text class="sv-s" x="'+((x1+x2)/2)+'" y="150">'+esc(g.loop)+'</text>'}
+    h=s+'</svg>';
+  }else if(g.type==='timeline'){h='<div class="tl sans">'+g.items.map(function(i){return '<div><b>'+esc(i[0])+'</b>'+esc(i[1])+'</div>'}).join('')+'</div>'}
+  else if(g.type==='table'){h='<div style="overflow-x:auto"><table><tr>'+g.head.map(function(x){return '<th>'+esc(x)+'</th>'}).join('')+'</tr>'+g.rows.map(function(r){return '<tr>'+r.map(function(x,i){return '<td>'+(i===0?'<b>':'')+esc(x)+(i===0?'</b>':'')+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'}
+  return h+(g.cap?'<p class="muted" style="text-align:center">'+esc(g.cap)+'</p>':'');
+}
+function pageLecture(id){
+  var meta=IDX[id];if(!meta)return notFound();var d=domById(meta.domain),L=LECTURES[id];
+  var h='<div class="crumb"><a href="#/domains">研究領域</a> › <a href="#/domain/'+d.id+'">'+esc(d.name)+'</a> › 第'+meta.chapter+'章 '+esc(meta.chTitle)+'</div>';
+  if(!L){var i=ORDER.indexOf(id);return h+'<h1>'+esc(meta.title)+'</h1><div class="card"><span class="tag plan">準備中</span><p>この講義はまだ執筆されていません。講義データ（LECTURES）に <code>'+esc(id)+'</code> を追加すると、この画面に表示されます。</p></div>'+lecNav(i)}
+  state.lastLecture=id;save();
+  var cz=makeCiter(),done=!!state.completed[id],q=state.quiz[id];
+  h+='<h1>'+esc(meta.title)+'</h1><div class="row"><span class="tag">'+esc(d.en)+'</span>'+(done?'<span class="tag ok">完了済み</span>':'')+'<button class="pri" data-act="tstart" data-d="'+d.id+'" data-l="'+id+'" '+(state.timer?'disabled':'')+'>▶ この講義で学習を開始</button></div>';
+  h+='<h2>学習目標</h2><ul class="clean">'+L.goals.map(function(g){return '<li>'+esc(g)+'</li>'}).join('')+'</ul>';
+  h+='<h2>導入</h2><div class="lec"><p>'+cz.fmt(L.intro)+'</p></div>';
+  h+='<h2>本文</h2><div class="lec">'+L.sections.map(function(s){return '<h3>'+esc(s.h)+'</h3>'+s.p.map(function(p){return '<p>'+cz.fmt(p)+'</p>'}).join('')}).join('')+'</div>';
+  h+='<h2>図解・イラスト</h2><div class="card">'+renderDiagram(L.diagram)+'</div>';
+  h+='<h2>具体例</h2><ul class="clean">'+L.examples.map(function(x){return '<li>'+cz.fmt(x)+'</li>'}).join('')+'</ul>';
+  h+='<h2>実生活との関連</h2><ul class="clean">'+L.life.map(function(x){return '<li>'+cz.fmt(x)+'</li>'}).join('')+'</ul>';
+  h+='<h2>重要事項のまとめ</h2><div class="box"><ul class="clean">'+L.summary.map(function(x){return '<li>'+cz.fmt(x)+'</li>'}).join('')+'</ul></div>';
+  h+='<h2>理解度確認問題</h2><div class="card" id="quizBox">'+(q?'<p class="muted">これまでの最高：'+q.best+' / '+q.total+'（受験 '+q.attempts+' 回）</p>':'')+L.quiz.map(function(Q,i){return '<div style="margin:14px 0"><b>問'+(i+1)+'.</b> '+esc(Q.q)+Q.o.map(function(o,j){return '<label class="opt" id="o_'+i+'_'+j+'"><input type="radio" name="q'+i+'" value="'+j+'">'+esc(o)+'</label>'}).join('')+'<div class="muted hide" id="ex'+i+'"></div></div>'}).join('')+'<button class="pri" data-act="quiz" data-l="'+id+'">答え合わせ</button> <span id="quizRes" class="sans"></span></div>';
+  /* 参考文献（本文の引用番号に対応） */
+  var refIds=cz.order.slice();(L.refs||[]).forEach(function(r){if(refIds.indexOf(r)<0)refIds.push(r)});
+  h+='<h2>参考文献・出典</h2><div class="card sans"><ol class="clean">'+refIds.map(function(r){var R=REFIDX[r];if(!R)return '';var cited=cz.order.indexOf(r)>=0;return '<li value="'+(cited?cz.order.indexOf(r)+1:'')+'" '+(cited?'':'style="list-style:none"')+'>'+refLine(R)+(cited?'':' <span class="tag plan">関連（本文では未引用）</span>')+'</li>'}).join('')+'</ol><p class="muted">該当ページ・章・節：未確認。書誌情報は暫定であり、最終確認は学習者自身が原典で行ってください。</p></div>';
+  h+='<div class="row" style="margin:16px 0"><button class="pri" data-act="complete" data-l="'+id+'" '+(done?'disabled':'')+'>'+(done?'完了済み':'この講義を完了にする（+50 XP）')+'</button>'+(done?'<button data-act="review" data-l="'+id+'">復習した（1日1回 +10 XP）</button>':'')+'</div>';
+  var rel=TASKS.filter(function(t){return t.knowledge.indexOf(id)>=0});
+  if(rel.length)h+='<h2>関連する実践課題</h2><div class="card"><ul class="clean sans">'+rel.map(function(t){return '<li><a href="#/lab/'+t.id+'">'+esc(t.title)+'</a></li>'}).join('')+'</ul></div>';
+  h+=lecNav(ORDER.indexOf(id));
+  return h;
+}
+function lecNav(i){var p=i>0?ORDER[i-1]:null,n=i<ORDER.length-1?ORDER[i+1]:null;return '<h2>次の講義へ</h2><div class="row">'+(p?'<a class="btn" href="#/lecture/'+p+'">← '+esc(IDX[p].title)+'</a>':'')+(n?'<a class="btn" href="#/lecture/'+n+'">'+esc(IDX[n].title)+' →</a>':'')+'</div>'}
+function refLine(R){
+  var s='<a href="#/library/'+R.id+'">'+esc(R.authors||'著者未確認')+'</a>'+(R.authorsOrig?'（'+esc(R.authorsOrig)+'）':'')+'『'+esc(R.original||R.title)+'』';
+  var bits=[];if(R.publisher)bits.push(R.publisher);if(R.year)bits.push(R.year);if(R.editionYear)bits.push('参照版：'+R.editionYear);if(R.journal)bits.push(R.journal);
+  return s+(bits.length?'　'+esc(bits.join('、')):'')+(R.doi?'　DOI: '+esc(R.doi):'');
+}
+
+/* ---- 実験室 ---- */
+function pageLab(id){
+  if(id)return pageTask(id);
+  var h='<h1>実験室</h1><p class="muted">学んだ内容を実際に試し、結果と考察を記録します。結果は自動保存され、JSONで書き出せます。</p>';
+  DOMAINS.forEach(function(d){var ts=TASKS.filter(function(t){return t.domain===d.id});if(!ts.length)return;h+='<h2>'+esc(d.name)+'</h2><div class="grid">'+ts.map(function(t){var s=state.tasks[t.id];return '<a href="#/lab/'+t.id+'" style="border:none"><div class="card"><b>'+esc(t.title)+'</b><p class="muted">'+esc(t.purpose)+'</p><span class="tag '+(s&&s.status==='done'?'ok':'')+'">'+statusJa(s?s.status:'todo')+'</span></div></a>'}).join('')+'</div>'});
+  return h;
+}
+function lecTitle(id){return IDX[id]?IDX[id].title:id}
+function pageTask(id){
+  var t=TASKS.filter(function(x){return x.id===id})[0];if(!t)return notFound();var d=domById(t.domain),s=state.tasks[id]||{status:'todo',metrics:{},result:'',reflection:'',date:dkey(Date.now())};
+  var h='<div class="crumb"><a href="#/lab">実験室</a> › '+esc(d.name)+'</div><h1>'+esc(t.title)+'</h1><span class="tag '+(s.status==='done'?'ok':'')+'">'+statusJa(s.status)+'</span>';
+  if(t.safety)h+='<div class="box warn sans"><b>安全のために</b><br>'+esc(SAFETY)+'</div>';
+  h+='<h2>目的</h2><p>'+esc(t.purpose)+'</p><h2>必要な知識</h2><ul class="clean">'+t.knowledge.map(function(k){return '<li>'+(LECTURES[k]?'<a href="#/lecture/'+k+'">'+esc(lecTitle(k))+'</a>':esc(lecTitle(k))+' <span class="tag plan">準備中</span>')+'</li>'}).join('')+'</ul>';
+  h+='<h2>実施手順</h2><ol class="clean">'+t.steps.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol>';
+  h+='<h2>実施結果の記録</h2><div class="card"><div class="form2"><div><label>実施日</label><input type="date" id="t_date" value="'+esc(s.date||dkey(Date.now()))+'"></div><div><label>状態</label><select id="t_status">'+['todo','doing','done'].map(function(x){return '<option value="'+x+'"'+(s.status===x?' selected':'')+'>'+statusJa(x)+'</option>'}).join('')+'</select></div>'+t.metrics.map(function(m){return '<div><label>'+esc(m.label)+'</label>'+(m.type==='text'?'<textarea id="m_'+m.k+'" style="min-height:60px">'+esc(s.metrics[m.k]||'')+'</textarea>':'<input type="number" step="any" id="m_'+m.k+'" value="'+esc(s.metrics[m.k]||'')+'">')+'</div>'}).join('')+'</div><label>結果（実施した内容と、起きたこと）</label><textarea id="t_result">'+esc(s.result)+'</textarea><label>考察（仮説との比較、バイアスの可能性、次に試すこと）</label><textarea id="t_reflection">'+esc(s.reflection)+'</textarea><div class="row" style="margin-top:10px"><button class="pri" data-act="savetask" data-t="'+id+'">記録を保存</button><span class="muted">「完了」にすると +80 XP（結果または数値の記入が必要）</span></div></div>';
+  h+='<h2>参考資料</h2><div class="card sans">'+(t.refs.length?'<ul class="clean">'+t.refs.map(function(r){return REFIDX[r]?'<li>'+refLine(REFIDX[r])+'</li>':''}).join('')+'</ul>':'<span class="muted">参考文献なし（出典未確認）</span>')+'</div>';
+  return h;
+}
+
+/* ---- 古文書庫 ---- */
+var libState={cat:'',q:''};
+function U(v){return v?esc(v):'<span class="muted">未確認</span>'}
+function pageLibrary(id){
+  if(id)return pageRef(id);
+  var h='<h1>古文書庫・参考文献室</h1><p class="muted">講義や課題が根拠とした文献を確認できます。書誌情報は暫定であり、空欄は「未確認」です。実在・内容の最終確認は原典で行ってください。</p>';
+  h+='<div class="card"><div class="row"><input id="libQ" placeholder="書名・著者・主題で検索" value="'+esc(libState.q)+'" style="max-width:320px"><select id="libCat" style="max-width:220px"><option value="">すべての分類</option>'+Object.keys(CATS).map(function(k){return '<option value="'+k+'"'+(libState.cat===k?' selected':'')+'>'+CATS[k]+'</option>'}).join('')+'</select></div></div><div id="libList">'+libList()+'</div>';
+  return h;
+}
+function libList(){
+  var q=libState.q.toLowerCase();var rs=REFS.filter(function(r){return(!libState.cat||r.cat===libState.cat)&&(!q||[r.title,r.original,r.authors,r.subject].join(' ').toLowerCase().indexOf(q)>=0)});
+  if(!rs.length)return '<p class="muted">該当する文献がありません。</p>';
+  return rs.map(function(r){var rd=state.readings[r.id];return '<div class="card"><a href="#/library/'+r.id+'"><b>'+esc(r.title)+'</b></a><div class="sans muted">'+esc(r.authors||'')+'　'+esc(r.year||'')+'</div><span class="tag">'+CATS[r.cat]+'</span><span class="tag '+(rd&&rd.status==='finished'?'ok':'plan')+'">'+({none:'未読',reading:'読書中',finished:'読了'}[rd?rd.status:'none'])+'</span></div>'}).join('');
+}
+function pageRef(id){
+  var R=REFIDX[id];if(!R)return notFound();var rd=state.readings[id]||{status:'none',memo:''};
+  var rows=[['書名',R.title],['原題',R.original],['著者・編者・翻訳者',R.authors],['著者の原語表記',R.authorsOrig],['成立年代・初版刊行年',R.year],['参照した版の刊行年',R.editionYear],['出版社',R.publisher],['出版地',R.place],['ISBN',R.isbn],['原語',R.lang],['日本語訳の有無',R.jaTrans||''],['ページ数',R.pages],['掲載誌・巻号・ページ',R.journal],['DOI',R.doi],['研究対象',R.subject],['歴史的背景',R.background],['参考URL',R.url]];
+  var h='<div class="crumb"><a href="#/library">古文書庫</a></div><h1>'+esc(R.title)+'</h1><span class="tag">'+CATS[R.cat]+'</span><span class="tag warn">書誌情報は要照合</span>';
+  h+='<div class="box sans">'+esc(CAT_NOTE[R.cat])+'</div><div class="card" style="overflow-x:auto"><table>'+rows.map(function(r){return '<tr><th style="width:11em">'+r[0]+'</th><td>'+U(r[1])+'</td></tr>'}).join('')+'</table></div>';
+  if(R.points&&R.points.length)h+='<h3>重要な論点</h3><ul class="clean">'+R.points.map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ul>';
+  var cb=citedBy(id);h+='<h3>カリキュラムとの関連</h3><ul class="clean sans">'+(cb.length?cb.map(function(x){return IDX[x]?'<li><a href="#/lecture/'+x+'">講義：'+esc(lecTitle(x))+'</a></li>':'<li><a href="#/lab/'+x+'">課題：'+esc((TASKS.filter(function(t){return t.id===x})[0]||{}).title||x)+'</a></li>'}).join(''):'<li class="muted">未登録</li>')+'</ul>';
+  h+='<h3>読書進捗とメモ</h3><div class="card"><label>進捗</label><select id="rd_status">'+[['none','未読'],['reading','読書中'],['finished','読了（+20 XP）']].map(function(o){return '<option value="'+o[0]+'"'+(rd.status===o[0]?' selected':'')+'>'+o[1]+'</option>'}).join('')+'</select><label>読書メモ</label><textarea id="rd_memo">'+esc(rd.memo)+'</textarea><div style="margin-top:8px"><button class="pri" data-act="saveread" data-r="'+id+'">保存</button></div></div>';
+  return h;
+}
+
+/* ---- 研究ノート ---- */
+var noteState={q:'',edit:null};
+function pageNotes(){
+  var n=noteState.edit?state.notes.filter(function(x){return x.id===noteState.edit})[0]:null;n=n||{id:'',date:dkey(Date.now()),domain:'',title:'',hypothesis:'',done:'',result:'',consider:'',refs:''};
+  var h='<h1>研究ノート</h1><div class="card"><h3 style="margin-top:0">'+(n.id?'ノートを編集':'新しいノート')+'</h3><div class="form2"><div><label>日付</label><input type="date" id="n_date" value="'+esc(n.date)+'"></div><div><label>研究領域</label><select id="n_domain"><option value="">（指定なし）</option>'+DOMAINS.map(function(d){return '<option value="'+d.id+'"'+(n.domain===d.id?' selected':'')+'>'+esc(d.name)+'</option>'}).join('')+'</select></div></div><label>タイトル</label><input id="n_title" value="'+esc(n.title)+'"><label>仮説</label><textarea id="n_hyp">'+esc(n.hypothesis)+'</textarea><label>実施内容</label><textarea id="n_done">'+esc(n.done)+'</textarea><label>結果</label><textarea id="n_res">'+esc(n.result)+'</textarea><label>考察</label><textarea id="n_con">'+esc(n.consider)+'</textarea><label>参考資料</label><textarea id="n_refs" style="min-height:60px">'+esc(n.refs)+'</textarea><div class="row" style="margin-top:10px"><button class="pri" data-act="savenote" data-n="'+esc(n.id)+'">'+(n.id?'更新':'保存（1日3件まで +15 XP）')+'</button>'+(n.id?'<button data-act="cancelnote">編集をやめる</button>':'')+'</div></div>';
+  h+='<h2>ノート一覧</h2><input id="noteQ" placeholder="検索（タイトル・本文）" value="'+esc(noteState.q)+'" style="max-width:340px"><div id="noteList">'+noteList()+'</div>';
+  return h;
+}
+function noteList(){
+  var q=noteState.q.toLowerCase();var ns=state.notes.filter(function(n){return !q||[n.title,n.hypothesis,n.done,n.result,n.consider,n.refs].join(' ').toLowerCase().indexOf(q)>=0}).sort(function(a,b){return (b.date||'').localeCompare(a.date||'')||b.updated-a.updated});
+  if(!ns.length)return '<p class="muted">ノートがありません。</p>';
+  return ns.map(function(n){var d=domById(n.domain);return '<div class="card"><div class="sans muted">'+esc(n.date)+(d?'　'+esc(d.name):'')+'</div><b>'+esc(n.title||'（無題）')+'</b>'+[['仮説',n.hypothesis],['実施内容',n.done],['結果',n.result],['考察',n.consider],['参考資料',n.refs]].filter(function(x){return x[1]}).map(function(x){return '<div class="sans" style="margin-top:6px"><span class="tag">'+x[0]+'</span> <span style="white-space:pre-wrap">'+esc(x[1])+'</span></div>'}).join('')+'<div class="row" style="margin-top:8px"><button data-act="editnote" data-n="'+esc(n.id)+'">編集</button><button class="danger" data-act="delnote" data-n="'+esc(n.id)+'">削除</button></div></div>'}).join('');
+}
+
+/* ---- 学習履歴 ---- */
+function pageHistory(){
+  var h='<h1>学習履歴</h1><div class="grid"><div class="card stat"><b>'+fmtHM(totalSec())+'</b><span>累計学習時間</span></div><div class="card stat"><b>'+fmtHM(todaySec())+'</b><span>今日の学習時間</span></div><div class="card stat"><b>'+studyDays()+' 日</b><span>累計学習日数</span></div></div>';
+  h+='<h2>研究領域別の累計時間</h2><div class="card sans"><table>'+DOMAINS.map(function(d){return '<tr><td>'+esc(d.name)+'</td><td>'+fmtHM(totalSec(function(l){return l.domainId===d.id}))+'</td></tr>'}).join('')+'<tr><td>自由研究（領域なし）</td><td>'+fmtHM(totalSec(function(l){return !domById(l.domainId)}))+'</td></tr></table></div>';
+  var by={};state.timeLog.forEach(function(l){Object.keys(l.byDate).forEach(function(k){by[k]=(by[k]||0)+l.byDate[k]})});var ab=activeByDate();Object.keys(ab).forEach(function(k){by[k]=(by[k]||0)+ab[k]});
+  h+='<h2>日別</h2><div class="card sans"><table>'+(Object.keys(by).sort().reverse().slice(0,60).map(function(k){return '<tr><td>'+k+'</td><td>'+fmtHM(by[k])+'</td></tr>'}).join('')||'<tr><td class="muted">まだ記録がありません</td></tr>')+'</table></div>';
+  h+='<h2>セッション</h2><div class="card sans" style="overflow-x:auto"><table><tr><th>開始</th><th>時間</th><th>対象</th></tr>'+(state.timeLog.slice().reverse().slice(0,100).map(function(l){var d=domById(l.domainId);return '<tr><td>'+fmtDT(l.start)+'</td><td>'+fmtHM(l.sec)+'</td><td>'+esc(IDX[l.lectureId]?IDX[l.lectureId].title:d?d.name:'自由研究')+'</td></tr>'}).join('')||'<tr><td colspan="3" class="muted">まだ記録がありません</td></tr>')+'</table></div>';
+  h+='<h2>活動履歴</h2><div class="card sans"><ul class="clean">'+(state.activity.slice().reverse().slice(0,60).map(function(a){return '<li>'+fmtDT(a.ts)+'　'+esc(a.text)+'</li>'}).join('')||'<li class="muted">まだありません</li>')+'</ul></div>';
+  return h;
+}
+
+/* ---- データ（JSON / 設定） ---- */
+var pendingImport=null;
+function buildExport(){
+  var d=JSON.parse(JSON.stringify(state));d.timer=null;
+  return {app:'GRIMOIRE',schemaVersion:SCHEMA,appVersion:APP_VERSION,exportedAt:new Date().toISOString(),
+    note:'derived は参考情報で、インポート時には無視され再計算されます。進行中の計測セッションは含まれません。',
+    derived:{xp:xpTotal(),level:levelOf(xpTotal()),title:titleOf().current,totalSeconds:Math.round(totalSec()),completedLectures:Object.keys(state.completed).length},
+    data:{createdAt:d.createdAt,awards:d.awards,completed:d.completed,quiz:d.quiz,tasks:d.tasks,notes:d.notes,timeLog:d.timeLog,readings:d.readings,activity:d.activity,settings:d.settings,lastLecture:d.lastLecture}};
+}
+function doExport(){
+  state.settings.lastExport=Date.now();save();
+  var blob=new Blob([JSON.stringify(buildExport(),null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='grimoire_backup_'+dkey(Date.now())+'.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);toast('バックアップを書き出しました。');
+}
+/* インポート検証：{ok, errors[], warnings[], state, summary} */
+function validateImport(text){
+  var errors=[],warnings=[],obj;
+  if(typeof text!=='string'||!text.trim())return {ok:false,errors:['ファイルが空です。']};
+  if(text.length>30000000)return {ok:false,errors:['ファイルが大きすぎます。']};
+  try{obj=JSON.parse(text)}catch(e){return {ok:false,errors:['JSONとして読み込めません：'+e.message]}}
+  if(!isObj(obj))return {ok:false,errors:['JSONの最上位がオブジェクトではありません。']};
+  if(obj.app!=='GRIMOIRE')errors.push('GRIMOIRE のバックアップファイルではありません（app が "GRIMOIRE" ではありません）。');
+  if(typeof obj.schemaVersion!=='number'||!isFinite(obj.schemaVersion))errors.push('schemaVersion がありません。');
+  else if(obj.schemaVersion>SCHEMA)errors.push('このファイルは新しい形式（schemaVersion '+obj.schemaVersion+'）です。この版（'+SCHEMA+'）では読み込めません。');
+  else if(obj.schemaVersion<1)errors.push('schemaVersion が不正です。');
+  if(!isObj(obj.data))errors.push('data オブジェクトがありません。');
+  else{['awards','completed','quiz','tasks','readings','settings'].forEach(function(k){if(obj.data[k]!==undefined&&!isObj(obj.data[k]))errors.push('data.'+k+' の形式が不正です。')});['notes','timeLog','activity'].forEach(function(k){if(obj.data[k]!==undefined&&!Array.isArray(obj.data[k]))errors.push('data.'+k+' の形式が不正です。')})}
+  if(errors.length)return {ok:false,errors:errors};
+  var s=sanitizeState(obj.data,warnings);
+  var rawCounts={notes:(obj.data.notes||[]).length,timeLog:(obj.data.timeLog||[]).length};
+  if(s.notes.length<rawCounts.notes)warnings.push('形式が不正なノート '+(rawCounts.notes-s.notes.length)+' 件を読み飛ばしました。');
+  if(s.timeLog.length<rawCounts.timeLog)warnings.push('形式が不正な学習履歴 '+(rawCounts.timeLog-s.timeLog.length)+' 件を読み飛ばしました。');
+  return {ok:true,errors:[],warnings:warnings,state:s,exportedAt:obj.exportedAt||'',summary:summarize(s)};
+}
+function summarize(s){var sec=0;s.timeLog.forEach(function(l){sec+=l.sec});return {xp:xpTotal(s),level:levelOf(xpTotal(s)),title:titleOf(s).current,lectures:Object.keys(s.completed).length,tasks:Object.keys(s.tasks).filter(function(k){return s.tasks[k].status==='done'}).length,notes:s.notes.length,sessions:s.timeLog.length,seconds:sec,readings:Object.keys(s.readings).length}}
+/* 統合：和集合。同一キーは新しい方（または大きい方）を採用 */
+function mergeStates(a,b){
+  var m=JSON.parse(JSON.stringify(a));
+  Object.keys(b.awards).forEach(function(k){if(!m.awards[k]||b.awards[k].xp>m.awards[k].xp)m.awards[k]=b.awards[k]});
+  Object.keys(b.completed).forEach(function(k){if(!m.completed[k]||b.completed[k]<m.completed[k])m.completed[k]=b.completed[k]});
+  Object.keys(b.quiz).forEach(function(k){var x=m.quiz[k],y=b.quiz[k];if(!x||y.best>x.best||(y.best===x.best&&y.ts>x.ts))m.quiz[k]=Object.assign({},y,{best:Math.max(y.best,x?x.best:0),attempts:Math.max(y.attempts,x?x.attempts:0)})});
+  Object.keys(b.tasks).forEach(function(k){var x=m.tasks[k],y=b.tasks[k];if(!x||(y.ts||0)>(x.ts||0))m.tasks[k]=y});
+  var ids={};m.notes.forEach(function(n){ids[n.id]=n});b.notes.forEach(function(n){if(!ids[n.id])m.notes.push(n);else if(n.updated>ids[n.id].updated)Object.assign(ids[n.id],n)});
+  var tl={};m.timeLog.forEach(function(l){tl[l.id]=1});b.timeLog.forEach(function(l){if(!tl[l.id])m.timeLog.push(l)});
+  Object.keys(b.readings).forEach(function(k){var x=m.readings[k],y=b.readings[k];if(!x||y.updated>x.updated)m.readings[k]=y});
+  var seen={};m.activity.forEach(function(a){seen[a.ts+a.text]=1});b.activity.forEach(function(a){if(!seen[a.ts+a.text])m.activity.push(a)});m.activity.sort(function(x,y){return x.ts-y.ts});m.activity=m.activity.slice(-300);
+  if(!m.lastLecture)m.lastLecture=b.lastLecture;
+  return m;
+}
+function applyImport(mode){
+  var p=pendingImport;if(!p||!p.ok)return;var keep=state.timer;
+  var ns=(mode==='merge')?mergeStates(state,p.state):p.state;
+  ns.timer=keep;ns.schemaVersion=SCHEMA;state=sanitizeStateKeep(ns);save();pendingImport=null;
+  logAct('data','JSONバックアップを'+(mode==='merge'?'統合':'復元')+'しました');save();
+  var sm=summarize(state);render();renderBar();
+  toast('復元しました：'+sm.xp+' XP / 講義 '+sm.lectures+' / ノート '+sm.notes+' / 学習 '+fmtHM(sm.seconds));
+}
+function sanitizeStateKeep(s){var t=s.timer;var c=sanitizeState(JSON.parse(JSON.stringify(Object.assign({},s,{timer:null}))),[]);c.timer=t;return c}
+
+function pageData(){
+  var s=summarize(state),le=state.settings.lastExport;
+  var h='<h1>データ・設定</h1><div class="card"><h3 style="margin-top:0">バックアップ（JSON）</h3><p class="muted">学習データはこのブラウザの localStorage に自動保存されています。ブラウザのデータを消去すると失われるため、定期的にJSONで書き出してください。最後の書き出し：'+(le?fmtDT(le):'まだありません')+'</p><div class="row"><button class="pri" data-act="export">JSONを書き出す</button><label class="btn" style="margin:0;cursor:pointer">JSONを読み込む<input type="file" id="impFile" accept="application/json,.json" style="display:none"></label></div></div>';
+  h+='<div id="impBox"></div>';
+  h+='<div class="card"><h3 style="margin-top:0">現在のデータ</h3><p class="sans">'+s.xp+' XP ／ Lv.'+s.level+' ／ '+esc(s.title)+' ／ 講義 '+s.lectures+' ／ 課題 '+s.tasks+' ／ ノート '+s.notes+' ／ 学習 '+fmtHM(s.seconds)+'（'+s.sessions+'セッション）</p></div>';
+  h+='<div class="card"><h3 style="margin-top:0">設定</h3><label>無操作で自動一時停止するまでの時間（分）</label><input type="number" id="s_idle" min="1" max="120" value="'+state.settings.idleMinutes+'" style="max-width:120px"><label class="opt" style="margin-top:10px"><input type="checkbox" id="s_hidden" '+(state.settings.autoPauseHidden?'checked':'')+'>タブが非表示になったら計測を自動で一時停止する</label><button class="pri" data-act="savesettings" style="margin-top:8px">設定を保存</button></div>';
+  h+='<div class="card"><h3 style="margin-top:0">学習時間の計測について</h3><ul class="clean muted"><li>一時停止中の時間は加算されません。</li><li>ページを閉じた・再読み込みした場合、最後に確認できた時点までを記録し、一時停止状態で復帰します。</li><li>日付をまたぐ学習は、日別に分けて集計します。</li><li>無操作が続くと、最後に操作した時点で自動的に一時停止します。</li></ul></div>';
+  h+='<div class="card"><h3 style="margin-top:0">データの初期化</h3><p class="muted">この端末の学習データをすべて削除します。実行前にJSONバックアップを書き出してください。</p><button class="danger" data-act="reset">すべて削除する</button></div>';
+  return h;
+}
+function showImportPreview(res){
+  var box=$('#impBox');if(!box)return;
+  if(!res.ok){box.innerHTML='<div class="card" style="border-color:var(--danger)"><h3 style="margin-top:0">読み込みを拒否しました</h3><ul class="clean">'+res.errors.map(function(e){return '<li>'+esc(e)+'</li>'}).join('')+'</ul></div>';return}
+  var s=res.summary,c=summarize(state);
+  box.innerHTML='<div class="card" style="border-color:var(--gold2)"><h3 style="margin-top:0">読み込み前の確認</h3><div class="sans" style="overflow-x:auto"><table><tr><th></th><th>ファイル</th><th>現在のデータ</th></tr>'+[['経験値',s.xp+' XP (Lv.'+s.level+')',c.xp+' XP (Lv.'+c.level+')'],['称号',s.title,c.title],['完了講義',s.lectures,c.lectures],['完了課題',s.tasks,c.tasks],['ノート',s.notes,c.notes],['学習時間',fmtHM(s.seconds),fmtHM(c.seconds)],['文献記録',s.readings,c.readings]].map(function(r){return '<tr><th>'+r[0]+'</th><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>'}).join('')+'</table></div>'+(res.exportedAt?'<p class="muted">書き出し日時：'+esc(res.exportedAt)+'</p>':'')+(res.warnings.length?'<div class="box warn sans"><b>注意</b><ul class="clean">'+res.warnings.slice(0,12).map(function(w){return '<li>'+esc(w)+'</li>'}).join('')+(res.warnings.length>12?'<li>ほか '+(res.warnings.length-12)+' 件</li>':'')+'</ul></div>':'')+'<label class="opt"><input type="radio" name="impMode" value="merge" checked>統合する（現在のデータを残し、ファイルの内容を加える）</label><label class="opt"><input type="radio" name="impMode" value="overwrite">上書きする（<b>現在のデータはすべて置き換わります</b>）</label><div class="row" style="margin-top:8px"><button class="pri" data-act="doimport">読み込みを実行</button><button data-act="cancelimport">キャンセル</button></div></div>';
+}
+
+/* ---- ルーティングと描画 ---- */
+function render(){
+  var r=route(),h;
+  try{
+    switch(r.page){
+      case 'home':h=pageHome();break;case 'domains':h=pageDomains();break;case 'domain':h=pageDomain(r.a);break;
+      case 'lecture':h=pageLecture(r.a);break;case 'lab':h=pageLab(r.a);break;case 'library':h=pageLibrary(r.a);break;
+      case 'notes':h=pageNotes();break;case 'history':h=pageHistory();break;case 'data':h=pageData();break;
+      default:h=notFound()}
+  }catch(e){h='<h1>表示エラー</h1><p class="muted">'+esc(e.message)+'</p>'}
+  $('#app').innerHTML=h;renderNav();renderBar();
+  var f=$('#impFile');if(f)f.addEventListener('change',function(ev){var file=ev.target.files&&ev.target.files[0];if(!file)return;var rd=new FileReader();rd.onload=function(){pendingImport=validateImport(String(rd.result));showImportPreview(pendingImport)};rd.onerror=function(){showImportPreview({ok:false,errors:['ファイルを読み込めませんでした。']})};rd.readAsText(file)});
+  var lq=$('#libQ');if(lq){lq.addEventListener('input',function(){libState.q=lq.value;$('#libList').innerHTML=libList()});$('#libCat').addEventListener('change',function(e){libState.cat=e.target.value;$('#libList').innerHTML=libList()})}
+  var nq=$('#noteQ');if(nq)nq.addEventListener('input',function(){noteState.q=nq.value;$('#noteList').innerHTML=noteList()});
+  if(!window.__gr_noscroll)window.scrollTo(0,0);
+}
+
+/* ---- イベント ---- */
+function val(id){var e=document.getElementById(id);return e?e.value:''}
+function onClick(ev){
+  var el=ev.target.closest&&ev.target.closest('[data-act]');if(!el)return;var a=el.getAttribute('data-act'),D=function(k){return el.getAttribute('data-'+k)};markActive();
+  switch(a){
+    case 'tstart':{var sel=$('#tbDom'),dom=D('d')||(sel?sel.value:'');startTimer(dom,D('l')||'');render();break}
+    case 'tpause':pauseTimer();break;case 'tresume':resumeTimer();break;
+    case 'tend':if(confirm('学習を終了して記録しますか？'))endTimer();break;
+    case 'complete':{var id=D('l'),ds=IDX[id].domain;if(!state.completed[id]){state.completed[id]=Date.now();var g=award('lec:'+id,50,ds,'講義を完了：'+IDX[id].title);save();toast('講義を完了しました（+'+g+' XP）');render()}break}
+    case 'review':{var id2=D('l'),key='review:'+id2+':'+dkey(Date.now());if(state.awards[key])toast('今日はすでに復習を記録しています。');else{award(key,10,IDX[id2].domain,'復習：'+IDX[id2].title);save();toast('復習を記録しました（+10 XP）')}break}
+    case 'quiz':{var lid=D('l'),L=LECTURES[lid],ok=0,answered=0;
+      L.quiz.forEach(function(Q,i){var sel=document.querySelector('input[name="q'+i+'"]:checked');var ex=document.getElementById('ex'+i);Q.o.forEach(function(_,j){var o=document.getElementById('o_'+i+'_'+j);if(o)o.className='opt'+(j===Q.a?' right':(sel&&+sel.value===j?' wrong':''))});if(sel){answered++;if(+sel.value===Q.a)ok++}if(ex){ex.className='muted';ex.textContent=Q.e}});
+      if(answered<L.quiz.length){var r0=document.getElementById('quizRes');if(r0)r0.textContent='未回答の問題があります。すべて選んでから答え合わせをしてください。';
+        L.quiz.forEach(function(Q,i){var ex=document.getElementById('ex'+i);if(ex){ex.className='hide'}});L.quiz.forEach(function(Q,i){Q.o.forEach(function(_,j){var o=document.getElementById('o_'+i+'_'+j);if(o)o.className='opt'})});break}
+      var prev=state.quiz[lid]||{best:0,attempts:0};state.quiz[lid]={best:Math.max(prev.best,ok),total:L.quiz.length,last:ok,ts:Date.now(),attempts:prev.attempts+1};
+      var gain=award('quiz:'+lid,state.quiz[lid].best*10,IDX[lid].domain,'理解度確認：'+IDX[lid].title+' '+ok+'/'+L.quiz.length);save();
+      var r1=document.getElementById('quizRes');if(r1)r1.textContent='結果：'+ok+' / '+L.quiz.length+'（最高 '+state.quiz[lid].best+'）'+(gain?'　+'+gain+' XP':'');break}
+    case 'savetask':{var tid=D('t'),T=TASKS.filter(function(x){return x.id===tid})[0],m={},any=false;T.metrics.forEach(function(mm){var v=val('m_'+mm.k);m[mm.k]=v;if(String(v).trim())any=true});
+      var st=val('t_status'),result=val('t_result').trim();
+      if(st==='done'&&!any&&!result){toast('結果または数値が未記入のため、完了にできません。');break}
+      state.tasks[tid]={status:st,metrics:m,result:val('t_result'),reflection:val('t_reflection'),date:val('t_date'),ts:Date.now()};
+      var msg='記録を保存しました。';if(st==='done'){var gg=award('task:'+tid,80,T.domain,'実践課題を完了：'+T.title);if(gg)msg+='（+'+gg+' XP）'}else logAct('task','実践課題を記録：'+T.title);
+      save();toast(msg);render();break}
+    case 'saveread':{var rid=D('r'),rs=val('rd_status');state.readings[rid]={status:rs,memo:val('rd_memo'),updated:Date.now()};var m2='保存しました。';if(rs==='finished'){var g3=award('read:'+rid,20,'','読了：'+REFIDX[rid].title);if(g3)m2+='（+20 XP）'}save();toast(m2);render();break}
+    case 'savenote':{var nid=D('n'),rec={id:nid||uid(),date:val('n_date'),domain:val('n_domain'),title:val('n_title').trim(),hypothesis:val('n_hyp'),done:val('n_done'),result:val('n_res'),consider:val('n_con'),refs:val('n_refs'),updated:Date.now()};
+      if(!rec.title&&!rec.hypothesis&&!rec.done&&!rec.result&&!rec.consider){toast('内容を入力してください。');break}
+      var msg2='保存しました。';
+      if(nid){var i=state.notes.findIndex(function(x){return x.id===nid});if(i>=0)state.notes[i]=rec;noteState.edit=null}
+      else{state.notes.push(rec);var day=dkey(Date.now()),cnt=Object.keys(state.awards).filter(function(k){return k.indexOf('note:'+day)===0}).length;if(cnt<3){award('note:'+day+':'+rec.id,15,rec.domain,'研究ノート：'+(rec.title||'無題'));msg2+='（+15 XP）'}else logAct('note','研究ノート：'+(rec.title||'無題'))}
+      save();toast(msg2);render();break}
+    case 'editnote':noteState.edit=D('n');render();break;
+    case 'cancelnote':noteState.edit=null;render();break;
+    case 'delnote':if(confirm('このノートを削除しますか？（取り消せません）')){state.notes=state.notes.filter(function(x){return x.id!==D('n')});save();render()}break;
+    case 'export':doExport();break;
+    case 'doimport':{var mode=(document.querySelector('input[name="impMode"]:checked')||{}).value||'merge';if(mode==='overwrite'&&!confirm('現在のデータがファイルの内容で置き換わります。よろしいですか？'))break;applyImport(mode);break}
+    case 'cancelimport':pendingImport=null;$('#impBox').innerHTML='';break;
+    case 'savesettings':state.settings.idleMinutes=num(val('s_idle'),5,1,120);state.settings.autoPauseHidden=!!document.getElementById('s_hidden').checked;save();toast('設定を保存しました。');break;
+    case 'reset':if(confirm('すべての学習データを削除します。よろしいですか？')&&confirm('本当に削除しますか？この操作は取り消せません。')){state=defaultState();save();render();toast('初期化しました。')}break;
+  }
+}
+
+function init(){
+  state=loadState();var recovered=state._recovered;delete state._recovered;
+  document.addEventListener('click',onClick);
+  ['mousemove','keydown','touchstart','scroll','click'].forEach(function(e){window.addEventListener(e,markActive,{passive:true})});
+  window.addEventListener('hashchange',render);
+  document.addEventListener('visibilitychange',function(){if(document.hidden){if(state.timer&&state.timer.runningSince&&state.settings.autoPauseHidden)pauseTimer(Date.now(),null);state.timer&&(state.timer.lastBeat=Date.now());save()}else{markActive();if(state.timer&&!state.timer.runningSince&&state.settings.autoPauseHidden)toast('タブが非表示の間、計測を一時停止しました。再開するには「再開」を押してください。');renderBar()}});
+  window.addEventListener('pagehide',function(){if(state.timer&&state.timer.runningSince)state.timer.lastBeat=Date.now();save()});
+  window.addEventListener('storage',function(e){if(e.key===LS_KEY){state=loadState();render()}});
+  setInterval(tick,1000);
+  render();
+  if(recovered)toast('前回の計測セッションを一時停止状態で復元しました（最後に確認できた時点までを記録）。');
+  else if(state.timer)toast('計測セッションが残っています。「再開」または「学習終了」を選んでください。');
+}
+if(typeof window!=='undefined'){window.GRIMOIRE_TEST={validateImport:validateImport,mergeStates:mergeStates,buildExport:buildExport,splitByDay:splitByDay,sanitizeState:sanitizeState,defaultState:defaultState,xpTotal:xpTotal,levelOf:levelOf,titleOf:titleOf,DOMAINS:DOMAINS,LECTURES:LECTURES,TASKS:TASKS,REFS:REFS,IDX:IDX,pageLecture:pageLecture,pageHome:pageHome,pageDomains:pageDomains,pageDomain:pageDomain,pageLab:pageLab,pageTask:pageTask,pageLibrary:pageLibrary,pageRef:pageRef,pageNotes:pageNotes,pageHistory:pageHistory,pageData:pageData,setState:function(s){state=s},getState:function(){return state},citedBy:citedBy};
+  if(document&&document.getElementById&&!window.__GR_NOINIT)init();}
+</script>
+</body>
+</html>
