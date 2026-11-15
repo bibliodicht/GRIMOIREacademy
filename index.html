@@ -82,7 +82,7 @@ svg.dia{width:100%;height:auto;max-width:720px;display:block;margin:10px auto}
 .tb-in select{width:auto;max-width:220px;padding:6px}
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:40;background:#0a1222;border:1px solid var(--gold);padding:10px 18px;border-radius:6px;font-family:var(--sans);font-size:14px;max-width:92vw;display:none;box-shadow:0 4px 18px rgba(0,0,0,.6)}
 .hide{display:none}
-@media (max-width:600px){h1{font-size:23px}.lec{font-size:16px;padding:4px 12px}.logo{font-size:18px}}
+@media (max-width:600px){body{padding-bottom:110px}.tb-in{gap:6px;padding:6px 10px;font-size:13px}.tb-in button{padding:5px 9px;font-size:13px;min-height:32px}.tb-time{font-size:18px}.tb-in .muted{font-size:12px}h1{font-size:23px}.lec{font-size:16px;padding:4px 12px}.logo{font-size:18px}}
 @media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}.card:hover{border-color:var(--gold)}}
 </style>
 </head>
@@ -144,7 +144,7 @@ var DOMAINS=[
  {n:1,title:'精神と意識の仕組み',lectures:[['mental-1-1','意識・注意・メタ認知の基礎'],['mental-1-2','自分の精神状態を観察する']]},
  {n:2,title:'思考の制御・雑念への対処',lectures:[['mental-2-1','思考抑制と「反動」の研究'],['mental-2-2','反芻思考と注意の切り替え'],['mental-2-3','認知的脱フュージョンとマインドフルネス']]},
  {n:3,title:'集中力・注意力の向上',lectures:[['mental-3-1','集中力とは何か'],['mental-3-2','集中を妨げる要因と環境設計'],['mental-3-3','集中の測定とトレーニング']]},
- {n:4,title:'感情・精神状態の調整',lectures:[['mental-4-1','感情の仕組みと身体反応'],['mental-4-2','呼吸法とリラクゼーション'],['mental-4-3','認知的再評価と感情との距離']]},
+ {n:4,title:'感情・精神状態の調整',lectures:[['mental-4-1','感情の仕組みと身体反応'],['mental-4-2','呼吸法とリラクゼーション'],['mental-4-3','認知的再評価と感情との距離'],['mental-4-4','ストレスへの対処と睡眠']]},
  {n:5,title:'瞑想・自己暗示・催眠',lectures:[['mental-5-1','瞑想の歴史と技法'],['mental-5-2','自己暗示・催眠の心理学'],['mental-5-3','プラセボ効果とノセボ効果']]},
  {n:6,title:'精神状態の切り替えと実践',lectures:[['mental-6-1','学習・作業モードへの切り替え'],['mental-6-2','儀式と心理的な準備'],['mental-6-3','自分に適した手順の設計']]},
  {n:7,title:'応用研究',lectures:[['mental-7-1','長期実験の設計'],['mental-7-2','自己暗示・瞑想の効果検証'],['mental-7-3','独自の精神調整プログラムの構築']]}]}
@@ -185,6 +185,63 @@ var REFS=[
 {id:'wenzlaff2000',title:'Thought suppression',original:'Thought suppression',authors:'Richard M. Wenzlaff, Daniel M. Wegner',year:'2000',journal:'Annual Review of Psychology 51, 59–91',cat:'academic',lang:'英語',jaTrans:'',subject:'思考抑制研究の総説',background:'思考抑制研究を概観した総説論文。',points:[]},
 {id:'abramowitz2001',title:'Paradoxical effects of thought suppression: A meta-analysis of controlled studies',original:'Paradoxical effects of thought suppression: A meta-analysis of controlled studies',authors:'Jonathan S. Abramowitz, David F. Tolin, Gregory P. Street',year:'2001',journal:'Clinical Psychology Review 21(5), 683–703',cat:'academic',lang:'英語',jaTrans:'',subject:'思考抑制研究のメタ分析',background:'統制された研究を統合し、思考抑制の効果を検討したメタ分析。具体的な結果の数値は原典で確認すること。',points:[]}
 ];
+
+/* ---------- [1-b2] 追加文献（精神制御・意識調整の全章用） ----------
+   書誌情報は作成時点の知識による暫定情報。ISBN・版・ページは未確認の空欄。 */
+function mkR(id,title,original,authors,year,cat,x){var r={id:id,title:title,original:original,authors:authors,year:year,cat:cat,lang:'英語',jaTrans:'',subject:'',background:'',points:[]};for(var k in (x||{}))r[k]=x[k];REFS.push(r)}
+mkR('nisbett1977','Telling more than we can know: Verbal reports on mental processes','Telling more than we can know: Verbal reports on mental processes','Richard E. Nisbett, Timothy D. Wilson','1977','academic',{journal:'Psychological Review 84(3), 231–259',subject:'内省の限界',background:'人は自分の判断や行動の原因を、必ずしも正確に内省できないことを示唆した研究の総説。'});
+mkR('raichle2001','A default mode of brain function','A default mode of brain function','Marcus E. Raichle ほか','2001','academic',{journal:'Proceedings of the National Academy of Sciences 98(2), 676–682',subject:'デフォルトモード・ネットワーク',background:'課題をしていない安静時に活動が高まる脳領域のまとまりを論じた論文。'});
+mkR('lieberman2007','Putting feelings into words: Affect labeling disrupts amygdala activity in response to affective stimuli','Putting feelings into words: Affect labeling disrupts amygdala activity in response to affective stimuli','Matthew D. Lieberman ほか','2007','academic',{journal:'Psychological Science 18(5), 421–428',subject:'感情のラベリング',background:'感情に言葉を当てはめると、扁桃体の反応が弱まることを示したfMRI研究。実験室での研究であり、日常への一般化は慎重に行う。'});
+mkR('nolen1991','Responses to depression and their effects on the duration of depressive episodes','Responses to depression and their effects on the duration of depressive episodes','Susan Nolen-Hoeksema','1991','academic',{journal:'Journal of Abnormal Psychology 100(4), 569–582',subject:'反芻的反応と抑うつの持続',background:'落ち込みに対する反芻的な反応が、抑うつの持続と関連することを報告した研究。'});
+mkR('nolen2008','Rethinking rumination','Rethinking rumination','Susan Nolen-Hoeksema, Blair E. Wisco, Sonja Lyubomirsky','2008','academic',{journal:'Perspectives on Psychological Science 3(5), 400–424',subject:'反芻の総説',background:'反芻に関する研究を整理した総説論文。'});
+mkR('watkins2008','Constructive and unconstructive repetitive thought','Constructive and unconstructive repetitive thought','Edward R. Watkins','2008','academic',{journal:'Psychological Bulletin 134(2), 163–206',subject:'反復思考の建設的な面と非建設的な面',background:'反復思考の性質（抽象的か具体的か等）によって、結果が異なりうることを論じた総説。'});
+mkR('monsell2003','Task switching','Task switching','Stephen Monsell','2003','academic',{journal:'Trends in Cognitive Sciences 7(3), 134–140',subject:'課題切り替えのコスト',background:'課題を切り替える際に生じる時間・誤りのコストを整理した総説。'});
+mkR('kabatzinn2003','Mindfulness-based interventions in context: Past, present, and future','Mindfulness-based interventions in context: Past, present, and future','Jon Kabat-Zinn','2003','academic',{journal:'Clinical Psychology: Science and Practice 10(2), 144–156',subject:'マインドフルネスの定義と介入の背景',background:'マインドフルネスに基づく介入の背景と意義を論じた論文。'});
+mkR('hayes2006','Acceptance and commitment therapy: Model, processes and outcomes','Acceptance and commitment therapy: Model, processes and outcomes','Steven C. Hayes, Jason B. Luoma, Frank W. Bond, Akihiko Masuda, Jason Lillis','2006','academic',{journal:'Behaviour Research and Therapy 44(1), 1–25',subject:'ACTの理論モデルと過程（脱フュージョンなど）',background:'ACTの理論と研究成果をまとめた論文。'});
+mkR('goyal2014','Meditation programs for psychological stress and well-being: A systematic review and meta-analysis','Meditation programs for psychological stress and well-being: A systematic review and meta-analysis','Madhav Goyal ほか','2014','academic',{journal:'JAMA Internal Medicine 174(3), 357–368',subject:'瞑想プログラムの効果の系統的レビュー',background:'不安・抑うつ・痛みなどへの瞑想プログラムの効果を、エビデンスの強さとあわせて整理したメタ分析。'});
+mkR('mackworth1948','The breakdown of vigilance during prolonged visual search','The breakdown of vigilance during prolonged visual search','Norman H. Mackworth','1948','academic',{journal:'Quarterly Journal of Experimental Psychology 1(1), 6–21',subject:'持続的注意（警戒）の低下',background:'長時間の監視作業で、見落としが増えることを調べた古典的研究。'});
+mkR('cherry1953','Some experiments on the recognition of speech, with one and with two ears','Some experiments on the recognition of speech, with one and with two ears','E. Colin Cherry','1953','academic',{journal:'Journal of the Acoustical Society of America 25(5), 975–979',subject:'選択的注意（カクテルパーティー効果）',background:'複数の音声の中から一つを選んで聞き取る能力を調べた古典的研究。'});
+mkR('simons1999','Gorillas in our midst: Sustained inattentional blindness for dynamic events','Gorillas in our midst: Sustained inattentional blindness for dynamic events','Daniel J. Simons, Christopher F. Chabris','1999','academic',{journal:'Perception 28(9), 1059–1074',subject:'不注意による見落とし',background:'注意を向けていない対象に、予想以上に気づかないことを示した実験。'});
+mkR('csik1990','Flow: The Psychology of Optimal Experience','Flow: The Psychology of Optimal Experience','Mihaly Csikszentmihalyi','1990','guide',{publisher:'Harper & Row',subject:'フロー（没頭）体験',background:'没頭した最適体験を論じた書籍。一般向けの色彩もあり、個々の主張は研究で確認する。'});
+mkR('rubinstein2001','Executive control of cognitive processes in task switching','Executive control of cognitive processes in task switching','Joshua S. Rubinstein, David E. Meyer, Jeffrey E. Evans','2001','academic',{journal:'Journal of Experimental Psychology: Human Perception and Performance 27(4), 763–797',subject:'課題切り替えのコスト',background:'課題を切り替えると時間のコストが生じることを実験的に調べた研究。'});
+mkR('ophir2009','Cognitive control in media multitaskers','Cognitive control in media multitaskers','Eyal Ophir, Clifford Nass, Anthony D. Wagner','2009','academic',{journal:'Proceedings of the National Academy of Sciences 106(37), 15583–15587',subject:'メディア・マルチタスクと注意制御',background:'メディアを同時に多用する人の注意制御の特徴を調べた相関研究。因果関係は示していない。'});
+mkR('ward2017','Brain drain: The mere presence of one\'s smartphone reduces available cognitive capacity','Brain drain: The mere presence of one\'s smartphone reduces available cognitive capacity','Adrian F. Ward ほか','2017','academic',{journal:'Journal of the Association for Consumer Research 2(2), 140–154',subject:'スマートフォンの存在と認知資源',background:'スマートフォンが近くにあるだけで課題成績が下がると報告した研究。追試で結果が一貫しない報告もあり、慎重に扱う。'});
+mkR('dinges1985','Microcomputer analyses of performance on a portable, simple visual RT task during sustained operations','Microcomputer analyses of performance on a portable, simple visual RT task during sustained operations','David F. Dinges, John W. Powell','1985','academic',{journal:'Behavior Research Methods, Instruments, & Computers 17(6), 652–655',subject:'精神運動警戒課題（PVT）',background:'単純な反応時間課題で警戒状態を測る方法の報告。'});
+mkR('jha2007','Mindfulness training modifies subsystems of attention','Mindfulness training modifies subsystems of attention','Amishi P. Jha, Jason Krompinger, Michael J. Baime','2007','academic',{journal:'Cognitive, Affective, & Behavioral Neuroscience 7(2), 109–119',subject:'マインドフルネス訓練と注意の下位機能',background:'マインドフルネス訓練が注意の一部の機能に与える影響を調べた研究。規模は限られる。'});
+mkR('melby2013','Is working memory training effective? A meta-analytic review','Is working memory training effective? A meta-analytic review','Monica Melby-Lervåg, Charles Hulme','2013','academic',{journal:'Developmental Psychology 49(2), 270–291',subject:'作業記憶トレーニングの効果',background:'訓練した課題の成績は上がるが、他の能力への転移は限定的とした点で知られるメタ分析。'});
+mkR('james1884','What is an emotion?','What is an emotion?','William James','1884','classic',{journal:'Mind 9(34), 188–205',subject:'感情と身体反応（ジェームズ=ランゲ説）',background:'身体反応の知覚が感情であるとする説の古典的な論文。'});
+mkR('schachter1962','Cognitive, social, and physiological determinants of emotional state','Cognitive, social, and physiological determinants of emotional state','Stanley Schachter, Jerome E. Singer','1962','academic',{journal:'Psychological Review 69(5), 379–399',subject:'感情の二要因説',background:'生理的覚醒と状況の解釈が感情を形づくるとする説を提示した実験。後続研究で結果が一貫せず、議論が続いている。'});
+mkR('barrett2017','The theory of constructed emotion: An active inference account of interoception and categorization','The theory of constructed emotion: An active inference account of interoception and categorization','Lisa Feldman Barrett','2017','academic',{journal:'Social Cognitive and Affective Neuroscience 12(1), 1–23',subject:'構成主義的情動理論',background:'感情を、脳が身体感覚と文脈から構成するものとして説明する理論論文。'});
+mkR('jacobson1938','Progressive Relaxation','Progressive Relaxation','Edmund Jacobson','1938','classic',{publisher:'University of Chicago Press',subject:'漸進的筋弛緩法',background:'筋肉を緊張させてから弛緩させる方法を体系化した古典。参照した版は学習者が記録する。'});
+mkR('benson1975','The Relaxation Response','The Relaxation Response','Herbert Benson, Miriam Z. Klipper','1975','guide',{publisher:'William Morrow',subject:'リラクゼーション反応',background:'一般向けの書籍。個々の主張は研究で確認する。'});
+mkR('zaccaro2018','How breath-control can change your life: A systematic review on psycho-physiological correlates of slow breathing','How breath-control can change your life: A systematic review on psycho-physiological correlates of slow breathing','Andrea Zaccaro ほか','2018','academic',{journal:'Frontiers in Human Neuroscience 12, 353',subject:'ゆっくりした呼吸の生理・心理的な関連',background:'ゆっくりした呼吸に関する研究を整理した系統的レビュー。'});
+mkR('gross1998','The emerging field of emotion regulation: An integrative review','The emerging field of emotion regulation: An integrative review','James J. Gross','1998','academic',{journal:'Review of General Psychology 2(3), 271–299',subject:'感情調整のプロセスモデル',background:'感情調整の方略を、感情が生じる過程のどこに働きかけるかで整理した総説。'});
+mkR('gross2003','Individual differences in two emotion regulation processes: Implications for affect, relationships, and well-being','Individual differences in two emotion regulation processes: Implications for affect, relationships, and well-being','James J. Gross, Oliver P. John','2003','academic',{journal:'Journal of Personality and Social Psychology 85(2), 348–362',subject:'認知的再評価と表出抑制',background:'再評価と抑制の使い方の個人差と、感情・対人関係・幸福感との関連を調べた研究。主に質問紙による研究。'});
+mkR('beck1979','Cognitive Therapy of Depression','Cognitive Therapy of Depression','Aaron T. Beck, A. John Rush, Brian F. Shaw, Gary Emery','1979','practice',{publisher:'Guilford Press',subject:'認知療法（自動思考の検討）',background:'認知療法の代表的な臨床書。本教材では自己観察の考え方として参照し、治療の代わりとはしない。'});
+mkR('lazarus1984','Stress, Appraisal, and Coping','Stress, Appraisal, and Coping','Richard S. Lazarus, Susan Folkman','1984','academic',{publisher:'Springer',subject:'ストレスの認知的評価と対処',background:'ストレスを、出来事とそれへの評価・対処の相互作用として捉えた理論書。'});
+mkR('baglioni2010','Sleep and emotions: A focus on insomnia','Sleep and emotions: A focus on insomnia','Chiara Baglioni ほか','2010','academic',{journal:'Sleep Medicine Reviews 14(4), 227–238',subject:'睡眠と感情調整',background:'不眠と感情調整の関連に関する研究のレビュー。'});
+mkR('lutz2008','Attention regulation and monitoring in meditation','Attention regulation and monitoring in meditation','Antoine Lutz ほか','2008','academic',{journal:'Trends in Cognitive Sciences 12(4), 163–169',subject:'瞑想の分類（集中と観察）',background:'瞑想を、注意を焦点化する型と、浮かぶものを観察する型に整理した論文。'});
+mkR('sedlmeier2012','The psychological effects of meditation: A meta-analysis','The psychological effects of meditation: A meta-analysis','Peter Sedlmeier ほか','2012','academic',{journal:'Psychological Bulletin 138(6), 1139–1171',subject:'瞑想の心理的効果のメタ分析',background:'瞑想研究を統合したメタ分析。研究の質にばらつきがある点にも注意する。'});
+mkR('britton2021','Defining and measuring meditation-related adverse effects in mindfulness-based programs','Defining and measuring meditation-related adverse effects in mindfulness-based programs','Willoughby B. Britton ほか','2021','academic',{journal:'Clinical Psychological Science 9(6), 1185–1204',subject:'瞑想に関連する有害事象',background:'マインドフルネス・プログラムで報告される、不快な体験や有害事象の定義と測定を扱った研究。'});
+mkR('coue1922','La maîtrise de soi-même par l\'autosuggestion consciente','La maîtrise de soi-même par l\'autosuggestion consciente','Émile Coué','1922','primary',{lang:'フランス語',jaTrans:'',subject:'意識的な自己暗示',background:'20世紀初頭の自己暗示法の提唱者による著作。効果の主張は歴史的主張として扱い、検証された事実とは区別する。出版社・版は未確認。'});
+mkR('elkins2015','Advancing research and practice: The revised APA Division 30 definition of hypnosis','Advancing research and practice: The revised APA Division 30 definition of hypnosis','Gary R. Elkins ほか','2015','academic',{journal:'International Journal of Clinical and Experimental Hypnosis 63(1), 1–9',subject:'催眠の定義',background:'米国心理学会第30部会による、催眠の改訂された定義を説明した論文。'});
+mkR('kirsch1995','The altered state of hypnosis: Changes in the theoretical landscape','The altered state of hypnosis: Changes in the theoretical landscape','Irving Kirsch, Steven Jay Lynn','1995','academic',{journal:'American Psychologist 50(10), 846–858',subject:'催眠理論（状態論と非状態論）',background:'催眠を特別な意識状態とみるか、期待や役割などで説明するかの議論を整理した論文。'});
+mkR('montgomery2000','A meta-analysis of hypnotically induced analgesia: How effective is hypnosis?','A meta-analysis of hypnotically induced analgesia: How effective is hypnosis?','Guy H. Montgomery, Katherine N. DuHamel, William H. Redd','2000','academic',{journal:'International Journal of Clinical and Experimental Hypnosis 48(2), 138–153',subject:'催眠による痛みの軽減',background:'催眠による痛みの軽減効果を統合したメタ分析。個人差が大きい点に注意する。'});
+mkR('wood2009','Positive self-statements: Power for some, peril for others','Positive self-statements: Power for some, peril for others','Joanne V. Wood, W. Q. Elaine Perunovic, John W. Lee','2009','academic',{journal:'Psychological Science 20(7), 860–866',subject:'肯定的な自己宣言（アファメーション）の効果の個人差',background:'自尊心の低い人では、肯定的な自己宣言をした後に気分が悪化した条件があったと報告した研究。'});
+mkR('cascio2016','Self-affirmation activates brain systems associated with self-related processing and reward and is reinforced by future orientation','Self-affirmation activates brain systems associated with self-related processing and reward and is reinforced by future orientation','Christopher N. Cascio ほか','2016','academic',{journal:'Social Cognitive and Affective Neuroscience 11(4), 621–629',subject:'自己肯定の脳活動',background:'自己肯定を行った際の脳活動を調べたfMRI研究。'});
+mkR('beecher1955','The powerful placebo','The powerful placebo','Henry K. Beecher','1955','academic',{journal:'JAMA 159(17), 1602–1606',subject:'プラセボ効果の初期の報告',background:'プラセボの効果を強調した古典的論文。後に方法論上の批判がある。'});
+mkR('hrobj2010','Placebo interventions for all clinical conditions','Placebo interventions for all clinical conditions','Asbjørn Hróbjartsson, Peter C. Gøtzsche','2010','academic',{journal:'Cochrane Database of Systematic Reviews 2010(1), CD003974',subject:'プラセボ介入の系統的レビュー',background:'プラセボと無治療を比較した研究を統合したレビュー。'});
+mkR('kaptchuk2010','Placebos without deception: A randomized controlled trial in irritable bowel syndrome','Placebos without deception: A randomized controlled trial in irritable bowel syndrome','Ted J. Kaptchuk ほか','2010','academic',{journal:'PLoS ONE 5(12), e15591',subject:'偽薬と明かして行うプラセボ',background:'偽薬であることを伝えた場合の効果を調べた小規模な臨床試験。追試が必要とされる。'});
+mkR('colloca2011','The nocebo effect and its relevance for clinical practice','The nocebo effect and its relevance for clinical practice','Luana Colloca, Franklin G. Miller','2011','academic',{journal:'Psychosomatic Medicine 73(7), 598–603',subject:'ノセボ効果',background:'否定的な期待が症状を悪化させる現象を、臨床との関連でまとめた論文。'});
+mkR('godden1975','Context-dependent memory in two natural environments: On land and underwater','Context-dependent memory in two natural environments: On land and underwater','D. R. Godden, A. D. Baddeley','1975','academic',{journal:'British Journal of Psychology 66(3), 325–331',subject:'文脈依存記憶',background:'学習した環境と同じ環境で想起すると成績が良かったと報告した実験。'});
+mkR('wood2007','A new look at habits and the habit-goal interface','A new look at habits and the habit-goal interface','Wendy Wood, David T. Neal','2007','academic',{journal:'Psychological Review 114(4), 843–863',subject:'習慣と文脈の手がかり',background:'習慣が文脈の手がかりによって引き起こされることを論じた理論論文。'});
+mkR('lally2010','How are habits formed: Modelling habit formation in the real world','How are habits formed: Modelling habit formation in the real world','Phillippa Lally ほか','2010','academic',{journal:'European Journal of Social Psychology 40(6), 998–1009',subject:'習慣形成に要する日数',background:'日常の行動が習慣になるまでの日数を調べた研究。個人差が大きいと報告された。'});
+mkR('hobson2018','The psychology of rituals: An integrative review and process-based framework','The psychology of rituals: An integrative review and process-based framework','Nicholas M. Hobson ほか','2018','academic',{journal:'Personality and Social Psychology Review 22(3), 260–284',subject:'儀式の心理学',background:'儀式に関する心理学研究を整理し、枠組みを提案した総説。'});
+mkR('brooks2016','Don\'t stop believing: Rituals improve performance by decreasing anxiety','Don\'t stop believing: Rituals improve performance by decreasing anxiety','Alison Wood Brooks ほか','2016','academic',{journal:'Organizational Behavior and Human Decision Processes 137, 71–85',subject:'儀式と不安・パフォーマンス',background:'儀式が不安を下げ、課題成績を高めたとする一連の実験。'});
+mkR('damisch2010','Keep your fingers crossed! How superstition improves performance','Keep your fingers crossed! How superstition improves performance','Lysann Damisch, Barbara Stoberock, Thomas Mussweiler','2010','academic',{journal:'Psychological Science 21(7), 1014–1020',subject:'ゲン担ぎと成績',background:'縁起を担ぐと課題成績が上がったと報告した研究。追試の結果は一貫しない。'});
+mkR('kazdin2011','Single-Case Research Designs: Methods for Clinical and Applied Settings (2nd ed.)','Single-Case Research Designs: Methods for Clinical and Applied Settings (2nd ed.)','Alan E. Kazdin','2011','academic',{publisher:'Oxford University Press',subject:'単一事例実験デザイン',background:'一人の対象で介入の効果を繰り返し検証する実験計画の解説書。'});
+mkR('brown2003','The benefits of being present: Mindfulness and its role in psychological well-being','The benefits of being present: Mindfulness and its role in psychological well-being','Kirk Warren Brown, Richard M. Ryan','2003','academic',{journal:'Journal of Personality and Social Psychology 84(4), 822–848',subject:'マインドフルネスの測定尺度（MAAS）',background:'マインドフルネスの個人差を測る尺度を提案した研究。尺度の利用条件は原典で確認する。'});
+mkR('cohen1983','A global measure of perceived stress','A global measure of perceived stress','Sheldon Cohen, Tom Kamarck, Robin Mermelstein','1983','academic',{journal:'Journal of Health and Social Behavior 24(4), 385–396',subject:'知覚されたストレス尺度',background:'ストレスの主観的な知覚を測る尺度の提案。尺度の利用条件は原典で確認する。'});
 
 /* ---------- [1-c] 講義（LECTURES） ---------- */
 var LECTURES={};
@@ -284,6 +341,432 @@ quiz:[
 {q:'「気づいて戻す」方法の位置づけとして適切なものはどれか。',o:['思考の完全停止を目的とせず、マインドフルネスや ACT などで用いられる考え方','必ず全員に効果がある万能の方法','思考を消すための唯一の方法','科学とは無関係'],a:0,e:'目的は完全停止ではなく、注意の扱い方の調整です。'}],
 refs:['wegner1987','wegner1994','wenzlaff2000','abramowitz2001','hayes1999']};
 
+/* ---------- [1-c2] 精神制御・意識調整：第1〜4章の講義 ---------- */
+function mq(q,o,a,e){return {q:q,o:o,a:a,e:e}}
+function mkL(id,goals,intro,secs,diagram,examples,life,summary,quiz,refs){LECTURES[id]={goals:goals,intro:intro,sections:secs.map(function(s){return {h:s[0],p:s.slice(1)}}),diagram:diagram,examples:examples,life:life,summary:summary,quiz:quiz,refs:refs}}
+
+mkL('mental-1-2',
+['「気づいていない処理」があることと、内省の限界を説明できる','自分の精神状態を、事実の言葉で記録する方法を実践できる','感情に言葉を当てはめる（ラベリング）研究の内容と限界を説明できる'],
+'前の講義では、注意が逸れること自体は普通の現象だと確認しました。では、自分の心の状態は、どうすれば正確に観察できるのでしょうか。実は、自分の心を覗き込む「内省」は、思ったほど当てになりません。この講義では、その限界を知ったうえで、観察を記録として残す方法を身につけます。',
+[['気づいていない処理と、内省の限界',
+ 'ニスベットとウィルソンは、人が自分の判断や行動の原因を説明するとき、実際に働いた要因ではなく、もっともらしい理由を述べてしまう場合があることを論じました。{r:nisbett1977} つまり、「なぜそう感じたか」という自己説明は、いつも正確とは限りません。',
+ '本教材でいう「無意識」は、神秘的な力を指しません。「自分では気づいていない情報処理がある」という、控えめな意味で使います。だからこそ、頭の中の説明より、回数・時間・状況といった記録のほうを手がかりにします。'],
+['思考はどこから浮かぶのか',
+ '思考の多くは、記憶、連想、その場の状況、体の状態に応じて、こちらが選ぶ前に浮かびます。課題をしていない安静時に活動が高まる脳領域のまとまりは、デフォルトモード・ネットワークと呼ばれ、心のさまよいとの関連が研究されています。{r:raichle2001} ただし、脳活動と体験との対応は研究の途上にあり、単純な図式で断定はできません。',
+ '大切なのは、「浮かんだ思考は、自分が選んだ結論ではなく、頭に現れた出来事である」と観察できることです。浮かぶこと自体を責める必要はありません。'],
+['観察を記録する：四つの軸',
+ '観察は、次の四つの軸で、短く事実の言葉で書き留めます。①注意の対象（今、何に注意が向いていたか）、②思考の種類（計画・過去の振り返り・心配など）、③感情（名前と強さ0〜10）、④身体の感覚（肩のこわばり、呼吸の浅さなど）。',
+ '感情に名前をつけると、扁桃体の反応が弱まったという実験があります。{r:lieberman2007} ただし、これは実験室での研究であり、日常の悩みにそのまま当てはまるとは限りません。記録は、感情を消す道具ではなく、状況を整理する道具として使います。'],
+['観察の落とし穴',
+ '観察が評価に変わると、記録は自己批判の材料になります。「ダメだ」と書く代わりに「焦り 6/10、胸がそわそわ」と書く。また、観察のしすぎで疲れることもあります。1日に数回、短時間で十分です。{r:kabatzinn1990}']],
+{type:'table',head:['観察の軸','問い','記録の例'],rows:[['注意の対象','今、何に注意が向いていたか','画面ではなく、昼食のことを考えていた'],['思考の種類','どんな種類の考えか','計画／過去／心配／空想'],['感情','名前と強さ（0〜10）','焦り 6'],['身体','どこにどんな感覚があるか','肩がこわばる、呼吸が浅い']],cap:'図1：精神状態の観察記録フォーマット（事実の言葉で、評価を交えない）'},
+['1日3回（朝・昼・夜）、アラームが鳴った瞬間の四つの軸を30秒で記録する。','「自分はダメだ」と思ったとき、「ダメだという考えが浮かんでいる。焦り 7/10」と書き換えてみる。'],
+['気分が悪いときに、原因を決めつける前に、事実を整理できる。','集中の乱れや疲れの傾向（時間帯・状況）を、数字で把握できる。','自分の説明を鵜呑みにしない、批判的な姿勢が身につく。'],
+['内省で述べる理由は、実際の原因と一致しない場合がある。','「無意識」は、気づいていない情報処理という控えめな意味で使う。','観察は、注意・思考・感情・身体の四軸で、事実の言葉で記録する。','感情のラベリングの研究は実験室でのもので、日常への一般化は慎重に行う。'],
+[mq('Nisbett と Wilson（1977）の議論として、本講義で説明されたものはどれか。',['人は自分の判断の原因を、いつも正確に内省できるとは限らない','内省は常に正確である','無意識は超自然的な力である','思考は完全に制御できる'],0,'自己説明は、もっともらしい理由になってしまう場合があります。'),
+ mq('感情のラベリングの研究についての説明として適切なものはどれか。',['言葉を当てはめると扁桃体の反応が弱まったと報告されたが、日常への一般化は慎重に行う','ラベリングは感情を必ず消す','ラベリングは科学的根拠が全くない','ラベリングは他人の感情を操作する技術である'],0,'実験室での結果であり、効果の範囲は慎重に見極めます。'),
+ mq('観察記録の書き方として望ましいものはどれか。',['事実の短い言葉で、評価を交えずに書く','「自分はダメだ」と断定して書く','原因を推測して長く書く','記録はせず、頭で覚えておく'],0,'「焦り 6/10、胸がそわそわ」のように、事実の言葉で書きます。'),
+ mq('デフォルトモード・ネットワークの説明として適切なものはどれか。',['課題をしていない安静時に活動が高まり、心のさまよいとの関連が研究されている脳領域のまとまり','超能力を司る脳の部位','睡眠中にのみ働く領域','感情を完全に消す回路'],0,'関連の解釈は研究の途上にあります。')],
+['nisbett1977','raichle2001','lieberman2007','kabatzinn1990']);
+
+mkL('mental-2-2',
+['反芻思考とは何かを説明できる','反復思考に、建設的な面と非建設的な面があるという考え方を説明できる','「気づく→具体化する→注意を切り替える」の手順を実践できる','専門家に相談する目安を理解する'],
+'済んだことを何度も頭の中で再生してしまう。答えのない「なぜ」を回し続けてしまう。こうした状態を、心理学では反芻と呼びます。前の講義では、考えを抑え込む方法の難しさを見ました。この講義では、反芻から離れるための、もう少し具体的な道具を見ていきます。',
+[['反芻とは何か',
+ '反芻とは、特に否定的な内容について、同じ考えを繰り返し考え続けることです。ノーレン＝ホークセマらは、落ち込んだときの反芻的な反応が、抑うつの持続と関連することを報告しました。{r:nolen1991} その後の研究は総説で整理されています。{r:nolen2008}',
+ 'ただし、考え続けること自体がいつも悪いわけではありません。ワトキンスは、反復思考には建設的なものと非建設的なものがあり、抽象的で「なぜ」ばかりに偏る思考は有害になりやすく、具体的で次の行動に結びつく思考は有益になりうる、と論じています。{r:watkins2008}'],
+['注意を切り替える',
+ '考えの渦から離れるには、まず「今、同じ考えを回している」と気づくことが出発点になります。そのうえで、注意を別の対象に移します。ただし、人が課題を切り替えるときには、時間のコストや誤りが生じることが知られています。{r:monsell2003} 切り替えは、一瞬で完璧にはできません。うまくいかなくても失敗ではありません。',
+ '移す先は、五感（足の裏の感覚、周囲の音）や、短い手作業のように、具体的で感覚に結びつくものが向いています。一時的に離れることと、問題から逃げ続けることは別です。落ち着いてから、必要な課題は具体的に扱います。'],
+['三つのステップ',
+ '①気づく：「同じ考えを回している」と心の中で言う。②具体化する：「何が起きたか」「次に取れる小さな一歩は何か」を書く。③切り替える：5分間、散歩や手作業など、具体的な対象に注意を向ける。',
+ '「なぜ自分はいつもこうなのか」という抽象的な問いは、②で「次に何をするか」という具体的な問いに言い換えます。'],
+['注意：専門家に相談する目安',
+ '反芻が長く続き、眠れない、食べられない、日常生活に支障が出るといった状態では、自己流の対処だけで抱え込まず、医療機関や専門家に相談してください。この教材は診断や治療の代わりではありません。']],
+{type:'flow',items:[['引き金','出来事・気分'],['反芻','同じ考えを回す'],['気づき','ラベリング'],['具体化','次の一歩を書く'],['切り替え','具体的対象へ']],loop:'うまくいかなくても、気づいたこと自体が練習になる',cap:'図1：反芻から離れる流れ（単純化したモデル）'},
+['「なぜあんなことを言ったのだろう」と回っているとき、「次に連絡するなら何を伝えるか」を一文だけ書く。','夜に考えが回るとき、起き上がって短いメモを書き、足の裏の感覚に5分間注意を向ける。'],
+['夜の考えごとや、失敗の振り返りが長引くときの、具体的な対処ができる。','抽象的な自問を、行動できる問いに言い換える習慣がつく。','つらさが続く場合の、相談の目安が分かる。'],
+['反芻は、否定的な内容を繰り返し考え続けること。','反復思考には建設的な面と非建設的な面があり、具体的であるほど有益になりやすいとされる。','切り替えには時間コストがあり、うまくいかなくても失敗ではない。','日常生活に支障が出る場合は、専門家に相談する。'],
+[mq('反芻の説明として適切なものはどれか。',['特に否定的な内容を、繰り返し考え続けること','前向きな空想をすること','思考を完全に停止すること','計画を一度で決めること'],0,'同じ否定的な考えの反復を指します。'),
+ mq('Watkins（2008）の議論として、本講義で説明されたものはどれか。',['反復思考には建設的なものと非建設的なものがあり、抽象的で「なぜ」に偏る思考は有害になりやすい','考え続けることは常に有益である','考え続けることは常に有害である','反復思考は存在しない'],0,'具体的で行動に結びつく思考のほうが有益になりやすいとされます。'),
+ mq('課題の切り替えについて、本講義で説明されたことはどれか。',['切り替えには時間のコストや誤りが生じうる','切り替えにコストは一切ない','切り替えは必ず一瞬で完了する','切り替えはしないほうがよい'],0,'うまく切り替えられなくても、失敗ではありません。'),
+ mq('反芻が長く続いて日常生活に支障が出るときの対応として適切なものはどれか。',['医療機関や専門家に相談する','我慢して一人で解決する','睡眠や食事を減らす','記録をやめる'],0,'この教材は診断や治療の代わりではありません。')],
+['nolen1991','nolen2008','watkins2008','monsell2003']);
+
+mkL('mental-2-3',
+['マインドフルネスの定義の要素を説明できる','認知的脱フュージョンの考え方と、簡単な技法を説明できる','瞑想プログラムの効果についての研究の限界を説明できる'],
+'前の講義では、思考を抑え込む方法と、気づいて戻す方法を比べました。この講義では、後者の背景にある二つの考え方、マインドフルネスと認知的脱フュージョンを整理します。どちらも流行語になりやすい分、何が言えて何が言えないのかを、丁寧に見ていきます。',
+[['マインドフルネスとは',
+ 'カバット＝ジンは、マインドフルネスを、意図的に、今この瞬間に、評価的な判断をせずに注意を向けることとして説明しています。{r:kabatzinn2003} 要点は三つです。①意図的であること、②今この瞬間に向けること、③良い・悪いの評価を加えないこと。',
+ '「何も考えない状態」ではありません。考えが浮かんでも、それに気づいて、注意を対象に戻す。その繰り返しが実践です。'],
+['認知的脱フュージョン',
+ 'ACT（アクセプタンス＆コミットメント・セラピー）では、思考と自分を同じものとして扱うこと（フュージョン）から、距離をとることを重視します。{r:hayes2006} 簡単な技法には、「私はダメだ」という文を「『私はダメだ』という考えが浮かんでいる」と言い換える方法や、「これは心配の考えだ」と思考に名前をつける方法があります。',
+ '目的は、思考を消すことではなく、思考との関係を変えることです。思考を否定するのでも、事実として鵜呑みにするのでもなく、「頭に浮かんだ出来事」として眺めます。'],
+['効果についての研究',
+ '瞑想プログラムを対象にしたメタ分析では、不安・抑うつ・痛みについて中程度のエビデンスがあると報告された一方、他の多くの指標では根拠が限られるとされました。{r:goyal2014} つまり、効果が報告されている分野はあるが、すべてに効く万能の方法とは言えません。',
+ '本教材は、実践を勧めつつ、効果を断定しません。自分の実践を記録して、確かめます。'],
+['安全のために',
+ '実践中に強い不快感、不安の高まり、現実感の薄れなどが起きたら、中止してください。過去のつらい体験がある場合などは、専門家と相談しながら行うことを勧めます。']],
+{type:'table',head:['','マインドフルネス','認知的脱フュージョン'],rows:[['中心となる動作','今この瞬間に、評価せずに注意を向ける','思考を「浮かんだ出来事」として眺める'],['簡単な技法','呼吸への注意、気づいて戻す','「〜という考えが浮かんでいる」と言い換える'],['目的','注意の扱い方を練習する','思考との関係を変える（思考を消さない）'],['注意点','効果は分野により根拠に差がある','思考の無視や否定とは異なる']],cap:'図1：二つの考え方の整理'},
+['3分間、呼吸に注意を向け、雑念に気づいたら「考えが浮かんだ」と心の中で言って呼吸に戻る。','「また失敗する」という考えが浮かんだとき、「『また失敗する』という考えが浮かんでいる」と言い換えてみる。'],
+['不安な考えに振り回されそうなとき、距離をとる別の選択肢になる。','「効果が報告されている範囲」と「限られる範囲」を区別して、情報を見られる。','実践を、自分の記録で確かめる姿勢が身につく。'],
+['マインドフルネスは、意図的に・今この瞬間に・評価せずに注意を向けること。','脱フュージョンは、思考を消すのではなく、思考との関係を変える考え方。','瞑想の効果は、不安・抑うつ・痛みで中程度の根拠が報告されたが、万能ではない。','不快感が強いときは中止し、必要なら専門家に相談する。'],
+[mq('マインドフルネスの定義の要素として、本講義で示されたものはどれか。',['意図的に、今この瞬間に、評価せずに注意を向ける','何も考えない状態を保つ','未来を予測し続ける','感情を完全に消す'],0,'三つの要素で捉えます。'),
+ mq('認知的脱フュージョンの例として適切なものはどれか。',['「私はダメだ」を「『私はダメだ』という考えが浮かんでいる」と言い換える','考えが浮かんだら強く打ち消す','考えをすべて事実として受け入れる','感情を無視する'],0,'思考との距離を取る言い換えです。'),
+ mq('Goyal ら（2014）のメタ分析の説明として適切なものはどれか。',['不安・抑うつ・痛みについて中程度の根拠が報告された一方、すべてに効く万能の方法とは言えない','すべての指標で大きな効果が確認された','効果はまったく見られなかった','瞑想は医療の代わりになる'],0,'効果の範囲と根拠の強さに注意が必要です。'),
+ mq('脱フュージョンの目的として適切なものはどれか。',['思考を消すのではなく、思考との関係を変えること','嫌な思考を完全に停止すること','思考を他人に伝えること','記憶を消すこと'],0,'思考を消すことが目的ではありません。')],
+['kabatzinn2003','hayes2006','goyal2014','hayes1999']);
+
+mkL('mental-3-1',
+['注意の種類（持続・選択・転換）を説明できる','持続的注意の低下や、不注意による見落としの研究を説明できる','集中力を単一の能力ではなく、複数の側面として捉えられる'],
+'「集中力がない」という悩みは、よく聞きます。しかし、集中力とは具体的に何でしょうか。長く続くことなのか、一つに絞ることなのか、切り替えがうまいことなのか。この講義では、注意の種類を分けることで、「集中力」という大きな言葉を、扱いやすい部品に分解します。',
+[['注意の種類',
+ '注意は、大きく分けて次のように整理できます。持続的注意（長い時間、注意を保つ）、選択的注意（多くの刺激から一つを選ぶ）、転換的注意（注意の向け先を切り替える）。カーネマンは、注意を限られた「努力」の資源として捉えました。{r:kahneman1973}'],
+['持続的注意：長く続けるほど落ちる',
+ 'マックワースは、時計の針の小さな動きを長時間監視させる課題で、時間とともに見落としが増えることを示しました。{r:mackworth1948} 集中が続かないのは、意志が弱いからではなく、持続的注意が長時間で低下しやすい性質があるためだと理解できます。'],
+['選択的注意と、見えていないもの',
+ 'チェリーは、複数の音声の中から一つを選んで聞き取る能力を調べました。{r:cherry1953} 一方、サイモンズとチャブリスの「見えないゴリラ」の実験では、ある課題に注意を向けていた参加者の多くが、画面を横切る予想外のものに気づきませんでした。{r:simons1999} 注意を向けていないものは、目に入っていても気づかないことがある、という教訓です。'],
+['没頭（フロー）について',
+ 'チクセントミハイは、課題の難しさと自分の技能が釣り合うとき、没頭した最適体験が生じやすいと論じました。{r:csik1990} 一般向けの色彩もある理論なので、「条件のひとつの見方」として扱い、自分の記録で確かめます。']],
+{type:'table',head:['注意の種類','内容','日常の例'],rows:[['持続的注意','長い時間、注意を保つ','1時間の読書、運転、監視作業'],['選択的注意','多くの刺激から一つを選ぶ','騒がしい場所で相手の声を聞く'],['転換的注意','向け先を切り替える','作業を中断して、また戻る'],['分割的注意','複数に同時に向ける（限界が大きい）','話しながら歩く']],cap:'図1：注意の種類と日常の例'},
+['読書中の集中が20分で切れるなら、「持続的注意が20分で落ちる」と捉え、休憩を入れる設計にする。','駅の雑踏で友人の声が聞こえるのは、選択的注意が働いているため。'],
+['「集中力がない」を、どの種類の問題か分解して考えられる。','長時間作業での集中低下を、性格ではなく性質として理解できる。','「気づかないこと」があるのは普通だと知り、確認の習慣を持てる。'],
+['注意は、持続・選択・転換などの種類に分けて考える。','長時間の監視では、時間とともに見落としが増える。','注意を向けていないものには、気づかないことがある。','没頭の条件についての見方は、自分の記録で確かめる。'],
+[mq('Mackworth（1948）の研究で示されたこととして適切なものはどれか。',['長時間の監視作業で、見落としが増えること','注意は無限に保てること','睡眠は注意に無関係であること','マルチタスクは常に有効であること'],0,'持続的注意（警戒）は時間とともに低下しやすい。'),
+ mq('Simons と Chabris（1999）の実験から言えることとして適切なものはどれか。',['注意を向けていない対象には、目に入っていても気づかないことがある','人は見たものをすべて覚えている','ゴリラは必ず見える','注意は意識と無関係である'],0,'不注意による見落としが起こりえます。'),
+ mq('選択的注意の説明として適切なものはどれか。',['多くの刺激の中から、一つを選んで注意を向けること','注意を長時間保つこと','注意を完全に停止すること','複数の作業を完全に同時に行うこと'],0,'カクテルパーティー効果が例です。'),
+ mq('本講義での、集中力の捉え方として適切なものはどれか。',['単一の能力ではなく、複数の側面に分けて捉える','生まれつき決まっていて変えられない','意志の強さだけで決まる','測定できない'],0,'分解することで、扱いやすくなります。')],
+['kahneman1973','mackworth1948','cherry1953','simons1999','csik1990']);
+
+mkL('mental-3-2',
+['課題の切り替えやマルチタスクのコストを説明できる','研究結果の限界（相関と因果、追試）を踏まえて情報を読める','自分の作業環境を設計し、効果を測って検証できる'],
+'集中を妨げるものは、意志の弱さよりも、環境にあることが多いものです。通知、机の上のスマートフォン、複数の作業の同時進行。しかし、「スマートフォンは集中を壊す」といった断定的な話には、慎重に向き合う必要があります。この講義では、根拠と限界の両方を見ながら、環境を設計します。',
+[['切り替えコスト',
+ '課題を切り替えると、時間のコストが生じることが、実験で示されています。{r:rubinstein2001} 通知に反応して、また戻るたびに、小さなコストが積み重なります。「同時に二つのことをしている」つもりが、実際には素早く切り替えているだけの場合が多い、という見方です。'],
+['マルチタスクの習慣と注意',
+ 'オフィールらは、メディアを同時に多用する人は、関係のない刺激を無視することが苦手な傾向を報告しました。{r:ophir2009} ただし、これは相関を見た研究です。「マルチタスクが注意力を悪くする」のか、「注意が散りやすい人がマルチタスクをする」のかは、この研究だけでは分かりません。'],
+['スマートフォンの存在',
+ 'ウォードらは、スマートフォンが近くにあるだけで、課題成績が下がると報告しました。{r:ward2017} ただし、追試では結果が一貫しないという報告もあり、効果の大きさや条件はまだ議論されています。「根拠が完全に固まった事実」とは言えない、という見方が妥当です。'],
+['環境を設計し、自分で確かめる',
+ '設計の例：通知を切る、スマートフォンを別の部屋に置く、机の上を片づける、開始のきっかけを決める（「もし椅子に座ったら、最初に3分間タイマーをかける」のような実行意図{r:gollwitzer1999}）。そのうえで、変更の前後で、集中できた時間と中断回数を記録して比べます。研究の平均より、自分のデータが大切です。']],
+{type:'table',head:['妨げる要因','設計の例','確かめ方'],rows:[['通知','通知を切る／機内モード','中断回数を記録'],['スマートフォン','別の部屋に置く','集中できた時間を記録'],['机の上','作業に不要な物を片づける','作業開始までの時間を記録'],['作業の切り替え','1回の作業単位を決める','完了までにかかった時間を記録']],cap:'図1：環境設計と検証の例'},
+['1週間、スマートフォンを別の部屋に置く日と手元に置く日を交互に設け、25分間の中断回数を記録して比べる。','通知を切った日と切らなかった日で、作業開始までの時間を比べる。'],
+['集中できない原因を、環境の面から見直せる。','話題の研究結果に飛びつかず、限界を踏まえて判断できる。','自分に合う環境を、データで選べる。'],
+['課題を切り替えると、時間のコストが生じる。','マルチタスクの研究には、相関と因果の区別が必要。','スマートフォンの影響の研究は、追試で結果が一貫しないものがあり、慎重に扱う。','環境設計は、自分の記録で確かめる。'],
+[mq('Ophir ら（2009）の研究についての説明として適切なものはどれか。',['相関を見た研究であり、因果関係までは示していない','マルチタスクが注意を悪くすることを証明した','マルチタスクは常に有益だと示した','睡眠の研究である'],0,'因果の向きは、この研究だけでは分かりません。'),
+ mq('Ward ら（2017）の結果の扱いとして適切なものはどれか。',['追試で結果が一貫しない報告もあり、慎重に扱う','完全に確立した事実として扱う','研究は存在しない','スマートフォンは無関係と断定する'],0,'効果の大きさや条件はまだ議論されています。'),
+ mq('課題の切り替えについて、本講義の説明として適切なものはどれか。',['切り替えには時間のコストが生じる','切り替えはコストなしにできる','マルチタスクは常に効率的','通知は集中に影響しない'],0,'Rubinstein らの実験が示しています。'),
+ mq('環境設計に対する本教材の方針として適切なものはどれか。',['妨げる要因を減らし、自分の記録で効果を確かめる','研究の平均値だけを信じる','環境は関係ないと考える','記録はしない'],0,'自分のデータが最も重要です。')],
+['rubinstein2001','ophir2009','ward2017','gollwitzer1999']);
+
+mkL('mental-3-3',
+['集中を測る指標（時間・中断回数・課題成績・主観評価）を説明できる','訓練の効果についての研究の限界（転移）を説明できる','段階的な集中トレーニングを自分で設計できる'],
+'「集中力を鍛える」と言うとき、何がどれだけ向上したら「鍛えた」と言えるのでしょうか。測らなければ、変化は分かりません。この講義では、集中を測る方法と、訓練の効果についての研究の限界を学び、記録を伴うトレーニングを設計します。',
+[['集中を測る',
+ '日常で使える指標は四つです。①連続して集中できた時間、②中断（気づいて戻した）回数、③課題成績（読めたページ数、正答数など）、④主観的な集中度（0〜10）。客観の指標（①②③）と主観（④）を分けて記録します。',
+ '研究では、単純な反応時間を測る課題が、警戒状態の指標として用いられます（精神運動警戒課題）。{r:dinges1985} 日常でこれをそのまま行う必要はありませんが、「同じ条件で繰り返し測る」ことが大切だという点は共通です。'],
+['訓練の効果：何が上がったのか',
+ 'マインドフルネス訓練が注意の一部の機能を変えたとする研究があります。{r:jha2007} 一方、作業記憶のトレーニングのメタ分析では、訓練した課題の成績は上がっても、他の能力への転移は限定的だったと報告されました。{r:melby2013}',
+ 'ここから、「訓練した課題が上手くなること」と「集中力全般が上がること」は別だと分かります。本教材の課題でも、「この練習で、この指標がどう変わったか」と、範囲を区切って記録します。'],
+['段階的に延ばす',
+ '10分→20分→30分と、1日ずつ、または数日ずつ延ばします。途中で無理をせず、中断回数が増えたら前の長さに戻します。実験室の課題（一点集中、音への注意、視覚的注意、10・20・30分実験）で、記録を残してください。'],
+['測定の注意',
+ '測ること自体が、集中の仕方を変えることがあります。また、日による体調の差も大きいので、1日の結果で判断せず、数日分の傾向を見ます。事前に「何を指標にするか」を決めておくことで、都合のよい数字だけを見てしまうのを防げます。']],
+{type:'flow',items:[['測る','時間・回数・主観'],['練習','10→20→30分'],['記録','同じ形式で'],['比較','数日の傾向'],['調整','長さ・方法を見直す']],loop:'指標は事前に決めておく（後から選ばない）',cap:'図1：測定とトレーニングのサイクル'},
+['朝の読書を25分、中断回数と読んだページ数を毎日記録し、1週間の平均を比べる。','10分で中断が多い日は、翌日も10分に戻して記録する。'],
+['勉強や仕事の集中を、感覚ではなく数字で見られる。','「やった気がする」を避けて、成果を確認できる。','訓練の宣伝文句を、転移の観点から冷静に読める。'],
+['集中は、時間・中断回数・課題成績・主観評価で測る。','訓練した課題が上手くなることと、集中力全般が上がることは別。','10→20→30分と段階的に延ばし、無理なら戻す。','指標は事前に決め、数日の傾向で判断する。'],
+[mq('Melby-Lervåg と Hulme（2013）のメタ分析で知られる点として適切なものはどれか。',['訓練した課題の成績は上がるが、他の能力への転移は限定的','訓練で知能が大きく上がる','訓練は全く効果がない','訓練は逆効果である'],0,'「訓練した課題」と「全般的な能力」を区別します。'),
+ mq('精神運動警戒課題（PVT）の説明として適切なものはどれか。',['単純な反応時間を測る課題で、警戒状態の指標として使われる','記憶力を測る課題','感情を測る質問紙','睡眠の長さを測る装置'],0,'同じ条件で繰り返し測ることが重要です。'),
+ mq('集中の測定の記録として適切なものはどれか。',['客観的な指標と主観的な評価を分けて記録する','主観だけで記録する','後から都合のよい指標を選ぶ','記録せず記憶に頼る'],0,'事前に指標を決めておくことが大切です。'),
+ mq('集中トレーニングの延ばし方として適切なものはどれか。',['10分→20分→30分と段階的に延ばし、無理なら前の長さに戻す','最初から長時間行う','中断が増えても続ける','毎日違う方法を試して記録しない'],0,'無理をしないことが前提です。')],
+['dinges1985','jha2007','melby2013','kahneman1973']);
+
+mkL('mental-4-1',
+['感情についての主な理論（ジェームズ、シャクター＝シンガー、構成主義）を説明できる','それらが競合する理論であり、決定版ではないことを理解できる','感情を無理に消さず、認識して扱う姿勢を説明できる'],
+'「感情はどこから来るのか」。心臓がどきどきするから不安になるのか、不安だからどきどきするのか。この問いには、複数の理論があり、研究者の間でも議論が続いています。この講義では、主な三つの見方を並べて、感情と身体反応の関係を整理します。',
+[['ジェームズの見方：身体反応が先',
+ 'ウィリアム・ジェームズは、身体の変化の知覚こそが感情である、という説を提示しました。{r:james1884} 「泣くから悲しい」という逆説的な言い方で語られることもあります。感情を、身体の感覚から捉え直す視点です。'],
+['シャクター＝シンガーの見方：覚醒と解釈',
+ 'シャクターとシンガーは、生理的な覚醒と、その状況に対する解釈の組み合わせで、感情が決まると論じました。{r:schachter1962} 同じ動悸でも、状況によって「不安」とも「高揚」とも解釈されうる、という考えです。ただし、この実験は後続の研究で結果が一貫せず、議論が続いています。'],
+['構成主義的な見方',
+ 'バレットは、感情を、脳が身体の感覚と文脈をもとに構成するものとして説明する理論を提唱しています。{r:barrett2017} 感情の「種類」は、あらかじめ決まった箱ではなく、経験や言葉によって形づくられる、という考えです。'],
+['どの理論も決定版ではない',
+ 'これらの理論は、競合しながら並存しており、どれか一つが決定版というわけではありません。本教材では、「出来事→解釈→身体反応→感情の体験→行動」という大まかな流れを手がかりに、身体の感覚と解釈の両方を観察します。感情を消すことを目的とせず、認識して、状況に応じた反応を選べることを目指します。']],
+{type:'flow',items:[['出来事','状況'],['解釈','評価・意味づけ'],['身体反応','動悸・緊張'],['感情の体験','名前がつく'],['行動','反応を選ぶ']],loop:'身体反応や行動が、次の解釈に影響する',cap:'図1：感情が生じる流れ（理論により見方が異なる単純化したモデル）'},
+['発表前の動悸を、「不安」と呼ぶか、「準備ができている体の反応」と見るかで、感じ方が変わる場合がある。','運動後の動悸と、不安のときの動悸は、感覚が似ていることがある。'],
+['緊張したときに、「失敗の予兆」と決めつけず、観察するきっかけになる。','身体の感覚を手がかりに、感情に気づけるようになる。','感情を消そうとせず、選べる反応を考えられる。'],
+['感情には、ジェームズ、シャクター＝シンガー、構成主義などの見方がある。','どの理論も決定版ではなく、議論が続いている。','身体の感覚と解釈の両方が、感情の体験に関わると考えられる。','感情は消すのではなく、認識して反応を選ぶ。'],
+[mq('ジェームズの説の説明として適切なものはどれか。',['身体の変化の知覚が感情である','感情は身体と無関係である','感情は超自然的に生じる','感情はすべて生まれつき決まっている'],0,'「泣くから悲しい」という言い方で知られます。'),
+ mq('Schachter と Singer（1962）の考えとして適切なものはどれか。',['生理的な覚醒と、状況の解釈の組み合わせで感情が決まる','感情は覚醒と無関係','解釈は感情に影響しない','感情は睡眠中にのみ生じる'],0,'後続研究で結果が一貫せず、議論が続いています。'),
+ mq('本教材の、感情の理論についての立場として適切なものはどれか。',['競合する理論があり、決定版はないと捉える','ある一つの理論を絶対とする','理論はすべて誤りとする','理論は無視する'],0,'複数の見方を並べて扱います。'),
+ mq('本教材が目指す、感情への向き合い方として適切なものはどれか。',['感情を消さず、認識して、状況に応じた反応を選ぶ','感情を完全に消す','感情を無視する','感情に完全に従う'],0,'無理に消すことを目的としません。')],
+['james1884','schachter1962','barrett2017']);
+
+mkL('mental-4-2',
+['ゆっくりした呼吸と漸進的筋弛緩法の考え方を説明できる','無理のない範囲で呼吸法を実践し、前後の変化を記録できる','中止すべき状態と、医師に相談すべき場合を理解する'],
+'緊張したとき、「深呼吸して」と言われた経験は多いでしょう。呼吸は、意識的に変えられる数少ない身体機能の一つです。この講義では、ゆっくりした呼吸と、筋肉の緊張と弛緩を使うリラクゼーションの考え方と、安全に行うための注意点を学びます。',
+[['ゆっくりした呼吸',
+ 'ゆっくりした呼吸に関する研究を整理した系統的レビューでは、呼吸のペースを遅くすることが、心拍の変動などの生理指標や、心理状態と関連することが報告されています。{r:zaccaro2018} 研究では、1分あたり10回以下程度のゆっくりした呼吸が用いられることが多いようです。ただし、研究ごとに方法や対象が異なるため、「この回数が最適」と断定はできません。',
+ '練習の例：鼻から4秒かけて吸い、6秒かけて吐く（数え方は目安）。吐く息を少し長くする。無理に深く吸わず、楽な範囲で行います。'],
+['漸進的筋弛緩法',
+ 'ジェイコブソンは、筋肉を意図的に緊張させてから緩める練習を体系化しました。{r:jacobson1938} 手、腕、肩、顔、というように部位ごとに、5秒ほど力を入れてから、緩めたときの感覚を味わいます。緊張と弛緩の違いに気づくことが目的です。'],
+['リラクゼーション反応という考え方',
+ 'ベンソンは、静かな環境で、同じ語や動作に注意を向けることで生じる、生理的な落ち着きを「リラクゼーション反応」と呼びました。{r:benson1975} 一般向けの書籍であり、個々の主張は研究で確かめられている範囲を区別して読みます。'],
+['安全のために',
+ '息を止めたり、速く深い呼吸を続けたりしないでください。めまい、しびれ、胸の苦しさなどがあれば、ただちに中止して通常の呼吸に戻します。呼吸器や循環器に持病がある場合、パニックの症状がある場合は、実践の前に医師に相談してください。']],
+{type:'table',head:['方法','やること','記録する指標'],rows:[['ゆっくりした呼吸','吸う4秒・吐く6秒（目安）を数分','前後の緊張度（0〜10）、実施時間'],['漸進的筋弛緩法','部位ごとに5秒緊張→緩める','前後の緊張度、緩んだ部位の感覚'],['数を数える呼吸','呼吸を数えて雑念に気づく','数え間違えた回数']],cap:'図1：リラクゼーションの方法と記録'},
+['会議の前に、吐く息を長くした呼吸を2分間行い、前後の緊張度を記録する。','寝る前に、肩・腕・手の順に5秒緊張→緩める練習を行う。'],
+['緊張する場面の前に、自分で試せる対処が持てる。','効果を主観の数値で比べて、自分に合う方法を選べる。','中止すべき症状を知っているので、安心して試せる。'],
+['ゆっくりした呼吸は、生理・心理指標と関連すると報告されている。','漸進的筋弛緩法は、緊張と弛緩を意識的に切り替える練習。','息を止めたり、過呼吸にならないよう、無理をしない。','めまいなどがあれば中止し、持病があれば医師に相談する。'],
+[mq('漸進的筋弛緩法の説明として適切なものはどれか。',['筋肉を意図的に緊張させてから緩める練習','筋肉を使わないようにする練習','息を長く止める練習','睡眠薬を使う方法'],0,'緊張と弛緩の違いに気づくことが目的です。'),
+ mq('ゆっくりした呼吸の研究について、本講義の説明として適切なものはどれか。',['関連が報告されているが、「この回数が最適」と断定はできない','すべての人に同じ効果がある','効果はまったくない','呼吸を止めるとよい'],0,'方法や対象が研究ごとに異なります。'),
+ mq('呼吸法の実践中にめまいを感じたときの対応として適切なものはどれか。',['ただちに中止し、通常の呼吸に戻す','我慢して続ける','さらに速く呼吸する','息を止める'],0,'安全が最優先です。'),
+ mq('効果を確かめる方法として適切なものはどれか。',['前後の緊張度（0〜10）と実施時間を記録する','感覚だけで判断する','記録せず他人の評価を聞く','毎回方法を変える'],0,'前後の比較が基本です。')],
+['zaccaro2018','jacobson1938','benson1975']);
+
+mkL('mental-4-3',
+['感情調整の方略（状況選択・注意・再評価・抑制）の違いを説明できる','認知的再評価の手順を実践できる','「ポジティブに考える」と再評価の違いを説明できる'],
+'同じ出来事でも、人によって感じ方は違います。出来事そのものではなく、その「見方」が感情に影響するという考えは、古くからあります。この講義では、見方を変えて感情を調整する認知的再評価を、「無理に前向きになる」こととの違いを含めて学びます。',
+[['感情調整のプロセスモデル',
+ 'グロスは、感情が生じる過程のどこに働きかけるかで、感情調整の方略を整理しました。{r:gross1998} 状況を選ぶ、状況を変える、注意を向け直す、見方を変える（認知的再評価）、表れた反応を抑える、といった段階です。早い段階に働きかける方略と、遅い段階に働きかける方略がある、という考え方です。'],
+['再評価と抑制',
+ 'グロスとジョンは、質問紙を用いて、認知的再評価をよく使う人と、感情の表出を抑制することをよく使う人で、感情経験・対人関係・幸福感に違いがあることを報告しました。{r:gross2003} 再評価をよく使う人のほうが好ましい傾向が見られましたが、質問紙による相関の研究であり、因果関係は断定できません。'],
+['再評価の手順',
+ '認知療法の考え方を参考にした、簡単な記録の形式です。{r:beck1979} ①状況（事実だけ）、②最初に浮かんだ解釈、③感情の名前と強さ（0〜10）、④別の解釈の候補（根拠があるもの）、⑤別の解釈を考えた後の感情の強さ。',
+ '大切なのは、「ポジティブに考える」ことではありません。現実に根拠のある、別の見方を探すことです。根拠のない楽観は、再評価ではありません。'],
+['感情との距離をとる',
+ '自分の状況を三人称で書く（「彼は〜と考えている」）、時間をおいて見直す、感情に名前をつける{r:lieberman2007}、といった方法があります。いずれも、感情を消すためではなく、感情と状況を切り分けて見るための方法です。強い苦痛が続く場合は、専門家に相談してください。']],
+{type:'table',head:['記録項目','内容','例'],rows:[['状況','事実だけ','会議で意見が通らなかった'],['最初の解釈','浮かんだ考え','自分は無能だと思われた'],['感情（強さ）','名前と0〜10','恥ずかしさ 7'],['別の解釈','根拠のある見方','提案の時期が合わなかっただけかもしれない'],['再評価後の感情','0〜10','恥ずかしさ 4']],cap:'図1：認知的再評価の記録フォーマット'},
+['返信が遅い相手への不安を、「嫌われた」だけでなく、「忙しい」「見落とし」などの候補と、その根拠で見直す。','失敗の場面を三人称で書いて、事実と解釈を分ける。'],
+['感情が強いときに、状況と解釈を分けて整理できる。','根拠のない楽観や、自己批判の決めつけの両方を避けられる。','感情を消さずに、反応を選ぶ余地を作れる。'],
+['感情調整の方略は、感情が生じる過程のどこに働きかけるかで整理できる。','再評価と抑制の研究は、主に相関であり、因果の断定は避ける。','再評価は「無理にポジティブに考える」ことではなく、根拠のある別の見方を探すこと。','強い苦痛が続く場合は、専門家に相談する。'],
+[mq('認知的再評価の説明として適切なものはどれか。',['状況に対する見方を、根拠のある形で見直すこと','感情を無視すること','根拠なく楽観的に考えること','感情を完全に消すこと'],0,'根拠のある別の見方を探します。'),
+ mq('Gross と John（2003）の研究についての説明として適切なものはどれか。',['質問紙による研究で、再評価をよく使う人に好ましい傾向が見られたが、因果は断定できない','因果関係を実験的に証明した','抑制が常に有益だと示した','感情と無関係だった'],0,'相関研究であることに注意します。'),
+ mq('再評価の記録で、「状況」の欄に書くべきものはどれか。',['事実だけ','自分の解釈','相手の気持ちの推測','将来の予想'],0,'解釈は別の欄に書きます。'),
+ mq('「ポジティブに考える」ことと再評価の違いとして適切なものはどれか。',['再評価は、根拠のある別の見方を探すこと','両者はまったく同じ','再評価は根拠のない楽観を勧める','再評価は感情を無視する'],0,'根拠の有無が重要です。')],
+['gross1998','gross2003','beck1979','lieberman2007']);
+
+mkL('mental-4-4',
+['ストレスを「出来事と評価・対処の相互作用」として説明できる','問題焦点型と情動焦点型の対処の違いを説明できる','睡眠と感情調整の関連を、限界を踏まえて説明できる','睡眠や気分が長く乱れる場合の相談の目安を理解する'],
+'同じ仕事量でも、疲れ方は人によって違います。ストレスは、出来事そのものだけでなく、それをどう受け止め、どう対処するかによって形づくられます。そして、眠りはその土台になっています。この講義では、ストレスへの対処と、睡眠と精神状態の関係を整理します。',
+[['ストレスは「出来事」だけではない',
+ 'ラザルスとフォルクマンは、ストレスを、出来事そのものではなく、その出来事を「自分にとって脅威か」「対処できるか」と評価する過程との相互作用として捉えました。{r:lazarus1984} 同じ出来事でも、対処できると評価できるか、できないと評価するかで、体験は変わります。'],
+['二つの対処',
+ '問題焦点型の対処は、問題そのものに働きかけます（計画を立てる、相談する）。情動焦点型の対処は、感情に働きかけます（呼吸法、再評価、気分転換）。変えられる問題には前者、変えられない状況には後者が向く、というのが基本的な考え方です。どちらか一方が常に優れているわけではありません。'],
+['睡眠と精神状態',
+ '不眠と感情調整の関連を整理したレビューでは、睡眠の乱れが感情の調整の難しさと関連することが論じられています。{r:baglioni2010} ただし、関係は双方向で複雑であり、「睡眠さえ整えれば解決する」といった単純な話ではありません。',
+ '一般に、起きる時刻をそろえる、寝る前の強い刺激を避けるといった工夫が勧められますが、効果には個人差があります。本教材は医療的な助言ではなく、記録で自分の傾向を見ることを重視します（実験室の「睡眠と翌日の集中の記録」）。'],
+['相談の目安',
+ '眠れない日が数週間続く、気分の落ち込みや強い不安が続く、日常生活に支障が出る、といった場合は、自己流の対処だけで抱え込まず、医療機関や専門家に相談してください。']],
+{type:'flow',items:[['出来事','要求・負荷'],['評価','脅威か／対処できるか'],['対処','問題焦点・情動焦点'],['結果','心身の状態'],['睡眠','回復の土台']],loop:'結果と睡眠の状態が、次の評価に影響する',cap:'図1：ストレスの評価と対処（単純化したモデル）'},
+['期限が迫る仕事に、問題焦点型（優先順位をつけて相談する）と、情動焦点型（呼吸法で落ち着く）を組み合わせる。','1週間の睡眠時間と、翌日の集中度を記録して、傾向を見る。'],
+['同じ負荷でも、評価と対処で体験が変わることを知り、選択肢が増える。','変えられるものと変えられないものを分けて考えられる。','睡眠の記録から、自分の傾向を数字で把握できる。'],
+['ストレスは、出来事と、評価・対処との相互作用として捉える。','問題焦点型と情動焦点型の対処は、状況に応じて使い分ける。','睡眠と感情調整は関連するが、関係は複雑で単純ではない。','眠れない日が続く、日常生活に支障がある場合は、専門家に相談する。'],
+[mq('Lazarus と Folkman のストレスの捉え方として適切なものはどれか。',['出来事と、それを脅威か・対処できるかと評価する過程との相互作用','出来事の大きさだけで決まる','個人の意志の弱さだけで決まる','睡眠とは無関係'],0,'評価の過程を重視します。'),
+ mq('問題焦点型の対処の例はどれか。',['計画を立てて、周囲に相談する','呼吸法で落ち着く','気分転換に散歩する','何も考えない'],0,'問題そのものに働きかけます。'),
+ mq('睡眠と感情調整の関係についての説明として適切なものはどれか。',['関連が論じられているが、関係は双方向で複雑','睡眠を整えれば必ずすべて解決する','睡眠は関係ない','睡眠は短いほどよい'],0,'単純化は避けます。'),
+ mq('眠れない日が数週間続く場合の対応として適切なものはどれか。',['専門家に相談することを考える','我慢して放置する','睡眠時間をさらに減らす','記録をやめる'],0,'この教材は医療的な助言の代わりではありません。')],
+['lazarus1984','baglioni2010','gross1998']);
+
+/* ---------- [1-c3] 精神制御・意識調整：第5〜7章の講義 ---------- */
+mkL('mental-5-1',
+['瞑想を「注意を焦点化する型」と「観察する型」に整理して説明できる','東洋・西洋の瞑想思想の流れを、断定を避けて概観できる','瞑想に伴う有害事象の研究を踏まえ、安全に実践できる'],
+'瞑想は、世界の多くの宗教や思想の中で、長い歴史をもつ実践です。同時に、現代の心理学や医学の研究対象にもなっています。この講義では、歴史的な流れを概観しつつ、技法を整理し、研究の成果と、あまり語られない有害事象にも目を向けます。',
+[['歴史の概観',
+ '瞑想的な実践は、インドの諸伝統（仏教、ヒンドゥー教など）、東アジアの禅や道教、ユダヤ・キリスト教・イスラームの観想的な伝統など、さまざまな地域に見られます。それぞれの目的や世界観は異なり、「瞑想」という一つの言葉でまとめると、違いが見えにくくなります。成立年代などの細部は、伝統ごとに学説が分かれるため、本教材では断定しません。',
+ '西洋では、20世紀後半に、宗教的な文脈から切り離した形でのマインドフルネスのプログラムが整えられ、医療・心理の分野に広まりました。{r:kabatzinn1990} ここで、伝統的な実践の目的と、現代のプログラムの目的とは、同じではない点に注意します。'],
+['技法の整理：集中と観察',
+ 'ルッツらは、瞑想を、注意を一つの対象に絞る「焦点化された注意」の型と、浮かぶ体験を開かれた態度で観察する「開かれたモニタリング」の型に整理しました。{r:lutz2008} 本教材の実践課題でいえば、呼吸への一点集中は前者、浮かぶ思考や感覚をそのまま眺める練習は後者にあたります。',
+ '具体的な練習：①呼吸瞑想（呼吸の感覚に注意を向ける）、②集中瞑想（炎・音・語などの対象に集中する）、③観察瞑想（浮かぶ思考や感覚に、評価せず気づく）。'],
+['研究の成果と限界',
+ '瞑想の心理的効果についてのメタ分析では、不安や感情面での効果が報告されていますが、研究の質や方法にはばらつきがあります。{r:sedlmeier2012} 効果が報告されている範囲と、証拠が限られる範囲を、分けて受け止めます。'],
+['有害事象について',
+ 'ブリットンらは、マインドフルネス・プログラムに関連して報告される、不快な体験や有害事象の定義と測定を扱いました。{r:britton2021} 実践中に、不安の高まり、現実感の薄れ、つらい記憶の想起などが起きる場合があります。万人に起こるものではありませんが、「瞑想は誰にとっても安全で有益」とは言えません。',
+ '対処の基本は、無理をしないことです。実践中に強い不快感が起きたら、目を開けて周囲を見る、座るのをやめるなどして中止し、続く場合は専門家に相談してください。']],
+{type:'table',head:['型','内容','練習の例'],rows:[['焦点化された注意','注意を一つの対象に保つ','呼吸、音、炎、語への集中'],['開かれたモニタリング','浮かぶ体験を評価せず観察する','思考・感情・感覚の観察'],['実践の安全','無理をしない、中止してよい','不快感が強ければ目を開けて中止']],cap:'図1：瞑想技法の整理と安全の原則'},
+['5分間の呼吸瞑想で、気づいた雑念の回数を記録する（焦点化）。','3分間、浮かぶ思考に「考え」と名前をつけて眺める（観察）。'],
+['瞑想を、目的や技法ごとに分けて理解できる。','宣伝文句の「万能さ」に注意して、情報を選べる。','不快なときに中止してよい、と知っていることで、安心して実践できる。'],
+['瞑想は、さまざまな伝統に見られ、目的や世界観は異なる。','技法は、注意を絞る型と、観察する型に整理できる。','効果の研究には、方法のばらつきなどの限界がある。','有害事象も報告されており、無理をせず、必要なら専門家に相談する。'],
+[mq('Lutz ら（2008）の整理として適切なものはどれか。',['焦点化された注意と、開かれたモニタリングの二つの型','瞑想はすべて同じ','瞑想は睡眠の一種','瞑想は宗教の儀式だけ'],0,'呼吸への集中と、思考の観察を区別します。'),
+ mq('瞑想の研究についての説明として適切なものはどれか。',['効果が報告される範囲もあるが、研究の質にばらつきがある','すべての人に万能に効く','効果はまったくない','研究は存在しない'],0,'報告された範囲と限界を分けて受け止めます。'),
+ mq('瞑想中に強い不快感が生じたときの対応として適切なものはどれか。',['無理をせず中止し、続く場合は専門家に相談する','我慢して続ける','もっと長く行う','記録をやめる'],0,'有害事象も報告されています。'),
+ mq('現代のマインドフルネス・プログラムと伝統的な実践について適切な説明はどれか。',['目的や文脈が異なる場合があり、同一視しない','完全に同じ','現代のものは宗教そのもの','伝統的な実践は存在しない'],0,'違いに注意して学びます。')],
+['lutz2008','sedlmeier2012','britton2021','kabatzinn1990']);
+
+mkL('mental-5-2',
+['自己暗示の歴史的主張と、現代心理学による検討を区別できる','催眠の定義と、理論の対立（状態論・非状態論）を説明できる','催眠について「相手を意のままに操れる」という主張が誤りであることを説明できる','アファメーションの効果の個人差を、研究に基づいて説明できる'],
+'「自己暗示で人生が変わる」「催眠で人を操れる」。魅力的な言葉ですが、根拠を見ると、言えることと言えないことが大きく分かれます。この講義では、歴史的な主張、現代の研究による検討、そして誇張された説明を、丁寧に区別します。',
+[['自己暗示の歴史',
+ 'フランスの薬剤師エミール・クーエは、20世紀初頭に、意識的な自己暗示による自己改善法を提唱しました。{r:coue1922} 「日々、あらゆる面で、私はますますよくなっている」という定型句で知られます。これは歴史的な主張であり、その効果が現代の研究で確立されているわけではない点を、区別します。'],
+['催眠とは何か',
+ '米国心理学会第30部会は、催眠を、注意の集中と周辺的な気づきの低下を伴い、暗示への反応性が高まる状態、または過程として定義しています。{r:elkins2015} 一方、催眠が特別な意識状態なのか、期待・役割・注意といった通常の心理過程で説明できるのかについては、議論が続いています。{r:kirsch1995} 本教材は、どちらかに断定しません。',
+ '臨床・研究では、催眠が痛みの軽減に有効な場合があることが、メタ分析で報告されています。{r:montgomery2000} ただし、暗示への反応しやすさには個人差が大きく、すべての人に同じように効くわけではありません。'],
+['誇張された説明について',
+ '「催眠で、相手を意のままに操れる」「望まない行動を取らせられる」といった説明は、研究では支持されていません。催眠状態でも、本人は自分の価値観や意思を保っているとされます。他人を操作する目的での活用は、本教材の対象外です。他人を対象とする催眠は、資格をもつ専門家が適切な場で行うべきものです。'],
+['自己催眠・アファメーションの限界',
+ 'ウッドらは、肯定的な自己宣言を行った結果、自尊心の低い人では、条件によってかえって気分が悪化したと報告しました。{r:wood2009} 一方、自己肯定を行った際の脳活動を調べた研究もあります。{r:cascio2016} 効果は、人や条件によって異なる、というのが慎重な結論です。',
+ '本教材では、自己暗示を「効く／効かない」と断定せず、自分の記録で確かめる対象として扱います。つらくなる場合は、やめてかまいません。']],
+{type:'table',head:['主張','位置づけ','本教材での扱い'],rows:[['クーエの自己暗示','歴史的な主張','効果は確立されていない。記録で検証する'],['催眠は暗示への反応性が高まる状態・過程','現代の定義','理論の対立がある。断定しない'],['催眠で痛みが軽くなる場合がある','メタ分析で報告','個人差が大きい'],['催眠で人を意のままに操れる','誇張','研究で支持されない。扱わない'],['肯定的な自己宣言は誰にでも効く','単純化','自尊心の低い人で逆効果の報告']],cap:'図1：自己暗示・催眠に関する主張の整理'},
+['アファメーションを1週間行い、前後の気分と、行動の変化（実行した日数など）を記録する。気分が悪化したら中止する。','「自分は集中できる」と唱えた日と、何もしなかった日で、中断回数を比べる。'],
+['誇張された宣伝を、根拠の観点から見分けられる。','自己暗示を、期待や注意との関係から、冷静に捉えられる。','他者を操作しない、という倫理を、最初から前提にできる。'],
+['自己暗示は歴史的な主張であり、効果の確立は別の問題。','催眠は、定義や理論の対立があり、断定を避ける。','痛みの軽減などの報告があるが、個人差が大きい。','「意のままに操れる」という説明は誤りで、扱わない。'],
+[mq('「催眠で相手を意のままに操れる」という説明の位置づけとして適切なものはどれか。',['研究で支持されない誇張','証明された事実','本教材の目的','安全な技術'],0,'本人は価値観や意思を保っているとされます。'),
+ mq('Wood ら（2009）の報告として適切なものはどれか。',['自尊心の低い人では、肯定的な自己宣言でかえって気分が悪化した条件があった','誰にでも効果があった','効果はまったくなかった','自己宣言は睡眠を改善した'],0,'効果は人や条件で異なります。'),
+ mq('催眠の理論についての説明として適切なものはどれか。',['特別な状態か、通常の心理過程で説明できるかについて議論が続いている','すべて決着している','催眠は存在しない','超自然的な力による'],0,'断定しません。'),
+ mq('Coué の自己暗示の位置づけとして適切なものはどれか。',['歴史的な主張であり、効果は現代の研究で確立されたとは言えない','現代科学で確立された方法','催眠の代わりになる医療','必ず効果がある'],0,'歴史的主張と検証済みの事実を区別します。')],
+['coue1922','elkins2015','kirsch1995','montgomery2000','wood2009','cascio2016']);
+
+mkL('mental-5-3',
+['プラセボ効果とノセボ効果を、定義とともに説明できる','「プラセボは常に強力」という主張の根拠が限られることを説明できる','期待と暗示の作用を、自己実験に活かす際の注意を述べられる'],
+'薬ではない偽薬で、症状が楽になることがある。逆に、「副作用があるかもしれない」と思うだけで、不調を感じることがある。プラセボ効果とノセボ効果は、期待と暗示が心身に与える影響を示す、興味深い現象です。同時に、誤解の多い分野でもあります。',
+[['プラセボ効果',
+ 'ビーチャーは1955年の論文で、プラセボの効果を強調しました。{r:beecher1955} しかしその後、方法論上の批判があり、結果の解釈は見直されています。無治療の群と比較した系統的レビューでは、プラセボの効果は、主に痛みや吐き気など患者の主観的な評価で見られやすい一方、客観的な指標では明確でない場合が多いと報告されています。{r:hrobj2010} 「プラセボは強力な万能の力」という説明は、この点で誇張です。'],
+['偽薬と明かして行うプラセボ',
+ 'カプチャックらは、偽薬であることを伝えたうえで投与しても、症状が改善したと報告しました。{r:kaptchuk2010} ただし、小規模な研究であり、追試が必要とされています。この結果も、断定せずに受け止めます。'],
+['ノセボ効果',
+ 'ノセボ効果は、否定的な期待によって、症状が悪化したり、副作用が現れたりする現象です。{r:colloca2011} 医療の現場では、説明の仕方が期待に影響することが指摘されています。期待は、注意の向け方を変え、身体の感覚の解釈に影響すると考えられます。'],
+['自己実験での注意',
+ '自己暗示や儀式の効果を調べるとき、期待そのものが結果に影響します。だからこそ、主観の評価だけでなく、客観的な指標（実行できた日数、課題成績など）も記録し、可能なら比較条件を設けます。「効いた気がする」ことと、「実際に変化した」ことは、区別して記録します。']],
+{type:'table',head:['','プラセボ効果','ノセボ効果'],rows:[['期待の向き','肯定的な期待','否定的な期待'],['現れ方','主観的な症状の改善が中心','症状の悪化・副作用の出現'],['研究上の注意','客観指標では明確でないことが多い','説明の仕方が影響しうる'],['自己実験への示唆','主観と客観を分けて記録する','否定的な暗示を避ける言い方にする']],cap:'図1：プラセボ効果とノセボ効果'},
+['集中の自己実験で、「この音楽で集中できる」と信じて聞いた日と、何も言わずに聞いた日を比べる。','薬の説明書の副作用を読んだ後に、その症状が気になった経験を、ノセボ効果の観点で振り返る（体調の不安は専門家に相談）。'],
+['健康情報の「万能」な主張を、冷静に評価できる。','期待が体験に影響することを前提に、実験を設計できる。','主観と客観を分ける習慣がつく。'],
+['プラセボ効果は、主に主観的な評価で見られやすい。','ノセボ効果は、否定的な期待による悪化の現象。','偽薬と明かした投与の研究は、小規模で追試が必要。','自己実験では、主観と客観の指標を分けて記録する。'],
+[mq('プラセボ効果についての本講義の説明として適切なものはどれか。',['主に痛みなど主観的な評価で見られやすく、客観指標では明確でないことが多い','常に強力で万能','存在しない','超自然的な力である'],0,'「万能」という説明は誇張です。'),
+ mq('ノセボ効果の説明として適切なものはどれか。',['否定的な期待によって、症状が悪化したり副作用が現れたりする現象','肯定的な期待で改善する現象','薬の本来の効果','睡眠の効果'],0,'説明の仕方が期待に影響します。'),
+ mq('Kaptchuk ら（2010）の研究の扱い方として適切なものはどれか。',['小規模な研究であり、追試が必要として受け止める','確立した事実として扱う','偽薬は必ず効くと結論する','研究は存在しないとする'],0,'断定を避けます。'),
+ mq('自己実験の設計として適切なものはどれか。',['主観の評価と客観の指標を分けて記録する','主観だけで判断する','結果の良い日だけを記録する','期待は影響しないと考える'],0,'期待が結果に影響します。')],
+['beecher1955','hrobj2010','kaptchuk2010','colloca2011']);
+
+mkL('mental-6-1',
+['文脈の手がかりと習慣の関係を説明できる','学習・作業・休息モードへの切り替えを、手がかりで設計できる','習慣形成の日数には個人差が大きいことを説明できる'],
+'「机に向かうと勉強モードになる」「ベッドに入ると眠くなる」。場所や動作が、状態の切り替えのきっかけになることは、日常でよく経験します。この講義では、その仕組みを、習慣と文脈の研究から整理し、自分で意図的に切り替えを設計する方法を学びます。',
+[['文脈の手がかり',
+ 'ウッドとニールは、習慣は、繰り返された行動と、それを行った文脈（場所、時刻、直前の行動など）が結びつくことで、文脈の手がかりによって引き起こされやすくなる、と論じました。{r:wood2007} 同じ場所で同じ作業を繰り返すと、その場所が作業への入りやすさのきっかけになる、という見方です。',
+ '環境と想起の関係を示す古典的研究として、学習した環境と同じ環境で想起すると、成績が良かったという報告もあります。{r:godden1975} 場所の影響は、注意や記憶にも及びえます。'],
+['モードの切り替えを設計する',
+ '三つのモードを、それぞれ別の手がかりで切り替えます。例：学習モード（机に座る→タイマーを置く→最初の課題を声に出す）、作業モード（PCを開く→通知を切る→優先作業を一つ決める）、休息モード（立ち上がる→窓の外を見る→呼吸を数回）。{r:gollwitzer1999} のように、「もしAなら、Bをする」と決めておくと、開始しやすくなります。'],
+['習慣になるまでの日数',
+ 'ラリーらは、日常の行動が習慣になるまでの日数を調べ、個人や行動によって大きく異なると報告しました。{r:lally2010} 「21日で習慣になる」といった決まった数字は、一般化できません。続かなくても、意志の弱さではなく、設計の見直しの材料として扱います。'],
+['記録して比較する',
+ '手がかりを設けた日と設けなかった日で、作業への入りやすさ（0〜10）、開始までの時間を記録し、比べます。実験室の課題（作業開始前ルーティンの記録）と連動しています。']],
+{type:'flow',items:[['手がかり','場所・動作・時刻'],['ルーティン','短い手順'],['状態の切り替え','注意が向く'],['作業開始','最初の一歩'],['記録','入りやすさ（0〜10）']],loop:'記録を見て、手がかりと手順を調整する',cap:'図1：切り替えの設計と検証'},
+['勉強専用の机を決め、座ったら必ず「今日の最初の課題」を声に出す。','休憩のたびに立ち上がって窓の外を見て、数回呼吸する。'],
+['作業に入るまでの「重さ」を、手がかりで軽くできる。','モードを分けることで、切り替えの疲れを減らせる。','習慣の日数を、他人と比べず、自分のペースで見られる。'],
+['習慣は、文脈の手がかりによって引き起こされやすくなる。','モードの切り替えは、手がかりと短い手順で設計できる。','習慣形成に要する日数は個人差が大きい。','記録して比較し、手順を調整する。'],
+[mq('Wood と Neal（2007）の考え方として適切なものはどれか。',['習慣は文脈の手がかりによって引き起こされやすくなる','習慣は意志だけで決まる','文脈は習慣と無関係','習慣は21日で必ず形成される'],0,'場所・時刻・直前の行動が手がかりになります。'),
+ mq('Lally ら（2010）の報告として適切なものはどれか。',['習慣になるまでの日数は、個人や行動により大きく異なる','21日で必ず習慣になる','習慣は形成されない','日数は全員同じ'],0,'決まった日数への一般化はできません。'),
+ mq('切り替えの設計として適切なものはどれか。',['手がかりと短い手順をモードごとに決め、効果を記録する','毎日気分で決める','記録せず感覚で判断する','手がかりを避ける'],0,'実行意図の形（もしAならB）も有効です。'),
+ mq('習慣が続かなかったときの捉え方として適切なものはどれか。',['設計を見直す材料として扱う','意志が弱いと責める','記録をやめる','習慣は不可能と結論する'],0,'責めるのではなく、設計の問題として見直します。')],
+['wood2007','godden1975','lally2010','gollwitzer1999']);
+
+mkL('mental-6-2',
+['儀式の心理学研究の内容と限界を説明できる','「儀式が効く」という主張に潜むバイアスを説明できる','安全で、再現可能な小さな儀式を設計できる'],
+'儀式は、宗教、スポーツ、学校、職場など、あらゆる場所にあります。魔術の世界でも、儀式は中心的な要素でした。この講義では、儀式が心理に与える影響を、研究に基づいて検討します。魔術的な説明と、心理学的な説明を、ここでも区別します。',
+[['儀式の心理学',
+ 'ホブソンらは、儀式に関する心理学研究を整理し、儀式が感情の調整、パフォーマンス、集団の結びつきなどに関わるとする枠組みを提案しました。{r:hobson2018} 儀式は、決まった、象徴的な動作の連なりとして、注意を整える働きをもつ可能性があります。'],
+['不安とパフォーマンス',
+ 'ブルックスらは、儀式を行った参加者が、不安が低く、課題の成績が高かったと報告しました。{r:brooks2016} また、縁起を担ぐと課題成績が上がったと報告した研究もありますが、{r:damisch2010} 追試の結果は一貫しません。「儀式をすれば必ず成績が上がる」とは言えません。'],
+['儀式の効果を考えるときのバイアス',
+ '儀式を行った日の良い結果だけが記憶に残る（確証バイアス）、期待そのものが成績や感じ方を変える（期待効果）、といった影響が入り込みます。{r:colloca2011} 儀式の効果を調べるには、行わなかった日と比べる必要があります。'],
+['魔術的な説明と心理学的な説明',
+ '魔術の伝統では、儀式は超自然的な力に働きかける行為として説明されることがあります。本教材は、その主張を歴史的・思想的な主張として紹介しますが、事実としては扱いません。一方、心理学的な説明（注意の方向づけ、期待、不安の軽減、習慣の手がかり）は、検証できる形で扱います。'],
+['小さな儀式の設計の原則',
+ '①短い（1〜3分）、②毎回同じ手順、③象徴や動作に自分なりの意味を与える、④安全で、他人に迷惑をかけない、⑤効果を記録で確かめる、⑥合わなければやめる。']],
+{type:'table',head:['観点','魔術的な説明','心理学的な説明'],rows:[['儀式の働き','超自然的な力への働きかけ（歴史的主張）','注意の方向づけ、期待、不安の軽減、習慣の手がかり'],['検証','本教材では事実として扱わない','記録・比較で検証できる'],['扱い方','歴史・思想として紹介','自己実験の対象にする']],cap:'図1：儀式の二つの説明の区別'},
+['試験の前に、同じ3つの動作（深呼吸、筆記具を並べる、目標を1文で唱える）を行う日と、行わない日の緊張度を比較する。','作業開始前の儀式を1週間続け、入りやすさ（0〜10）を記録する。'],
+['緊張する場面の前の、自分の準備の手順を持てる。','「儀式が効いた」という話を、バイアスを踏まえて受け止められる。','魔術の儀式と心理学を、混同せずに学べる。'],
+['儀式は、不安の軽減や注意の方向づけに関わる可能性が研究されている。','効果の研究には、追試で結果が一貫しないものがあり、断定できない。','確証バイアスや期待効果が入り込むため、比較して調べる。','魔術的な説明は歴史的主張、心理学的な説明は検証対象として区別する。'],
+[mq('Brooks ら（2016）の報告として適切なものはどれか。',['儀式を行った参加者で、不安が低く成績が高かった','儀式は効果がまったくなかった','儀式は成績を必ず下げた','儀式は魔術的な力を証明した'],0,'効果の一般化は慎重に行います。'),
+ mq('儀式の効果を調べるときに、必要なことはどれか。',['行わなかった日と比べる','良かった日だけを記録する','期待を最大にする','記録しない'],0,'確証バイアスを避けます。'),
+ mq('魔術的な説明の、本教材での扱いとして適切なものはどれか。',['歴史的・思想的な主張として紹介し、事実としては扱わない','事実として扱う','完全に無視する','絶対に正しいとする'],0,'魔術的な説明と心理学的な説明を区別します。'),
+ mq('小さな儀式の設計の原則として適切なものはどれか。',['短く、毎回同じ手順で、安全で、記録で確かめる','長くて複雑','毎回違う手順','記録せずに続ける'],0,'合わなければやめてよいものとします。')],
+['hobson2018','brooks2016','damisch2010','colloca2011']);
+
+mkL('mental-6-3',
+['単一事例の実験デザイン（ABAなど）の考え方を説明できる','自分用の調整プログラムを、仮説・指標・比較条件つきで設計できる','結果の読み方の落とし穴を説明できる'],
+'ここまでで、注意、感情、瞑想、儀式、習慣と、多くの道具を見てきました。最後のまとめとして、「自分に合った調整方法」を、根拠をもって選び、体系化する方法を学びます。鍵は、他人の平均ではなく、自分一人を対象にした小さな実験です。',
+[['一人で行う実験：単一事例デザイン',
+ 'カズディンの解説書にあるように、一人の対象について、介入がない期間（A）と、ある期間（B）を繰り返し、変化を比べる実験の型があります。{r:kazdin2011} 例えば、A（なし）→B（呼吸法）→A（なし）→B（呼吸法）と繰り返し、Bのときに指標が一貫して良ければ、介入の影響がある可能性が高まります。'],
+['プログラムの設計',
+ '①目的を一つに絞る（例：作業開始の入りやすさ）。②指標を決める（時間、回数、主観0〜10）。③比較条件を決める（A期とB期）。④期間を決める（各期間は数日〜1週間）。⑤安全の基準と中止条件を決める。⑥記録の形式を決める。'],
+['結果の読み方',
+ '日による変動、季節、体調、睡眠、課題の難易度が、結果に影響します。一度の差で結論を出さず、繰り返しで確かめます。また、主観の指標は期待に影響されやすいので、可能なら客観の指標も組み合わせます。{r:cohen1983}{r:brown2003} のような質問紙は、利用条件を原典で確認したうえで、参考にできます（必須ではありません）。'],
+['体系化',
+ '効果がありそうだった方法を、「状況→方法→手順→注意点」の一覧にまとめます。例：「集中が切れたとき→呼吸を10回数える→…」「緊張が高いとき→吐く息を長くする→…」。これが、自分用の「技法集」になります。']],
+{type:'flow',items:[['A期','介入なし'],['B期','介入あり'],['A期','介入なし'],['B期','介入あり'],['比較','指標の変化']],loop:'結果が一貫していれば、影響の可能性が高まる（確定ではない）',cap:'図1：ABAB型の単一事例デザイン'},
+['A期3日（何もしない）、B期3日（作業前に呼吸法）、再びA期、B期と繰り返し、作業の入りやすさ（0〜10）を比べる。','結果をまとめて、「状況→方法→手順→注意点」の一覧に追記する。'],
+['自分に合う方法を、他人の平均ではなく自分のデータで選べる。','結果を冷静に読み、早まった結論を避けられる。','自分用の技法集を、長期的に更新できる。'],
+['単一事例デザインは、A期とB期を繰り返して介入の影響を調べる型。','目的・指標・比較条件・期間・安全基準を事前に決める。','一度の差で結論を出さず、繰り返しで確かめる。','結果を、状況→方法→手順→注意点の一覧に体系化する。'],
+[mq('ABAB型の実験の説明として適切なものはどれか。',['介入のない期間とある期間を繰り返して、変化を比べる','介入を1回だけ行う','他人のデータだけを使う','記録は不要'],0,'繰り返すことで、影響の可能性を確かめます。'),
+ mq('実験を始める前に決めておくべきものとして適切なものはどれか。',['目的・指標・比較条件・期間・安全基準','結果','結論','記録をやめる時期'],0,'事前に決めることで、都合のよい解釈を避けます。'),
+ mq('主観の指標についての注意として適切なものはどれか。',['期待に影響されやすいので、可能なら客観の指標も組み合わせる','主観は常に正確','主観は無意味','主観のみで結論する'],0,'主観と客観を分けて記録します。'),
+ mq('結果の読み方として適切なものはどれか。',['一度の差で結論を出さず、繰り返しで確かめる','1日の結果で断定する','都合のよい日を選ぶ','変動は無視する'],0,'日による変動や体調の影響があります。')],
+['kazdin2011','brown2003','cohen1983','gollwitzer1999']);
+
+mkL('mental-7-1',
+['長期実験の設計（期間、指標、比較、記録）を説明できる','注意の持続時間の変化を測定する計画を立てられる','途中での中止・見直しの基準を設定できる'],
+'第7章は、これまでの学習を使った「応用研究」です。ここからは、教材が答えを与えるのではなく、自分の問いを立て、時間をかけて検証していく段階になります。まずは、長期実験の設計の基本から始めます。',
+[['問いを立てる',
+ '良い問いは、検証可能で、範囲が絞られています。悪い例：「集中力は上がるか」。良い例：「毎朝10分の呼吸瞑想を2週間続けると、読書の連続集中時間（中断が3回以内で続く時間）は、開始前の1週間と比べて長くなるか」。'],
+['設計の要素',
+ '①期間：ベースライン（何もしない）1週間、介入2〜4週間。②指標：連続集中時間、中断回数、主観の集中度（0〜10）。③条件の統一：時間帯、場所、課題の種類をできるだけそろえる。④記録：毎日、同じ形式で。⑤中止基準：不快感・体調不良、強い負担。'],
+['測定の落とし穴',
+ '課題の難易度が日によって違うと、集中の指標が変わります。曜日や睡眠の影響もあります。日誌に、睡眠時間・体調・その日の課題を併記しておくと、後で解釈しやすくなります。{r:jha2007} のような研究でも、対象や方法の違いにより、結果の一般化には限界があります。自分の結果も、「自分の場合の傾向」として扱います。'],
+['見直しと中止',
+ '期間の途中でも、不快感や負担が大きければ、ただちに中止します。また、ベースラインで想定外の変動があった場合は、期間を延ばします。実験は、完遂そのものが目的ではありません。']],
+{type:'table',head:['項目','決めること','例'],rows:[['問い','検証可能で範囲が狭い','呼吸瞑想10分で連続集中時間は延びるか'],['期間','ベースライン＋介入','1週間＋2週間'],['指標','客観＋主観','連続集中時間、中断回数、主観0〜10'],['統一する条件','時間帯・場所・課題','朝、同じ机、同じ種類の読書'],['中止基準','不快・負担','不調が出たら中止']],cap:'図1：長期実験の設計項目'},
+['朝の読書で、ベースライン1週間→瞑想2週間の、連続集中時間を毎日記録する。','睡眠時間と体調も併記し、変動の原因を後で探る。'],
+['自分の問いを、検証できる形に整えられる。','途中で負担が大きければ中止してよい、という安全な進め方ができる。','結果を、自分の場合の傾向として扱える。'],
+['良い問いは検証可能で、範囲が絞られている。','ベースラインと介入の期間、指標、統一する条件を決める。','日による変動を考え、睡眠・体調・課題を併記する。','不快や負担があれば、ただちに中止する。'],
+[mq('検証可能な問いの例として適切なものはどれか。',['2週間の呼吸瞑想で、読書の連続集中時間が延びるか','集中力は上がるか','人生は良くなるか','運命は変わるか'],0,'範囲を絞り、測定可能にします。'),
+ mq('実験で統一すべき条件として適切なものはどれか。',['時間帯・場所・課題の種類','気分','天気予報の結果','他人の意見'],0,'条件をそろえて比較します。'),
+ mq('実験中に不快感が強く出たときの対応として適切なものはどれか。',['ただちに中止する','我慢して続ける','期間を延ばす','記録をやめて続ける'],0,'完遂が目的ではありません。'),
+ mq('自分の結果の扱い方として適切なものはどれか。',['「自分の場合の傾向」として扱う','すべての人に当てはまると断定する','結果は無視する','都合のよい日だけを使う'],0,'一般化は慎重に行います。')],
+['jha2007','kazdin2011','gollwitzer1999']);
+
+mkL('mental-7-2',
+['自己暗示・瞑想の効果検証の計画を立てられる','期待効果を考慮した検証デザインを説明できる','結果を、効果の有無ではなく「可能性」として報告できる'],
+'自己暗示や瞑想の効果を、自分自身で検証する。この講義では、期待効果という最大の落とし穴を見据えながら、できるだけ誠実に検証する方法を考えます。完璧な検証は一人ではできませんが、できる範囲で工夫することはできます。',
+[['期待効果を意識する',
+ '自分が自分の実験の被験者であり、結果を判断する人でもあるため、期待が結果に影響しやすくなります。{r:hrobj2010} 対策として、①主観だけでなく客観の指標を組み合わせる、②介入のない期間（A期）と比べる、③指標を事前に決める、④記録を、後から見直さずにその日のうちに書く、があります。'],
+['比較のデザイン案',
+ '案A：自己暗示を行う期間と、行わない期間の交互（ABAB）。案B：二種類の介入の比較（呼吸瞑想と、自己暗示）。案C：順序を日ごとにランダム化（コイン投げで決める）。いずれも、同じ条件で、同じ指標を記録します。{r:kazdin2011}'],
+['指標の選び方',
+ '客観：実行できた日数、課題の完了数、中断回数、読んだページ数。主観：緊張度、集中度、気分（0〜10）。質問紙を使う場合は、利用条件を確認します。{r:brown2003} 主観の指標だけで効果を主張しないようにします。'],
+['報告の仕方',
+ '「効果があった」と断定するのではなく、「この期間・この条件で、この指標に、この変化が見られた。期待効果や偶然の変動を排除できていない」と報告します。結果が「効果なし」でも、立派な成果です。何が効かなかったかも、重要な知識です。']],
+{type:'table',head:['対策','内容','限界'],rows:[['客観の指標','実行日数・回数・成績','指標の選び方に偏りが出る'],['介入なしの期間','A期と比較','日による変動が混ざる'],['事前の計画','指標・期間を先に決める','後から変えたくなる誘惑'],['ランダム化','順序をコインで決める','一人では盲検化できない']],cap:'図1：期待効果への対策と限界'},
+['コイン投げで、「自己暗示あり」の日と「なし」の日を決め、各7日間、作業の入りやすさ（0〜10）と実行できた作業数を記録する。','結果を、「期待効果を排除できていない」と明記して、研究ノートにまとめる。'],
+['自分で試した方法を、誠実に評価できる。','「効かない」という結果も、価値ある結果として受け止められる。','他人の「効果があった」という体験談を、冷静に読める。'],
+['自分が被験者かつ判断者であるため、期待効果が入りやすい。','客観の指標、介入なしの期間、事前の計画、ランダム化で、影響を減らす。','一人では盲検化できず、期待効果は完全には排除できない。','報告は、「可能性」として、限界とともに書く。'],
+[mq('自己実験で期待効果を減らす工夫として適切なものはどれか。',['客観の指標を組み合わせ、介入なしの期間と比べる','主観だけで判断する','結果の良い日だけを記録する','期待を最大にする'],0,'完全には排除できない点も明記します。'),
+ mq('結果の報告として適切なものはどれか。',['「この条件でこの変化が見られた。期待効果を排除できていない」と書く','「効果は証明された」と書く','結果が悪ければ報告しない','他人にも効くと断定する'],0,'限界とともに報告します。'),
+ mq('「効果なし」という結果の位置づけとして適切なものはどれか。',['何が効かなかったかを知る、立派な成果','失敗なので隠す','再度、良い結果が出るまで繰り返す','無意味'],0,'誠実な検証の成果です。'),
+ mq('順序のランダム化の方法として適切なものはどれか。',['コイン投げで日ごとの条件を決める','気分で決める','結果が良い日に介入を行う','毎回同じ順序にする'],0,'偏りを減らします。')],
+['hrobj2010','kazdin2011','brown2003']);
+
+mkL('mental-7-3',
+['これまでの記録を統合して、自分用の精神調整プログラムを構築できる','睡眠や生活習慣との関係を、記録から読み取れる','プログラムを定期的に見直す仕組みを作れる','この領域全体の方針（万能視しない、安全第一）を再確認できる'],
+'いよいよ、この領域の総まとめです。これまで試した方法、記録した数字、立てた仮説を統合して、「自分のための精神調整プログラム」を構築します。完成形ではなく、更新していく設計図を作ることが、ゴールです。',
+[['記録を棚卸しする',
+ '実験室の課題記録、研究ノート、学習履歴を見直し、次の問いに答えます。どの方法が、どの状況で、どの指標に変化をもたらしたか。何が効かなかったか。どの方法が負担になったか。睡眠や生活習慣（食事、運動、時間帯）との関係はどうだったか。{r:baglioni2010}'],
+['プログラムの構成',
+ '推奨する構成は、①日常の土台（睡眠・休息・環境）、②状況別の技法（集中が切れたとき、緊張が高いとき、反芻が起きたときなど）、③定期的な練習（短い呼吸・瞑想・観察記録）、④見直しの周期（月に一度など）、⑤安全の基準（中止条件、相談先）。'],
+['生活習慣との関係を見る',
+ '睡眠時間、運動、食事の時間などを、集中度や気分と同じ表に記録すると、関係の手がかりが見えてくることがあります。ただし、相関は因果ではありません。「睡眠が短い日に集中度が低い」傾向があっても、他の要因が関わっている可能性があります。{r:lazarus1984}'],
+['この領域の方針の再確認',
+ '精神制御を万能の能力として扱わない。思考の完全停止を目標にしない。集中は測定可能な指標で評価する。主観と客観を区別する。魔術的な説明と科学的な説明を混同しない。他人を支配する方法ではなく、自分の状態を調整する方法を中心にする。苦痛を無理に抑え込まない。強い不快感や体調不良があれば、中止する。']],
+{type:'table',head:['構成要素','内容','例'],rows:[['日常の土台','睡眠・休息・環境','起床時刻をそろえる、通知を切る'],['状況別の技法','状況→方法','集中が切れた→呼吸を10回数える'],['定期的な練習','短い継続練習','朝の5分の呼吸観察'],['見直し','周期的に更新','月に一度、記録を見直す'],['安全の基準','中止条件・相談先','不調が続けば中止し、専門家に相談']],cap:'図1：自分用プログラムの構成'},
+['課題の記録を一覧にして、「状況→方法→手順→注意点」の技法集にまとめる。','月に一度、記録を見直して、技法集を更新する。'],
+['自分に合う方法を、根拠をもって使い続けられる。','変化があっても、なくても、冷静に見直せる。','この領域で身につけた姿勢を、他の領域の学習にも活かせる。'],
+['記録を棚卸しして、何が・どの状況で・どの指標に効いたかを整理する。','プログラムは、土台・状況別・定期練習・見直し・安全基準で構成する。','生活習慣との関係は相関であり、因果とは限らない。','精神制御は万能視せず、安全第一で、更新し続ける。'],
+[mq('プログラムの構成要素として、本講義で挙げられていないものはどれか。',['他人の意思を支配する技術','日常の土台','状況別の技法','安全の基準'],0,'他人を支配する方法は、本教材の対象外です。'),
+ mq('生活習慣と集中度の関係についての記述として適切なものはどれか。',['相関は因果とは限らず、他の要因も考える','相関があれば因果が証明される','生活習慣は無関係','睡眠は記録できない'],0,'慎重に解釈します。'),
+ mq('この領域の方針として適切なものはどれか。',['万能視せず、測定可能な指標で評価し、安全第一で進める','思考を完全に停止させることを目指す','苦痛を無理に抑え込む','主観だけで判断する'],0,'領域全体の方針です。'),
+ mq('プログラムの扱い方として適切なものはどれか。',['完成形ではなく、定期的に見直して更新する','一度作ったら変えない','記録せずに続ける','他人のものをそのまま使う'],0,'更新し続ける設計図とします。')],
+['baglioni2010','lazarus1984','kazdin2011']);
+
 /* ---------- [1-d] 実践課題（TASKS） ---------- */
 var SAFETY='強い不快感・不安・めまい・体調不良が生じたら、ただちに中止してください。この課題は診断や治療の代わりではありません。つらさが続く場合は、医療機関や専門家に相談してください。';
 var TASKS=[
@@ -300,6 +783,22 @@ var TASKS=[
 {id:'mental-t6',domain:'mental',title:'瞑想の継続記録',purpose:'一定期間の継続による、集中時間や自己評価の変化を記録する。',knowledge:['mental-1-1'],steps:['期間（例：2週間）と1日の時間を決める。','毎日、実施時間と主観的な状態を記録する。','期間の最初と最後で比較する。'],metrics:[{k:'days',label:'実施した日数',type:'number'},{k:'minutes',label:'合計の実施時間（分）',type:'number'},{k:'changeNote',label:'前後の変化（自己評価）',type:'text'}],safety:true,refs:['kabatzinn1990']},
 {id:'mental-t7',domain:'mental',title:'自分に合った集中・リラックス手順の設計',purpose:'これまでの記録をもとに、自分用の手順を文章にまとめる。',knowledge:['mental-1-1'],steps:['これまでの課題の記録を見直す。','効果があった（と感じた）要素を選び、手順を書く。','1週間試して、見直す。'],metrics:[{k:'procedure',label:'設計した手順',type:'text'}],safety:true,refs:[]}
 ];
+
+/* ---------- [1-d2] 精神制御・意識調整：追加の実践課題と、既存課題の必要知識の更新 ---------- */
+(function(){
+  var K={'mental-t1':['mental-1-1','mental-5-1'],'mental-t2':['mental-3-1','mental-3-3'],'mental-t3':['mental-2-1','mental-2-2'],'mental-t4':['mental-6-1','mental-6-2'],'mental-t5':['mental-4-2'],'mental-t6':['mental-5-1','mental-7-1'],'mental-t7':['mental-6-3','mental-7-3']};
+  TASKS.forEach(function(t){if(K[t.id])t.knowledge=K[t.id]});
+  function add(o){o.domain='mental';TASKS.push(o)}
+  add({id:'mental-t8',title:'音への注意トレーニング',purpose:'一つの音（環境音や一定の音）に注意を向け、逸れた回数を記録する。',knowledge:['mental-3-1','mental-3-3'],steps:['静かな場所で、対象とする音を一つ決める（時計の音、換気扇の音など）。','5分間、その音に注意を向ける。','注意が逸れたと気づくたびに回数を数え、音に戻る。','終了後、集中度（0〜10）を記録する。'],metrics:[{k:'breaks',label:'注意が逸れた回数',type:'number'},{k:'focus',label:'集中度（0〜10）',type:'number'},{k:'sound',label:'対象にした音',type:'text'}],safety:true,refs:['cherry1953','lutz2008']});
+  add({id:'mental-t9',title:'視覚的注意トレーニング',purpose:'一つの対象を見つめ、細部に注意を向け続ける練習で、逸れた回数を記録する。',knowledge:['mental-3-1','mental-3-3'],steps:['手元の小さな物（石、葉、文字の一点など）を決める。','5分間、形・色・質感などの細部を観察し続ける。','注意が逸れたと気づいたら回数を数え、対象に戻る。','目が疲れたら中止し、遠くを見て休む。'],metrics:[{k:'breaks',label:'注意が逸れた回数',type:'number'},{k:'focus',label:'集中度（0〜10）',type:'number'}],safety:true,refs:['simons1999','kahneman1973']});
+  add({id:'mental-t10',title:'10分・20分・30分の集中実験',purpose:'集中の長さと中断回数の関係を、同じ課題で比べる。',knowledge:['mental-3-3'],steps:['同じ種類の課題（読書など）を用意する。','日を変えて、10分・20分・30分のそれぞれで取り組み、中断（気づいて戻した）回数を記録する。','各回の主観的な集中度（0〜10）も記録する。','途中で無理が出たら中止し、前の長さに戻す。'],metrics:[{k:'b10',label:'10分：中断回数',type:'number'},{k:'b20',label:'20分：中断回数',type:'number'},{k:'b30',label:'30分：中断回数',type:'number'},{k:'f10',label:'10分：集中度（0〜10）',type:'number'},{k:'f20',label:'20分：集中度（0〜10）',type:'number'},{k:'f30',label:'30分：集中度（0〜10）',type:'number'}],refs:['mackworth1948','melby2013']});
+  add({id:'mental-t11',title:'作業環境の比較（通知とスマートフォン）',purpose:'環境設計の前後で、中断回数や集中できた時間を比べる。',knowledge:['mental-3-2'],steps:['比較する条件を一つ決める（例：スマートフォンを別の部屋に置く／手元に置く）。','日を交互にして、25分間の同じ種類の作業を行う。','中断回数と、読んだページ数などの成果を記録する。','各条件を、できれば5日以上行う。'],metrics:[{k:'aBreaks',label:'条件A：平均の中断回数',type:'number'},{k:'bBreaks',label:'条件B：平均の中断回数',type:'number'},{k:'cond',label:'条件A・Bの内容',type:'text'}],refs:['ward2017','ophir2009','rubinstein2001']});
+  add({id:'mental-t12',title:'睡眠と翌日の集中の記録',purpose:'睡眠時間・就寝時刻と、翌日の集中度や気分の関係を記録して傾向を見る。',knowledge:['mental-4-4'],steps:['毎朝、前夜の就寝時刻・起床時刻・睡眠の質（0〜10）を記録する。','夜、その日の集中度（0〜10）と気分（0〜10）を記録する。','2週間後に、睡眠時間が長い日と短い日を比べる（相関は因果ではない点に注意）。'],metrics:[{k:'days',label:'記録した日数',type:'number'},{k:'avgSleep',label:'平均の睡眠時間（時間）',type:'number'},{k:'trend',label:'気づいた傾向',type:'text'}],refs:['baglioni2010']});
+  add({id:'mental-t13',title:'認知的再評価の記録',purpose:'強すぎない感情が生じた場面で、解釈を見直す記録を行う。',knowledge:['mental-4-3'],steps:['軽い〜中程度の不快な場面を選ぶ（強い苦痛を伴う場面は避ける）。','状況（事実）、最初の解釈、感情と強さを書く。','根拠のある別の解釈を考え、再度、感情の強さを記録する。','3場面以上、繰り返す。'],metrics:[{k:'scenes',label:'記録した場面数',type:'number'},{k:'before',label:'再評価前の平均の強さ（0〜10）',type:'number'},{k:'after',label:'再評価後の平均の強さ（0〜10）',type:'number'}],safety:true,refs:['gross1998','gross2003','beck1979']});
+  add({id:'mental-t14',title:'感情の観察ログ（四つの軸）',purpose:'注意の対象・思考・感情・身体の四つの軸で、短い観察記録を残す。',knowledge:['mental-1-2'],steps:['1日3回（朝・昼・夜）、アラームを設定する。','アラームが鳴った瞬間の、注意の対象・思考の種類・感情と強さ・身体の感覚を30秒で書く。','1週間後、記録を見て、傾向（時間帯、状況）を探す。'],metrics:[{k:'logs',label:'記録した回数',type:'number'},{k:'pattern',label:'気づいた傾向',type:'text'}],refs:['lieberman2007','nisbett1977']});
+  add({id:'mental-t15',title:'自己暗示の効果検証（コインによる順序の決定）',purpose:'自己暗示の効果を、順序をランダム化した比較で検証し、期待効果の限界も含めて報告する。',knowledge:['mental-5-2','mental-7-2'],steps:['検証したい短い自己暗示の文と、指標（作業の入りやすさ0〜10、実行した作業数）を事前に決める。','毎日、コイン投げで「自己暗示あり／なし」を決める。','各条件を7日以上行い、指標を記録する。','気分が悪化したら中止する。結果は「期待効果を排除できていない」と明記して報告する。'],metrics:[{k:'withDays',label:'「あり」の日数',type:'number'},{k:'withoutDays',label:'「なし」の日数',type:'number'},{k:'withAvg',label:'「あり」：平均の入りやすさ',type:'number'},{k:'withoutAvg',label:'「なし」：平均の入りやすさ',type:'number'}],safety:true,refs:['coue1922','wood2009','hrobj2010','kazdin2011']});
+  add({id:'mental-t16',title:'長期実験：呼吸瞑想の継続（ベースライン＋介入）',purpose:'ベースライン1週間と介入2週間の、連続集中時間や中断回数の変化を記録する。',knowledge:['mental-7-1'],steps:['問いと指標を事前に決める（例：読書の連続集中時間）。','ベースライン1週間：介入なしで指標を記録する。','介入2週間：毎朝10分の呼吸瞑想を行い、同じ指標を記録する。','睡眠・体調・課題の内容を併記し、不調があれば中止する。'],metrics:[{k:'baseAvg',label:'ベースライン：指標の平均',type:'number'},{k:'intAvg',label:'介入期間：指標の平均',type:'number'},{k:'unit',label:'指標の単位・内容',type:'text'}],safety:true,refs:['jha2007','sedlmeier2012','britton2021']});
+}());
 
 /* ---------- 索引の構築 ---------- */
 var IDX={}, ORDER=[];   // IDX[lectureId] = {domain,chapter,title,written}
@@ -321,7 +820,7 @@ function fmtDur(sec){sec=Math.max(0,Math.round(sec));var h=Math.floor(sec/3600),
 function fmtHM(sec){sec=Math.max(0,Math.round(sec));var h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);return h>0?h+'時間'+m+'分':m+'分'+(sec%60)+'秒'}
 function fmtDT(t){var d=new Date(t);return d.getFullYear()+'/'+pad(d.getMonth()+1)+'/'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes())}
 
-function defaultState(){return {schemaVersion:SCHEMA,createdAt:Date.now(),awards:{},completed:{},quiz:{},tasks:{},notes:[],timeLog:[],timer:null,readings:{},activity:[],settings:{idleMinutes:5,autoPauseHidden:true,lastExport:0},lastLecture:null}}
+function defaultState(){return {schemaVersion:SCHEMA,createdAt:Date.now(),awards:{},completed:{},quiz:{},tasks:{},notes:[],timeLog:[],timer:null,readings:{},activity:[],settings:{auto:true,idleMinutes:5,autoPauseHidden:true,lastExport:0},lastLecture:null}}
 
 function num(v,d,min,max){v=Number(v);if(!isFinite(v))return d;if(min!=null&&v<min)return min;if(max!=null&&v>max)return max;return v}
 function str(v,max){return typeof v==='string'?v.slice(0,max||20000):''}
@@ -342,7 +841,7 @@ function sanitizeState(raw,warnings){
     s.timeLog.push({id:str(l.id,60),start:num(l.start,0,0),end:num(l.end,0,0),sec:sec,domainId:str(l.domainId,40),lectureId:str(l.lectureId,80),byDate:bd})});
   if(isObj(raw.readings))Object.keys(raw.readings).forEach(function(k){var r=raw.readings[k];if(isObj(r))s.readings[str(k,80)]={status:['none','reading','finished'].indexOf(r.status)>=0?r.status:'none',memo:str(r.memo),updated:num(r.updated,0,0)}});
   if(Array.isArray(raw.activity))raw.activity.slice(-300).forEach(function(a){if(isObj(a))s.activity.push({ts:num(a.ts,0,0),type:str(a.type,30),text:str(a.text,300)})});
-  if(isObj(raw.settings)){s.settings.idleMinutes=num(raw.settings.idleMinutes,5,1,120);s.settings.autoPauseHidden=raw.settings.autoPauseHidden!==false;s.settings.lastExport=num(raw.settings.lastExport,0,0)}
+  if(isObj(raw.settings)){s.settings.idleMinutes=num(raw.settings.idleMinutes,5,1,120);s.settings.autoPauseHidden=raw.settings.autoPauseHidden!==false;s.settings.auto=raw.settings.auto!==false;s.settings.lastExport=num(raw.settings.lastExport,0,0)}
   s.lastLecture=raw.lastLecture?str(raw.lastLecture,80):null;
   /* 未知のID（現カリキュラムにない）の警告 */
   Object.keys(s.completed).forEach(function(k){if(!IDX[k])w.push('完了済み講義 "'+k+'" は現在のカリキュラムにありません（データは保持されます）。')});
@@ -351,7 +850,7 @@ function sanitizeState(raw,warnings){
   if(raw.timer&&isObj(raw.timer)&&Array.isArray(raw.timer.segments)&&warnings===undefined){
     var t=raw.timer,segs=[];t.segments.forEach(function(g){if(isObj(g)&&isFinite(g.s)&&isFinite(g.e)&&g.e>=g.s)segs.push({s:+g.s,e:+g.e})});
     if(t.runningSince&&isFinite(t.runningSince)){var e=Math.max(+t.runningSince,num(t.lastBeat,+t.runningSince));segs.push({s:+t.runningSince,e:e});s._recovered=true}
-    s.timer={id:str(t.id,60)||uid(),domainId:str(t.domainId,40),lectureId:str(t.lectureId,80),startedAt:num(t.startedAt,Date.now(),0),segments:segs,runningSince:null,lastBeat:Date.now()};
+    s.timer={id:str(t.id,60)||uid(),domainId:str(t.domainId,40),lectureId:str(t.lectureId,80),startedAt:num(t.startedAt,Date.now(),0),segments:segs,runningSince:null,lastBeat:Date.now(),pausedAt:segs.length?segs[segs.length-1].e:Date.now(),manualHold:!!t.manualHold};
   }
   return s;
 }
@@ -397,30 +896,61 @@ function totalSec(filter){var t=0;state.timeLog.forEach(function(l){if(!filter||
 function todaySec(){var k=dkey(Date.now()),t=0;state.timeLog.forEach(function(l){t+=l.byDate[k]||0});t+=activeByDate()[k]||0;return t}
 function studyDays(){var s={};state.timeLog.forEach(function(l){Object.keys(l.byDate).forEach(function(k){if(l.byDate[k]>0)s[k]=1})});Object.keys(activeByDate()).forEach(function(k){s[k]=1});Object.keys(state.completed).forEach(function(k){s[dkey(state.completed[k])]=1});return Object.keys(s).length}
 
-function startTimer(domainId,lectureId){
-  if(state.timer){toast('すでに学習時間を計測中です。');return}
-  var n=Date.now();state.timer={id:uid(),domainId:domainId||'',lectureId:lectureId||'',startedAt:n,segments:[],runningSince:n,lastBeat:n};lastActivity=n;save();renderBar();toast('学習を開始しました。');
+var autoHold=false,lastIdleToast=0,lastSync=0;
+function startTimer(domainId,lectureId,auto){
+  if(state.timer){if(!auto)toast('すでに学習時間を計測中です。');return}
+  var n=Date.now();state.timer={id:uid(),domainId:domainId||'',lectureId:lectureId||'',startedAt:n,segments:[],runningSince:n,lastBeat:n,pausedAt:null,manualHold:false};
+  if(!auto){lastActivity=n;toast('学習を開始しました。')}
+  save();renderBar();
 }
-function pauseTimer(at,msg){var t=state.timer;if(!t||!t.runningSince)return;var e=Math.max(t.runningSince,at||Date.now());t.segments.push({s:t.runningSince,e:e});t.runningSince=null;save();renderBar();if(msg)toast(msg)}
-function resumeTimer(){var t=state.timer;if(!t||t.runningSince)return;t.runningSince=Date.now();t.lastBeat=t.runningSince;lastActivity=t.runningSince;save();renderBar()}
-function endTimer(){
-  var t=state.timer;if(!t)return;pauseTimer(Date.now());
+function pauseTimer(at,msg,manual){var t=state.timer;if(!t||!t.runningSince)return;var e=Math.max(t.runningSince,at||Date.now());t.segments.push({s:t.runningSince,e:e});t.runningSince=null;t.pausedAt=e;t.manualHold=!!manual;save();renderBar();if(msg)toast(msg)}
+function resumeTimer(){var t=state.timer;if(!t||t.runningSince)return;t.runningSince=Date.now();t.lastBeat=t.runningSince;t.pausedAt=null;t.manualHold=false;save();renderBar()}
+function endTimer(opts){
+  opts=opts||{};var t=state.timer;if(!t)return;pauseTimer(Date.now());
   var by=splitByDay(t.segments),sec=0,rounded={};Object.keys(by).forEach(function(k){var v=Math.round(by[k]);if(v>0){rounded[k]=v;sec+=v}});
   var start=t.segments.length?t.segments[0].s:t.startedAt,end=t.segments.length?t.segments[t.segments.length-1].e:t.startedAt;
-  if(sec>=1){state.timeLog.push({id:t.id,start:start,end:end,sec:sec,domainId:t.domainId,lectureId:t.lectureId,byDate:rounded});var d=domById(t.domainId);logAct('time','学習 '+fmtHM(sec)+'（'+(IDX[t.lectureId]?IDX[t.lectureId].title:d?d.name:'自由研究')+'）')}
-  state.timer=null;save();renderBar();render();toast(sec>=1?'学習を終了しました（'+fmtHM(sec)+'）。':'1秒未満のため記録しませんでした。');
+  if(sec>=3){state.timeLog.push({id:t.id,start:start,end:end,sec:sec,domainId:t.domainId,lectureId:t.lectureId,byDate:rounded});var d=domById(t.domainId);logAct('time','学習 '+fmtHM(sec)+'（'+(IDX[t.lectureId]?IDX[t.lectureId].title:d?d.name:'自由研究')+'）')}
+  state.timer=null;if(opts.hold)autoHold=true;save();renderBar();
+  if(!opts.silent)toast(sec>=3?'学習を保存しました（'+fmtHM(sec)+'）。':'3秒未満のため記録しませんでした。');
+  if(opts.render)render();
+}
+/* 自動計測：いま開いている画面から「学習中かどうか」を判定する */
+function studyContext(){
+  var r=route();
+  if(r.page==='lecture')return (IDX[r.a]&&LECTURES[r.a])?{d:IDX[r.a].domain,l:r.a}:null;
+  if(r.page==='domain')return domById(r.a)?{d:r.a,l:''}:null;
+  if(r.page==='lab'){var t=r.a?TASKS.filter(function(x){return x.id===r.a})[0]:null;return {d:t?t.domain:'',l:''}}
+  if(r.page==='library'||r.page==='notes')return {d:'',l:''};
+  return null;
+}
+function autoSync(){
+  if(!state||!state.settings.auto)return;
+  var now=Date.now(),t=state.timer,c=studyContext();
+  var hidden=(typeof document!=='undefined'&&!!document.hidden)&&state.settings.autoPauseHidden;
+  var idle=now-lastActivity>state.settings.idleMinutes*60000;
+  var okRun=!!c&&!hidden&&!idle&&!autoHold;
+  if(t&&t.runningSince){
+    if(!c||hidden||idle){
+      pauseTimer(idle?lastActivity:now,null,false);
+      if(idle&&now-lastIdleToast>60000){lastIdleToast=now;toast('無操作が続いたため、計測を一時停止しました（操作のなかった時間は加算されません）。')}
+    }else if(c.d!==t.domainId||c.l!==t.lectureId){endTimer({silent:true});}
+  }else if(t){
+    if(t.pausedAt&&now-t.pausedAt>15*60000){endTimer({silent:true});}
+    else if(okRun&&!t.manualHold){
+      if(c.d!==t.domainId||c.l!==t.lectureId)endTimer({silent:true});else resumeTimer();
+    }
+  }
+  if(!state.timer&&okRun)startTimer(c.d,c.l,true);
 }
 function tick(){
+  if(state.settings.auto)autoSync();
+  else{var t0=state.timer;if(t0&&t0.runningSince&&Date.now()-lastActivity>state.settings.idleMinutes*60000)pauseTimer(lastActivity,'無操作が続いたため、計測を一時停止しました（操作のなかった時間は加算されません）。')}
   var t=state.timer;
-  if(t&&t.runningSince){
-    var now=Date.now(),idle=state.settings.idleMinutes*60000;
-    if(now-lastActivity>idle){pauseTimer(lastActivity,'無操作が続いたため、計測を一時停止しました（操作のなかった時間は加算されません）。');}
-    else{t.lastBeat=now;if(Math.floor(now/1000)%5===0)save()}
-  }
+  if(t&&t.runningSince){var now=Date.now();t.lastBeat=now;if(Math.floor(now/1000)%5===0)save()}
   var el=$('#tbTime');if(el&&state.timer)el.textContent=fmtDur(timerMs()/1000);
   var ht=$('#liveToday');if(ht)ht.textContent=fmtHM(todaySec());
 }
-function markActive(){lastActivity=Date.now()}
+function markActive(){lastActivity=Date.now();if(state&&state.settings.auto&&(!state.timer||!state.timer.runningSince)&&lastActivity-lastSync>800){lastSync=lastActivity;autoSync()}}
 
 /* =====================================================================
    [4] 画面
@@ -433,9 +963,16 @@ function renderNav(){var r=route(),map={domain:'domains',lecture:'domains'};var 
 
 function barCtx(){var r=route();if(r.page==='lecture'&&IDX[r.a])return {d:IDX[r.a].domain,l:r.a};if(r.page==='domain'&&domById(r.a))return {d:r.a,l:''};return {d:'',l:''}}
 function renderBar(){
-  var el=$('#timerbar'),t=state.timer,h;
-  if(!t){var c=barCtx();h='<div class="tb-in"><span class="muted">学習時間の計測：停止中</span><select id="tbDom" aria-label="研究領域">'+'<option value="">自由研究（領域なし）</option>'+DOMAINS.map(function(d){return '<option value="'+d.id+'"'+(c.d===d.id?' selected':'')+'>'+esc(d.name)+'</option>'}).join('')+'</select>'+(c.l?'<span class="muted">講義：'+esc(IDX[c.l].title)+'</span>':'')+'<button class="pri" data-act="tstart" data-l="'+esc(c.l)+'">▶ 学習開始</button><span class="muted">今日：<span id="liveToday">'+fmtHM(todaySec())+'</span></span></div>';}
-  else{var d=domById(t.domainId),running=!!t.runningSince;h='<div class="tb-in"><span class="tb-time" id="tbTime">'+fmtDur(timerMs()/1000)+'</span><span>'+(running?'学習中':'一時停止中')+' ― '+esc(IDX[t.lectureId]?IDX[t.lectureId].title:d?d.name:'自由研究')+'</span>'+(running?'<button data-act="tpause">⏸ 一時停止</button>':'<button class="pri" data-act="tresume">▶ 再開</button>')+'<button class="danger" data-act="tend">■ 学習終了</button></div>'}
+  var el=$('#timerbar');if(!el)return;var t=state.timer,auto=state.settings.auto,h;
+  var tog='<button data-act="toggleauto" title="自動計測の切り替え">自動計測：'+(auto?'ON':'OFF')+'</button>';
+  if(!t){
+    if(auto)h='<div class="tb-in"><span class="tb-time" id="tbTime">00:00:00</span><span class="muted">自動計測：待機中（講義・実験室・ノートなどを開くと自動で始まります）</span>'+tog+'<span class="muted">今日：<span id="liveToday">'+fmtHM(todaySec())+'</span></span></div>';
+    else{var c=barCtx();h='<div class="tb-in"><span class="muted">学習時間の計測：停止中</span><select id="tbDom" aria-label="研究領域"><option value="">自由研究（領域なし）</option>'+DOMAINS.map(function(d){return '<option value="'+d.id+'"'+(c.d===d.id?' selected':'')+'>'+esc(d.name)+'</option>'}).join('')+'</select>'+(c.l?'<span class="muted">講義：'+esc(IDX[c.l].title)+'</span>':'')+'<button class="pri" data-act="tstart" data-l="'+esc(c.l)+'">▶ 学習開始</button>'+tog+'<span class="muted">今日：<span id="liveToday">'+fmtHM(todaySec())+'</span></span></div>'}
+  }else{
+    var d=domById(t.domainId),running=!!t.runningSince;
+    var label=running?'学習中':(t.manualHold?'一時停止中（手動）':(auto?'一時停止中（操作かページ移動で自動再開）':'一時停止中'));
+    h='<div class="tb-in"><span class="tb-time" id="tbTime">'+fmtDur(timerMs()/1000)+'</span><span>'+label+' ― '+esc(IDX[t.lectureId]?IDX[t.lectureId].title:d?d.name:'自由研究')+'</span>'+(running?'<button data-act="tpause">⏸ 一時停止</button>':'<button class="pri" data-act="tresume">▶ 再開</button>')+'<button class="danger" data-act="tend">'+(auto?'■ 区切って保存':'■ 学習終了')+'</button>'+tog+'</div>';
+  }
   el.innerHTML=h;
 }
 
@@ -469,7 +1006,7 @@ function pageDomains(){
 function pageDomain(id){
   var d=domById(id);if(!d)return notFound();var p=domProgress(d);
   var h='<div class="crumb"><a href="#/domains">研究領域</a> › '+esc(d.name)+'</div><h1><span class="glyph">'+d.glyph+'</span> '+esc(d.name)+' <small class="muted">'+d.en+'</small></h1>';
-  h+='<div class="card"><p>'+esc(d.overview)+'</p><h3>学習目的</h3><p>'+esc(d.purpose)+'</p>'+pctBar(p.pct)+'<div class="muted">進捗 '+p.pct+'% ／ 講義 '+p.lecDone+'/'+p.lec+'（執筆済 '+p.written+'）／ 課題 '+p.tasksDone+'/'+p.tasks+' ／ 学習時間 '+fmtHM(totalSec(function(l){return l.domainId===d.id}))+'</div><div class="row" style="margin-top:8px"><button class="pri" data-act="tstart" data-d="'+d.id+'" data-l="">この領域で学習を開始</button></div></div>';
+  h+='<div class="card"><p>'+esc(d.overview)+'</p><h3>学習目的</h3><p>'+esc(d.purpose)+'</p>'+pctBar(p.pct)+'<div class="muted">進捗 '+p.pct+'% ／ 講義 '+p.lecDone+'/'+p.lec+'（執筆済 '+p.written+'）／ 課題 '+p.tasksDone+'/'+p.tasks+' ／ 学習時間 '+fmtHM(totalSec(function(l){return l.domainId===d.id}))+'</div><div class="row" style="margin-top:8px">'+(state.settings.auto?'<span class="muted">この研究室を開いている間、学習時間を自動で計測します。</span>':'<button class="pri" data-act="tstart" data-d="'+d.id+'" data-l="">この領域で学習を開始</button>')+'</div></div>';
   h+='<h2>カリキュラム</h2>';
   d.chapters.forEach(function(c){h+='<div class="card"><h3 style="margin-top:0">第'+c.n+'章　'+esc(c.title)+'</h3><ul class="clean sans" style="list-style:none;padding:0">'+c.lectures.map(function(l){var w=!!LECTURES[l[0]],done=!!state.completed[l[0]];return '<li style="padding:5px 0;border-bottom:1px dotted rgba(184,150,78,.25)">'+(w?'<a href="#/lecture/'+l[0]+'">'+esc(l[1])+'</a>':'<span class="muted">'+esc(l[1])+'</span>')+' '+(done?'<span class="tag ok">完了</span>':w?'<span class="tag">未完了</span>':'<span class="tag plan">準備中（未執筆）</span>')+'</li>'}).join('')+'</ul></div>'});
   var ts=TASKS.filter(function(t){return t.domain===d.id});
@@ -501,7 +1038,7 @@ function pageLecture(id){
   if(!L){var i=ORDER.indexOf(id);return h+'<h1>'+esc(meta.title)+'</h1><div class="card"><span class="tag plan">準備中</span><p>この講義はまだ執筆されていません。講義データ（LECTURES）に <code>'+esc(id)+'</code> を追加すると、この画面に表示されます。</p></div>'+lecNav(i)}
   state.lastLecture=id;save();
   var cz=makeCiter(),done=!!state.completed[id],q=state.quiz[id];
-  h+='<h1>'+esc(meta.title)+'</h1><div class="row"><span class="tag">'+esc(d.en)+'</span>'+(done?'<span class="tag ok">完了済み</span>':'')+'<button class="pri" data-act="tstart" data-d="'+d.id+'" data-l="'+id+'" '+(state.timer?'disabled':'')+'>▶ この講義で学習を開始</button></div>';
+  h+='<h1>'+esc(meta.title)+'</h1><div class="row"><span class="tag">'+esc(d.en)+'</span>'+(done?'<span class="tag ok">完了済み</span>':'')+''+(state.settings.auto?'<span class="muted">この講義を開いている間、学習時間を自動で計測します。</span>':'<button class="pri" data-act="tstart" data-d="'+d.id+'" data-l="'+id+'" '+(state.timer?'disabled':'')+'>▶ この講義で学習を開始</button>')+'</div>';
   h+='<h2>学習目標</h2><ul class="clean">'+L.goals.map(function(g){return '<li>'+esc(g)+'</li>'}).join('')+'</ul>';
   h+='<h2>導入</h2><div class="lec"><p>'+cz.fmt(L.intro)+'</p></div>';
   h+='<h2>本文</h2><div class="lec">'+L.sections.map(function(s){return '<h3>'+esc(s.h)+'</h3>'+s.p.map(function(p){return '<p>'+cz.fmt(p)+'</p>'}).join('')}).join('')+'</div>';
@@ -658,8 +1195,8 @@ function pageData(){
   var h='<h1>データ・設定</h1><div class="card"><h3 style="margin-top:0">バックアップ（JSON）</h3><p class="muted">学習データはこのブラウザの localStorage に自動保存されています。ブラウザのデータを消去すると失われるため、定期的にJSONで書き出してください。最後の書き出し：'+(le?fmtDT(le):'まだありません')+'</p><div class="row"><button class="pri" data-act="export">JSONを書き出す</button><label class="btn" style="margin:0;cursor:pointer">JSONを読み込む<input type="file" id="impFile" accept="application/json,.json" style="display:none"></label></div></div>';
   h+='<div id="impBox"></div>';
   h+='<div class="card"><h3 style="margin-top:0">現在のデータ</h3><p class="sans">'+s.xp+' XP ／ Lv.'+s.level+' ／ '+esc(s.title)+' ／ 講義 '+s.lectures+' ／ 課題 '+s.tasks+' ／ ノート '+s.notes+' ／ 学習 '+fmtHM(s.seconds)+'（'+s.sessions+'セッション）</p></div>';
-  h+='<div class="card"><h3 style="margin-top:0">設定</h3><label>無操作で自動一時停止するまでの時間（分）</label><input type="number" id="s_idle" min="1" max="120" value="'+state.settings.idleMinutes+'" style="max-width:120px"><label class="opt" style="margin-top:10px"><input type="checkbox" id="s_hidden" '+(state.settings.autoPauseHidden?'checked':'')+'>タブが非表示になったら計測を自動で一時停止する</label><button class="pri" data-act="savesettings" style="margin-top:8px">設定を保存</button></div>';
-  h+='<div class="card"><h3 style="margin-top:0">学習時間の計測について</h3><ul class="clean muted"><li>一時停止中の時間は加算されません。</li><li>ページを閉じた・再読み込みした場合、最後に確認できた時点までを記録し、一時停止状態で復帰します。</li><li>日付をまたぐ学習は、日別に分けて集計します。</li><li>無操作が続くと、最後に操作した時点で自動的に一時停止します。</li></ul></div>';
+  h+='<div class="card"><h3 style="margin-top:0">設定</h3><label class="opt"><input type="checkbox" id="s_auto" '+(state.settings.auto?'checked':'')+'>学習時間を自動で計測する（講義・研究室・実験室・文献・ノートを開いている間）</label><label>無操作で自動一時停止するまでの時間（分）</label><input type="number" id="s_idle" min="1" max="120" value="'+state.settings.idleMinutes+'" style="max-width:120px"><label class="opt" style="margin-top:10px"><input type="checkbox" id="s_hidden" '+(state.settings.autoPauseHidden?'checked':'')+'>タブが非表示になったら計測を自動で一時停止する</label><button class="pri" data-act="savesettings" style="margin-top:8px">設定を保存</button></div>';
+  h+='<div class="card"><h3 style="margin-top:0">学習時間の計測について</h3><ul class="clean muted"><li>自動計測がONのときは、講義・研究室・実験室・古文書庫・研究ノートを開いている間だけ計測します。書斎・学習履歴・データ画面では計測しません。</li><li>別の講義を開くと、記録は自動的に講義ごとに区切られます。</li><li>一時停止中の時間は加算されません。</li><li>ページを閉じた・再読み込みした場合、最後に確認できた時点までを記録し、一時停止状態で復帰します。</li><li>日付をまたぐ学習は、日別に分けて集計します。</li><li>無操作が続く、またはタブが非表示になると、最後に操作した時点で自動的に一時停止します（操作を再開すると自動で再開します）。</li><li>一時停止が15分を超えると、そこまでの記録を保存して区切ります。</li><li>画面下部のバーで、計測の状態を確認できます。「⏸ 一時停止」を押した場合は、「再開」を押すまで自動再開しません。</li></ul></div>';
   h+='<div class="card"><h3 style="margin-top:0">データの初期化</h3><p class="muted">この端末の学習データをすべて削除します。実行前にJSONバックアップを書き出してください。</p><button class="danger" data-act="reset">すべて削除する</button></div>';
   return h;
 }
@@ -693,8 +1230,9 @@ function onClick(ev){
   var el=ev.target.closest&&ev.target.closest('[data-act]');if(!el)return;var a=el.getAttribute('data-act'),D=function(k){return el.getAttribute('data-'+k)};markActive();
   switch(a){
     case 'tstart':{var sel=$('#tbDom'),dom=D('d')||(sel?sel.value:'');startTimer(dom,D('l')||'');render();break}
-    case 'tpause':pauseTimer();break;case 'tresume':resumeTimer();break;
-    case 'tend':if(confirm('学習を終了して記録しますか？'))endTimer();break;
+    case 'tpause':pauseTimer(Date.now(),null,true);break;case 'tresume':autoHold=false;resumeTimer();break;
+    case 'toggleauto':state.settings.auto=!state.settings.auto;if(state.settings.auto){autoHold=false;autoSync()}else if(state.timer&&state.timer.runningSince)pauseTimer(Date.now(),null,true);save();renderBar();toast('自動計測を'+(state.settings.auto?'ONにしました。':'OFFにしました。手動の開始・一時停止・終了で計測します。'));if(route().page==='data'||route().page==='lecture'||route().page==='domain')render();break;
+    case 'tend':if(confirm(state.settings.auto?'ここまでの学習時間を保存して区切りますか？（ページを移動すると、また自動で計測が始まります）':'学習を終了して記録しますか？'))endTimer({hold:true,render:true});break;
     case 'complete':{var id=D('l'),ds=IDX[id].domain;if(!state.completed[id]){state.completed[id]=Date.now();var g=award('lec:'+id,50,ds,'講義を完了：'+IDX[id].title);save();toast('講義を完了しました（+'+g+' XP）');render()}break}
     case 'review':{var id2=D('l'),key='review:'+id2+':'+dkey(Date.now());if(state.awards[key])toast('今日はすでに復習を記録しています。');else{award(key,10,IDX[id2].domain,'復習：'+IDX[id2].title);save();toast('復習を記録しました（+10 XP）')}break}
     case 'quiz':{var lid=D('l'),L=LECTURES[lid],ok=0,answered=0;
@@ -723,7 +1261,7 @@ function onClick(ev){
     case 'export':doExport();break;
     case 'doimport':{var mode=(document.querySelector('input[name="impMode"]:checked')||{}).value||'merge';if(mode==='overwrite'&&!confirm('現在のデータがファイルの内容で置き換わります。よろしいですか？'))break;applyImport(mode);break}
     case 'cancelimport':pendingImport=null;$('#impBox').innerHTML='';break;
-    case 'savesettings':state.settings.idleMinutes=num(val('s_idle'),5,1,120);state.settings.autoPauseHidden=!!document.getElementById('s_hidden').checked;save();toast('設定を保存しました。');break;
+    case 'savesettings':state.settings.idleMinutes=num(val('s_idle'),5,1,120);state.settings.autoPauseHidden=!!document.getElementById('s_hidden').checked;state.settings.auto=!!document.getElementById('s_auto').checked;autoHold=false;autoSync();save();renderBar();toast('設定を保存しました。');break;
     case 'reset':if(confirm('すべての学習データを削除します。よろしいですか？')&&confirm('本当に削除しますか？この操作は取り消せません。')){state=defaultState();save();render();toast('初期化しました。')}break;
   }
 }
@@ -731,17 +1269,27 @@ function onClick(ev){
 function init(){
   state=loadState();var recovered=state._recovered;delete state._recovered;
   document.addEventListener('click',onClick);
-  ['mousemove','keydown','touchstart','scroll','click'].forEach(function(e){window.addEventListener(e,markActive,{passive:true})});
-  window.addEventListener('hashchange',render);
-  document.addEventListener('visibilitychange',function(){if(document.hidden){if(state.timer&&state.timer.runningSince&&state.settings.autoPauseHidden)pauseTimer(Date.now(),null);state.timer&&(state.timer.lastBeat=Date.now());save()}else{markActive();if(state.timer&&!state.timer.runningSince&&state.settings.autoPauseHidden)toast('タブが非表示の間、計測を一時停止しました。再開するには「再開」を押してください。');renderBar()}});
+  ['mousemove','keydown','touchstart','scroll','click','wheel'].forEach(function(e){window.addEventListener(e,markActive,{passive:true})});
+  window.addEventListener('hashchange',function(){autoHold=false;autoSync();render()});
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){
+      if(state.settings.auto)autoSync();
+      else if(state.timer&&state.timer.runningSince&&state.settings.autoPauseHidden)pauseTimer(Date.now(),null);
+      if(state.timer&&state.timer.runningSince)state.timer.lastBeat=Date.now();save();
+    }else{
+      markActive();
+      if(!state.settings.auto&&state.timer&&!state.timer.runningSince&&state.settings.autoPauseHidden)toast('タブが非表示の間、計測を一時停止しました。再開するには「再開」を押してください。');
+    }
+    renderBar();
+  });
   window.addEventListener('pagehide',function(){if(state.timer&&state.timer.runningSince)state.timer.lastBeat=Date.now();save()});
   window.addEventListener('storage',function(e){if(e.key===LS_KEY){state=loadState();render()}});
   setInterval(tick,1000);
-  render();
-  if(recovered)toast('前回の計測セッションを一時停止状態で復元しました（最後に確認できた時点までを記録）。');
-  else if(state.timer)toast('計測セッションが残っています。「再開」または「学習終了」を選んでください。');
+  autoSync();render();
+  if(recovered)toast('前回の計測セッションを復元しました（最後に確認できた時点までを記録しています）。');
+  else if(state.timer&&!state.settings.auto)toast('計測セッションが残っています。「再開」または「学習終了」を選んでください。');
 }
-if(typeof window!=='undefined'){window.GRIMOIRE_TEST={validateImport:validateImport,mergeStates:mergeStates,buildExport:buildExport,splitByDay:splitByDay,sanitizeState:sanitizeState,defaultState:defaultState,xpTotal:xpTotal,levelOf:levelOf,titleOf:titleOf,DOMAINS:DOMAINS,LECTURES:LECTURES,TASKS:TASKS,REFS:REFS,IDX:IDX,pageLecture:pageLecture,pageHome:pageHome,pageDomains:pageDomains,pageDomain:pageDomain,pageLab:pageLab,pageTask:pageTask,pageLibrary:pageLibrary,pageRef:pageRef,pageNotes:pageNotes,pageHistory:pageHistory,pageData:pageData,setState:function(s){state=s},getState:function(){return state},citedBy:citedBy};
+if(typeof window!=='undefined'){window.GRIMOIRE_TEST={validateImport:validateImport,mergeStates:mergeStates,buildExport:buildExport,splitByDay:splitByDay,sanitizeState:sanitizeState,defaultState:defaultState,xpTotal:xpTotal,levelOf:levelOf,titleOf:titleOf,DOMAINS:DOMAINS,LECTURES:LECTURES,TASKS:TASKS,REFS:REFS,IDX:IDX,pageLecture:pageLecture,pageHome:pageHome,pageDomains:pageDomains,pageDomain:pageDomain,pageLab:pageLab,pageTask:pageTask,pageLibrary:pageLibrary,pageRef:pageRef,pageNotes:pageNotes,pageHistory:pageHistory,pageData:pageData,setState:function(s){state=s},getState:function(){return state},citedBy:citedBy,autoSync:autoSync,studyContext:studyContext,startTimer:startTimer,endTimer:endTimer,pauseTimer:pauseTimer,resumeTimer:resumeTimer,markActive:markActive,tick:tick,totalSec:totalSec,todaySec:todaySec,setLast:function(t){lastActivity=t},resetHold:function(){autoHold=false}};
   if(document&&document.getElementById&&!window.__GR_NOINIT)init();}
 </script>
 </body>
